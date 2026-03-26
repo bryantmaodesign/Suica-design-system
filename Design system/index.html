@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suica Design System</title>
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-jp);
+      color: var(--text-primary);
+      background: #fff;
+      display: flex;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid #EDECEB;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-logo {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid #EDECEB;
+    }
+
+    .sidebar-logo .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-logo .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand-default);
+    }
+
+    .sidebar-logo .logo-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.04em;
+    }
+
+    .sidebar-logo .logo-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .sidebar-nav {
+      padding: 16px 0;
+      flex: 1;
+    }
+
+    .nav-section-label {
+      padding: 8px 20px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 0;
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .nav-link:hover {
+      background: var(--brand-subtle);
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      background: var(--brand-subtle);
+      color: var(--brand-default);
+      font-weight: 600;
+    }
+
+    .nav-link .nav-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      min-width: 0;
+    }
+
+    /* ─── Page Header ────────────────────────────────── */
+    .page-hero {
+      background: var(--brand-default);
+      padding: 48px 56px 40px;
+      color: #fff;
+    }
+
+    .page-hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .page-hero p {
+      font-size: 15px;
+      opacity: 0.85;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Section ────────────────────────────────────── */
+    .section {
+      padding: 56px;
+      border-bottom: 1px solid #EDECEB;
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .section-bar {
+      width: 4px;
+      height: 24px;
+      border-radius: 2px;
+      background: var(--brand-default);
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .section-header h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .section-header .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .subsection {
+      margin-bottom: 48px;
+    }
+
+    .subsection:last-child { margin-bottom: 0; }
+
+    .subsection-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #EDECEB;
+    }
+
+    /* ─── Color Swatches ─────────────────────────────── */
+    .swatch-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      width: 120px;
+    }
+
+    .swatch-box {
+      width: 120px;
+      height: 72px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.07);
+      margin-bottom: 8px;
+    }
+
+    .swatch-box.light { border-color: #DEDEDE; }
+
+    .swatch-token {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 2px;
+      word-break: break-all;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Comm color rows */
+    .comm-row { margin-bottom: 28px; }
+
+    .comm-row-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .comm-swatches {
+      display: flex;
+      gap: 6px;
+    }
+
+    .comm-swatch {
+      flex: 1;
+      min-width: 60px;
+    }
+
+    .comm-swatch .swatch-box {
+      width: 100%;
+      height: 56px;
+      border-radius: 4px;
+    }
+
+    .comm-swatch .swatch-token {
+      font-size: 10px;
+    }
+
+    .comm-swatch .swatch-hex {
+      font-size: 10px;
+    }
+
+    /* Stage row */
+    .stage-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .stage-pair {
+      display: flex;
+      gap: 6px;
+    }
+
+    /* ─── Typography ─────────────────────────────────── */
+    .type-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .type-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      padding: 0 0 8px;
+      border-bottom: 1px solid #EDECEB;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .type-table td {
+      padding: 16px 0;
+      border-bottom: 1px solid #EDECEB;
+      vertical-align: middle;
+    }
+
+    .type-table tr:last-child td { border-bottom: none; }
+
+    .type-col-name {
+      width: 220px;
+    }
+
+    .type-col-spec {
+      width: 200px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .type-col-preview {
+      /* flex: 1 */
+    }
+
+    .type-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .type-spec-tag {
+      display: inline-block;
+      background: #F0F0EE;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-family: monospace;
+    }
+
+    .preview-bubble {
+      background: var(--surface-raised);
+      border-radius: 6px;
+      padding: 16px 20px;
+      overflow: hidden;
+    }
+
+    .preview-bubble .preview-text {
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ─── Spacing ────────────────────────────────────── */
+    .spacing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .spacing-bar-wrap {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .spacing-bar {
+      height: 24px;
+      background: var(--brand-default);
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    .spacing-label {
+      width: 80px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .spacing-token {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-family: monospace;
+    }
+
+    /* ─── Components ─────────────────────────────────── */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .component-card {
+      border: 1px solid #EDECEB;
+      border-radius: 8px;
+      padding: 20px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      cursor: default;
+    }
+
+    .component-card:hover {
+      border-color: var(--brand-default);
+      box-shadow: 0 0 0 3px rgba(0,131,62,0.08);
+    }
+
+    .component-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--brand-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .component-card-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .component-card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── Overview cards ─────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .overview-card {
+      padding: 24px;
+      border: 1px solid #EDECEB;
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .overview-card:hover {
+      border-color: var(--brand-default);
+      box-shadow: 0 0 0 3px rgba(0,131,62,0.08);
+    }
+
+    .overview-card-emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .overview-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .overview-card-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Principles ─────────────────────────────────── */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .principle-card {
+      padding: 24px;
+      background: var(--surface-raised);
+      border-radius: 10px;
+    }
+
+    .principle-number {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--brand-default);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .principle-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .principle-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── Primitive palette rows ─────────────────────── */
+    .palette-row {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 10px;
+      gap: 0;
+    }
+
+    .palette-family-label {
+      width: 100px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding-right: 12px;
+    }
+
+    .palette-steps {
+      display: flex;
+      flex: 1;
+      gap: 3px;
+    }
+
+    .palette-step {
+      flex: 1;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 0.5px solid rgba(0,0,0,0.07);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .palette-step:hover { transform: scaleY(1.04); }
+
+    .palette-step.is-500 { outline: 2px solid var(--brand-default); outline-offset: 1px; }
+
+    .palette-step-swatch {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .palette-step-label {
+      background: #fff;
+      text-align: center;
+      padding: 2px 0;
+      font-size: 8px;
+      color: #aaa;
+      font-family: monospace;
+      line-height: 1.3;
+    }
+
+    .palette-step-num {
+      font-size: 8px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    /* ─── Semantic token table ───────────────────────── */
+    .semantic-group { margin-bottom: 32px; }
+
+    .semantic-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-default);
+      margin-bottom: 8px;
+    }
+
+    .semantic-row {
+      display: grid;
+      grid-template-columns: 36px 200px 1fr 56px;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 7px;
+      border: 0.5px solid #ebebeb;
+      background: #fff;
+      margin-bottom: 5px;
+      cursor: default;
+    }
+
+    .semantic-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 0.5px solid rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+
+    .semantic-token-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: monospace;
+      margin-bottom: 2px;
+    }
+
+    .semantic-source {
+      font-size: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .semantic-usage {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .contrast-badge {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .contrast-pass  { background: #dcfce7; color: #166534; }
+    .contrast-large { background: #fef3c7; color: #854d0e; }
+    .contrast-fail  { background: #fde8e8; color: #991f1f; }
+
+    /* ─── Icons ──────────────────────────────────────── */
+    .icon-guidelines {
+      background: var(--surface-raised);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .icon-guidelines strong { color: var(--text-primary); }
+
+    .icon-guidelines code {
+      font-size: 11px;
+      font-family: monospace;
+      background: var(--surface-page);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--brand-default);
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+      gap: 10px;
+    }
+
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 8px 12px;
+      border: 1px solid #EDECEB;
+      border-radius: 8px;
+      text-align: center;
+      cursor: default;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .icon-card:hover {
+      border-color: var(--brand-default);
+      background: var(--brand-subtle);
+    }
+
+    .icon-preview {
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+
+    .icon-name {
+      font-size: 10px;
+      font-family: monospace;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-bottom: 3px;
+      word-break: break-all;
+    }
+
+    .icon-usage {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      line-height: 1.4;
+    }
+
+    /* ─── Nav disabled + soon badge ─────────────────── */
+    .nav-link.nav-disabled {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-soon {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--warning-subtle);
+      color: var(--warning-text);
+      border-radius: 3px;
+      padding: 1px 5px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Scrollspy active state ─────────────────────── */
+    .section[id] {
+      scroll-margin-top: 24px;
+    }
+
+    /* ─── Typography — font stack cards ─────────────── */
+    .type-font-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .type-font-card {
+      background: var(--surface-raised);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .type-font-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .type-font-card-mono {
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .type-font-card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── Typography — scale rows ────────────────────── */
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 240px 1fr 200px;
+      gap: 24px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid #EDECEB;
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-preview {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .type-preview p {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 220px;
+    }
+
+    .type-meta {
+      padding-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .type-aside {
+      padding-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .type-token {
+      font-size: 12px;
+      font-weight: 600;
+      font-family: monospace;
+      color: var(--brand-default);
+    }
+
+    .type-spec {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .type-note {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .type-usage {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .type-platform {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .type-platform span {
+      font-size: 10px;
+      font-family: monospace;
+      background: var(--surface-raised);
+      color: var(--text-secondary);
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 0.5px solid var(--border-default);
+    }
+
+    /* ─── Typography — numeric warning note ─────────── */
+    .type-numeric-note {
+      font-size: 12px;
+      color: #7a5010;
+      background: #fef9e7;
+      border: 0.5px solid #f0d870;
+      border-radius: 6px;
+      padding: 10px 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Buttons ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-8);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-jp);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border-radius: var(--radius-full);
+      transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      position: relative;
+      /* MD (default) */
+      height: 40px;
+      padding: 0 var(--space-24);
+      font-size: 14px;
+    }
+
+    .btn-sm {
+      height: 32px;
+      padding: 0 var(--space-16);
+      font-size: 13px;
+      gap: var(--space-4);
+    }
+
+    .btn-lg {
+      height: 48px;
+      padding: 0 var(--space-24);
+      font-size: 15px;
+    }
+
+    /* Button icon wrapper */
+    .btn-icon-wrap {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .btn-sm .btn-icon-wrap { width: 16px; height: 16px; }
+    .btn-lg .btn-icon-wrap { width: 20px; height: 20px; }
+    .btn-icon-wrap svg { display: block; }
+
+    /* Icon-only */
+    .btn-icon-only {
+      padding: 0;
+      width: 40px;
+      height: 40px;
+    }
+    .btn-icon-only.btn-sm { width: 32px; height: 32px; }
+    .btn-icon-only.btn-lg { width: 48px; height: 48px; }
+
+    /* ── Filled ── */
+    .btn-filled {
+      background: var(--brand-default);
+      color: var(--brand-on-default);
+    }
+    .btn-filled:hover  { background: var(--brand-strong); }
+    .btn-filled:active { background: var(--brand-strong); }
+    .btn-filled:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+
+    /* ── Filled Tonal ── */
+    .btn-tonal {
+      background: var(--brand-subtle);
+      color: var(--brand-strong);
+    }
+    .btn-tonal:hover  { background: var(--brand-green-100); }
+    .btn-tonal:active { background: var(--brand-green-200); }
+    .btn-tonal:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+
+    /* ── Elevated ── */
+    .btn-elevated {
+      background: var(--surface-default);
+      color: var(--brand-default);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .btn-elevated:hover  { box-shadow: 0 3px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.10); }
+    .btn-elevated:active { box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+    .btn-elevated:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+
+    /* ── Outlined ── */
+    .btn-outlined {
+      background: transparent;
+      color: var(--brand-default);
+      border: 1.5px solid var(--brand-default);
+    }
+    .btn-outlined:hover  { background: var(--brand-subtle); }
+    .btn-outlined:active { background: var(--brand-green-100); }
+    .btn-outlined:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+
+    /* ── Text ── */
+    .btn-text {
+      background: transparent;
+      color: var(--brand-default);
+      padding-left: var(--space-12);
+      padding-right: var(--space-12);
+    }
+    .btn-text.btn-sm { padding-left: var(--space-8); padding-right: var(--space-8); }
+    .btn-text.btn-lg { padding-left: var(--space-16); padding-right: var(--space-16); }
+    .btn-text:hover  { background: var(--brand-subtle); }
+    .btn-text:active { background: var(--brand-green-100); }
+    .btn-text:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+
+    /* ── Disabled ── */
+    .btn:disabled {
+      background: var(--state-disabled-fill) !important;
+      color: var(--state-disabled-text) !important;
+      border-color: var(--border-default) !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* ── Button demo helpers ── */
+    .btn-demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-12);
+      padding: var(--space-24);
+      background: var(--surface-raised);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-16);
+    }
+
+    .btn-demo-row.on-dark {
+      background: var(--neutral-900);
+    }
+
+    .btn-size-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-12);
+    }
+
+    .btn-size-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-12);
+      padding: var(--space-20);
+      background: var(--surface-raised);
+      border-radius: var(--radius-md);
+    }
+
+    .btn-size-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--border-default);
+      width: 100%;
+      margin-bottom: var(--space-4);
+    }
+
+    .btn-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .btn-spec-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      padding: 0 0 8px;
+      border-bottom: 1px solid var(--border-default);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .btn-spec-table td {
+      padding: var(--space-12) var(--space-8) var(--space-12) 0;
+      border-bottom: 1px solid #EDECEB;
+      vertical-align: middle;
+      color: var(--text-primary);
+    }
+
+    .btn-spec-table tr:last-child td { border-bottom: none; }
+
+    .btn-spec-table code {
+      font-size: 10px;
+      font-family: monospace;
+      background: var(--surface-raised);
+      color: var(--brand-default);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .btn-states-grid {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .btn-states-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    .btn-states-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding-right: var(--space-8);
+    }
+
+    .btn-states-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-12) 0;
+      background: var(--surface-raised);
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-state-demo-focus {
+      outline: 2px solid var(--state-focus);
+      outline-offset: 2px;
+    }
+
+    .btn-state-demo-hover.btn-filled  { background: var(--brand-strong); }
+    .btn-state-demo-hover.btn-tonal   { background: var(--brand-green-100); }
+    .btn-state-demo-hover.btn-elevated { box-shadow: 0 3px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.10); }
+    .btn-state-demo-hover.btn-outlined { background: var(--brand-subtle); border-color: var(--brand-default); }
+    .btn-state-demo-hover.btn-text    { background: var(--brand-subtle); }
+
+    .btn-state-demo-pressed.btn-filled  { background: var(--brand-strong); }
+    .btn-state-demo-pressed.btn-tonal   { background: var(--brand-green-200); }
+    .btn-state-demo-pressed.btn-elevated { box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+    .btn-state-demo-pressed.btn-outlined { background: var(--brand-green-100); }
+    .btn-state-demo-pressed.btn-text    { background: var(--brand-green-100); }
+
+  </style>
+</head>
+
+<body>
+
+<!-- ═══ SIDEBAR ══════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge">
+      <div class="logo-dot"></div>
+      <div class="logo-name">Suica DS</div>
+    </div>
+    <div class="logo-sub">JR Design System — iOS</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Getting Started</div>
+    <a href="#overview" class="nav-link active">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/>
+        <rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>
+      </svg>
+      Overview
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Foundations</div>
+    <a href="#colors" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 0 1 6 6H8V2z" fill="currentColor" stroke="none" opacity="0.3"/>
+      </svg>
+      Colors
+    </a>
+    <a href="#typography" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 4h10M8 4v8M5 12h6"/>
+      </svg>
+      Typography
+    </a>
+    <a href="#spacing" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2 8h12M2 4v2M2 10v2M14 4v2M14 10v2"/>
+      </svg>
+      Spacing
+    </a>
+
+    <a href="#icons" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="2"/><line x1="8" y1="1" x2="8" y2="4"/><line x1="8" y1="12" x2="8" y2="15"/><line x1="1" y1="8" x2="4" y2="8"/><line x1="12" y1="8" x2="15" y2="8"/>
+      </svg>
+      Icons
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Components</div>
+    <a href="#buttons" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="5" width="14" height="6" rx="3"/>
+      </svg>
+      Button
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2 2h5.5l6.5 6.5-5 5L2.5 7 2 2z"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      Tag
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2.5 2.5L11 6"/>
+      </svg>
+      Checkbox
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5" fill="currentColor" stroke="none"/>
+      </svg>
+      Radio
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="4" width="14" height="8" rx="4"/><circle cx="10" cy="8" r="2.5" fill="currentColor" stroke="none"/>
+      </svg>
+      Toggle
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="4" width="14" height="8" rx="1.5"/><line x1="4" y1="8" x2="7" y2="8"/>
+      </svg>
+      Text Field
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="2" width="6" height="4" rx="1"/><rect x="8" y="2" width="7" height="4" rx="1"/><rect x="1" y="8" width="14" height="6" rx="1"/>
+      </svg>
+      Tab
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="12" height="4" rx="1"/><rect x="2" y="8" width="12" height="4" rx="1"/><path d="M10.5 10l-1.5 1.5L7.5 10"/>
+      </svg>
+      Accordion
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="10" y2="12"/>
+      </svg>
+      List
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="2" width="14" height="12" rx="2"/><line x1="4" y1="7" x2="12" y2="7"/><line x1="4" y1="10" x2="9" y2="10"/>
+      </svg>
+      Card
+      <span class="nav-soon">Soon</span>
+    </a>
+    <a class="nav-link nav-disabled">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="10" width="14" height="5" rx="1"/><line x1="4" y1="12.5" x2="4" y2="12.5" stroke-linecap="round" stroke-width="2"/><line x1="8" y1="12.5" x2="8" y2="12.5" stroke-linecap="round" stroke-width="2"/><line x1="12" y1="12.5" x2="12" y2="12.5" stroke-linecap="round" stroke-width="2"/>
+      </svg>
+      Navigation
+      <span class="nav-soon">Soon</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- ═══ MAIN ══════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ── OVERVIEW ──────────────────────────────────── -->
+  <div class="page-hero" id="overview">
+    <div class="badge">v1.0 · iOS</div>
+    <h1>Suica Design System</h1>
+    <p>Reference documentation for UI components and design tokens. Used to maintain a consistent user experience across the Suica iOS app.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Contents</h2>
+    </div>
+
+    <div class="overview-grid">
+      <a href="#colors" class="overview-card">
+        <div class="overview-card-emoji">🎨</div>
+        <div class="overview-card-title">Colors</div>
+        <div class="overview-card-count">10 families · 103 primitives · 32 semantic</div>
+      </a>
+      <a href="#typography" class="overview-card">
+        <div class="overview-card-emoji">Aa</div>
+        <div class="overview-card-title">Typography</div>
+        <div class="overview-card-count">16 tokens · Hiragino Sans + SF Pro</div>
+      </a>
+      <a href="#spacing" class="overview-card">
+        <div class="overview-card-emoji">⇔</div>
+        <div class="overview-card-title">Spacing</div>
+        <div class="overview-card-count">13 spacing tokens · 4–96pt scale</div>
+      </a>
+      <a href="#icons" class="overview-card">
+        <div class="overview-card-emoji">✦</div>
+        <div class="overview-card-title">Icons</div>
+        <div class="overview-card-count">47 icons · 7 categories</div>
+      </a>
+      <a href="#components" class="overview-card">
+        <div class="overview-card-emoji">◻</div>
+        <div class="overview-card-title">Components</div>
+        <div class="overview-card-count">21 components</div>
+      </a>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-number">01 — Clear</div>
+        <div class="principle-title">Clarity first</div>
+        <div class="principle-desc">Used in high-stakes transit and payment moments — legibility and instant comprehension are always the top priority.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">02 — Familiar</div>
+        <div class="principle-title">Feel native</div>
+        <div class="principle-desc">Leverage Apple HIG patterns and system fonts so the experience feels immediately familiar to iOS users.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">03 — Trustworthy</div>
+        <div class="principle-title">Build trust</div>
+        <div class="principle-desc">JR East's corporate green anchors every screen — expressing quality, reliability, and safety through color and form.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COLORS ─────────────────────────────────────── -->
+  <div class="section" id="colors">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Colors</h2>
+      <span class="section-desc">10-step primitives · 32 semantic tokens</span>
+    </div>
+
+    <!-- Primitive Palettes -->
+    <div class="subsection">
+      <div class="subsection-title">Primitive Palettes — 950 (darkest) → 25 (lightest) · 500 = default stop</div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Brand Green</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#001A0D"><div class="palette-step-swatch" style="background:#001A0D"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#001A0D</div></div>
+          <div class="palette-step" title="#002E16"><div class="palette-step-swatch" style="background:#002E16"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#002E16</div></div>
+          <div class="palette-step" title="#005C2B"><div class="palette-step-swatch" style="background:#005C2B"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#005C2B</div></div>
+          <div class="palette-step is-500" title="#00833E"><div class="palette-step-swatch" style="background:#00833E"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#00833E</div></div>
+          <div class="palette-step" title="#34A86A"><div class="palette-step-swatch" style="background:#34A86A"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#34A86A</div></div>
+          <div class="palette-step" title="#7DCBA0"><div class="palette-step-swatch" style="background:#7DCBA0"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#7DCBA0</div></div>
+          <div class="palette-step" title="#B8E5CE"><div class="palette-step-swatch" style="background:#B8E5CE"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#B8E5CE</div></div>
+          <div class="palette-step" title="#D9F0E5"><div class="palette-step-swatch" style="background:#D9F0E5"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#D9F0E5</div></div>
+          <div class="palette-step" title="#E6F4ED"><div class="palette-step-swatch" style="background:#E6F4ED"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#E6F4ED</div></div>
+          <div class="palette-step" title="#F3FAF6"><div class="palette-step-swatch" style="background:#F3FAF6"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#F3FAF6</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Red</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#4A0A0A"><div class="palette-step-swatch" style="background:#4A0A0A"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#4A0A0A</div></div>
+          <div class="palette-step" title="#7B1111"><div class="palette-step-swatch" style="background:#7B1111"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#7B1111</div></div>
+          <div class="palette-step" title="#A62628"><div class="palette-step-swatch" style="background:#A62628"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#A62628</div></div>
+          <div class="palette-step is-500" title="#D93134"><div class="palette-step-swatch" style="background:#D93134"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#D93134</div></div>
+          <div class="palette-step" title="#E15B5D"><div class="palette-step-swatch" style="background:#E15B5D"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#E15B5D</div></div>
+          <div class="palette-step" title="#EE9092"><div class="palette-step-swatch" style="background:#EE9092"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#EE9092</div></div>
+          <div class="palette-step" title="#F5BFC0"><div class="palette-step-swatch" style="background:#F5BFC0"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#F5BFC0</div></div>
+          <div class="palette-step" title="#F9DADA"><div class="palette-step-swatch" style="background:#F9DADA"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#F9DADA</div></div>
+          <div class="palette-step" title="#FBEAE8"><div class="palette-step-swatch" style="background:#FBEAE8"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#FBEAE8</div></div>
+          <div class="palette-step" title="#FDF4F4"><div class="palette-step-swatch" style="background:#FDF4F4"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#FDF4F4</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Orange</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#3D1200"><div class="palette-step-swatch" style="background:#3D1200"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#3D1200</div></div>
+          <div class="palette-step" title="#6B2100"><div class="palette-step-swatch" style="background:#6B2100"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#6B2100</div></div>
+          <div class="palette-step" title="#A33A05"><div class="palette-step-swatch" style="background:#A33A05"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#A33A05</div></div>
+          <div class="palette-step is-500" title="#D34D07"><div class="palette-step-swatch" style="background:#D34D07"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#D34D07</div></div>
+          <div class="palette-step" title="#F17A25"><div class="palette-step-swatch" style="background:#F17A25"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#F17A25</div></div>
+          <div class="palette-step" title="#F9AA72"><div class="palette-step-swatch" style="background:#F9AA72"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#F9AA72</div></div>
+          <div class="palette-step" title="#FCC9A8"><div class="palette-step-swatch" style="background:#FCC9A8"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#FCC9A8</div></div>
+          <div class="palette-step" title="#FDE3D1"><div class="palette-step-swatch" style="background:#FDE3D1"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#FDE3D1</div></div>
+          <div class="palette-step" title="#FEF2EA"><div class="palette-step-swatch" style="background:#FEF2EA"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#FEF2EA</div></div>
+          <div class="palette-step" title="#FFF8F5"><div class="palette-step-swatch" style="background:#FFF8F5"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#FFF8F5</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Yellow</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#2E1F00"><div class="palette-step-swatch" style="background:#2E1F00"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#2E1F00</div></div>
+          <div class="palette-step" title="#503800"><div class="palette-step-swatch" style="background:#503800"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#503800</div></div>
+          <div class="palette-step" title="#9A7505"><div class="palette-step-swatch" style="background:#9A7505"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#9A7505</div></div>
+          <div class="palette-step is-500" title="#D8A807"><div class="palette-step-swatch" style="background:#D8A807"><span class="palette-step-num" style="color:#1F1E1B">500</span></div><div class="palette-step-label">#D8A807</div></div>
+          <div class="palette-step" title="#F1C328"><div class="palette-step-swatch" style="background:#F1C328"><span class="palette-step-num" style="color:#1F1E1B">400</span></div><div class="palette-step-label">#F1C328</div></div>
+          <div class="palette-step" title="#F7DA7A"><div class="palette-step-swatch" style="background:#F7DA7A"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#F7DA7A</div></div>
+          <div class="palette-step" title="#FAEAB6"><div class="palette-step-swatch" style="background:#FAEAB6"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#FAEAB6</div></div>
+          <div class="palette-step" title="#FCF3D5"><div class="palette-step-swatch" style="background:#FCF3D5"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#FCF3D5</div></div>
+          <div class="palette-step" title="#FEFACE"><div class="palette-step-swatch" style="background:#FEFACE"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#FEFACE</div></div>
+          <div class="palette-step" title="#FFFDF5"><div class="palette-step-swatch" style="background:#FFFDF5"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#FFFDF5</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Green</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#0D2206"><div class="palette-step-swatch" style="background:#0D2206"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#0D2206</div></div>
+          <div class="palette-step" title="#1A3D0A"><div class="palette-step-swatch" style="background:#1A3D0A"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#1A3D0A</div></div>
+          <div class="palette-step" title="#3A7018"><div class="palette-step-swatch" style="background:#3A7018"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#3A7018</div></div>
+          <div class="palette-step is-500" title="#5AA82D"><div class="palette-step-swatch" style="background:#5AA82D"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#5AA82D</div></div>
+          <div class="palette-step" title="#7CCB4F"><div class="palette-step-swatch" style="background:#7CCB4F"><span class="palette-step-num" style="color:#1F1E1B">400</span></div><div class="palette-step-label">#7CCB4F</div></div>
+          <div class="palette-step" title="#AADD82"><div class="palette-step-swatch" style="background:#AADD82"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#AADD82</div></div>
+          <div class="palette-step" title="#CCEAB0"><div class="palette-step-swatch" style="background:#CCEAB0"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#CCEAB0</div></div>
+          <div class="palette-step" title="#E2F5D2"><div class="palette-step-swatch" style="background:#E2F5D2"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#E2F5D2</div></div>
+          <div class="palette-step" title="#F2FAED"><div class="palette-step-swatch" style="background:#F2FAED"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#F2FAED</div></div>
+          <div class="palette-step" title="#F8FDF5"><div class="palette-step-swatch" style="background:#F8FDF5"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#F8FDF5</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Emerald</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#062420"><div class="palette-step-swatch" style="background:#062420"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#062420</div></div>
+          <div class="palette-step" title="#0D3D38"><div class="palette-step-swatch" style="background:#0D3D38"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#0D3D38</div></div>
+          <div class="palette-step" title="#0F6B5E"><div class="palette-step-swatch" style="background:#0F6B5E"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#0F6B5E</div></div>
+          <div class="palette-step is-500" title="#29A093"><div class="palette-step-swatch" style="background:#29A093"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#29A093</div></div>
+          <div class="palette-step" title="#60CCC1"><div class="palette-step-swatch" style="background:#60CCC1"><span class="palette-step-num" style="color:#1F1E1B">400</span></div><div class="palette-step-label">#60CCC1</div></div>
+          <div class="palette-step" title="#96DDD8"><div class="palette-step-swatch" style="background:#96DDD8"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#96DDD8</div></div>
+          <div class="palette-step" title="#C0ECEB"><div class="palette-step-swatch" style="background:#C0ECEB"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#C0ECEB</div></div>
+          <div class="palette-step" title="#DDF5F3"><div class="palette-step-swatch" style="background:#DDF5F3"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#DDF5F3</div></div>
+          <div class="palette-step" title="#EFFAF9"><div class="palette-step-swatch" style="background:#EFFAF9"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#EFFAF9</div></div>
+          <div class="palette-step" title="#F6FDFC"><div class="palette-step-swatch" style="background:#F6FDFC"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#F6FDFC</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Blue</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#041836"><div class="palette-step-swatch" style="background:#041836"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#041836</div></div>
+          <div class="palette-step" title="#082D62"><div class="palette-step-swatch" style="background:#082D62"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#082D62</div></div>
+          <div class="palette-step" title="#1250A8"><div class="palette-step-swatch" style="background:#1250A8"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#1250A8</div></div>
+          <div class="palette-step is-500" title="#1B60D6"><div class="palette-step-swatch" style="background:#1B60D6"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#1B60D6</div></div>
+          <div class="palette-step" title="#4D88F0"><div class="palette-step-swatch" style="background:#4D88F0"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#4D88F0</div></div>
+          <div class="palette-step" title="#8DB3F5"><div class="palette-step-swatch" style="background:#8DB3F5"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#8DB3F5</div></div>
+          <div class="palette-step" title="#BCCFFA"><div class="palette-step-swatch" style="background:#BCCFFA"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#BCCFFA</div></div>
+          <div class="palette-step" title="#DAE8FC"><div class="palette-step-swatch" style="background:#DAE8FC"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#DAE8FC</div></div>
+          <div class="palette-step" title="#ECF3FF"><div class="palette-step-swatch" style="background:#ECF3FF"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#ECF3FF</div></div>
+          <div class="palette-step" title="#F5F8FF"><div class="palette-step-swatch" style="background:#F5F8FF"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#F5F8FF</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Purple</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#1A0840"><div class="palette-step-swatch" style="background:#1A0840"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#1A0840</div></div>
+          <div class="palette-step" title="#2E1270"><div class="palette-step-swatch" style="background:#2E1270"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#2E1270</div></div>
+          <div class="palette-step" title="#5B0EAD"><div class="palette-step-swatch" style="background:#5B0EAD"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#5B0EAD</div></div>
+          <div class="palette-step is-500" title="#7B35E0"><div class="palette-step-swatch" style="background:#7B35E0"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#7B35E0</div></div>
+          <div class="palette-step" title="#9B6CF3"><div class="palette-step-swatch" style="background:#9B6CF3"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#9B6CF3</div></div>
+          <div class="palette-step" title="#BFA0F7"><div class="palette-step-swatch" style="background:#BFA0F7"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#BFA0F7</div></div>
+          <div class="palette-step" title="#D8C8FB"><div class="palette-step-swatch" style="background:#D8C8FB"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#D8C8FB</div></div>
+          <div class="palette-step" title="#EBE2FD"><div class="palette-step-swatch" style="background:#EBE2FD"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#EBE2FD</div></div>
+          <div class="palette-step" title="#F2EDFE"><div class="palette-step-swatch" style="background:#F2EDFE"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#F2EDFE</div></div>
+          <div class="palette-step" title="#F8F5FF"><div class="palette-step-swatch" style="background:#F8F5FF"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#F8F5FF</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Pink</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#2E0420"><div class="palette-step-swatch" style="background:#2E0420"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#2E0420</div></div>
+          <div class="palette-step" title="#560A3C"><div class="palette-step-swatch" style="background:#560A3C"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#560A3C</div></div>
+          <div class="palette-step" title="#8C0E60"><div class="palette-step-swatch" style="background:#8C0E60"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#8C0E60</div></div>
+          <div class="palette-step is-500" title="#BA1380"><div class="palette-step-swatch" style="background:#BA1380"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#BA1380</div></div>
+          <div class="palette-step" title="#D855A8"><div class="palette-step-swatch" style="background:#D855A8"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#D855A8</div></div>
+          <div class="palette-step" title="#E896CC"><div class="palette-step-swatch" style="background:#E896CC"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#E896CC</div></div>
+          <div class="palette-step" title="#F2BFE2"><div class="palette-step-swatch" style="background:#F2BFE2"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#F2BFE2</div></div>
+          <div class="palette-step" title="#F8DCF1"><div class="palette-step-swatch" style="background:#F8DCF1"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#F8DCF1</div></div>
+          <div class="palette-step" title="#FCF1F8"><div class="palette-step-swatch" style="background:#FCF1F8"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#FCF1F8</div></div>
+          <div class="palette-step" title="#FEF7FC"><div class="palette-step-swatch" style="background:#FEF7FC"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#FEF7FC</div></div>
+        </div>
+      </div>
+
+      <div class="palette-row">
+        <div class="palette-family-label">Neutral</div>
+        <div class="palette-steps">
+          <div class="palette-step" title="#000000"><div class="palette-step-swatch" style="background:#000000"><span class="palette-step-num" style="color:#fff">1000</span></div><div class="palette-step-label">#000000</div></div>
+          <div class="palette-step" title="#121210"><div class="palette-step-swatch" style="background:#121210"><span class="palette-step-num" style="color:#fff">950</span></div><div class="palette-step-label">#121210</div></div>
+          <div class="palette-step" title="#1F1E1B"><div class="palette-step-swatch" style="background:#1F1E1B"><span class="palette-step-num" style="color:#fff">900</span></div><div class="palette-step-label">#1F1E1B</div></div>
+          <div class="palette-step" title="#2E2D29"><div class="palette-step-swatch" style="background:#2E2D29"><span class="palette-step-num" style="color:#fff">800</span></div><div class="palette-step-label">#2E2D29</div></div>
+          <div class="palette-step" title="#454440"><div class="palette-step-swatch" style="background:#454440"><span class="palette-step-num" style="color:#fff">700</span></div><div class="palette-step-label">#454440</div></div>
+          <div class="palette-step" title="#5E5D58"><div class="palette-step-swatch" style="background:#5E5D58"><span class="palette-step-num" style="color:#fff">600</span></div><div class="palette-step-label">#5E5D58</div></div>
+          <div class="palette-step is-500" title="#797872"><div class="palette-step-swatch" style="background:#797872"><span class="palette-step-num" style="color:#fff">500</span></div><div class="palette-step-label">#797872</div></div>
+          <div class="palette-step" title="#9B9A94"><div class="palette-step-swatch" style="background:#9B9A94"><span class="palette-step-num" style="color:#fff">400</span></div><div class="palette-step-label">#9B9A94</div></div>
+          <div class="palette-step" title="#C0BEB8"><div class="palette-step-swatch" style="background:#C0BEB8"><span class="palette-step-num" style="color:#1F1E1B">300</span></div><div class="palette-step-label">#C0BEB8</div></div>
+          <div class="palette-step" title="#D8D7D2"><div class="palette-step-swatch" style="background:#D8D7D2"><span class="palette-step-num" style="color:#1F1E1B">200</span></div><div class="palette-step-label">#D8D7D2</div></div>
+          <div class="palette-step" title="#EBEAE6"><div class="palette-step-swatch" style="background:#EBEAE6"><span class="palette-step-num" style="color:#1F1E1B">100</span></div><div class="palette-step-label">#EBEAE6</div></div>
+          <div class="palette-step" title="#F5F4F1"><div class="palette-step-swatch" style="background:#F5F4F1"><span class="palette-step-num" style="color:#1F1E1B">50</span></div><div class="palette-step-label">#F5F4F1</div></div>
+          <div class="palette-step" title="#FAFAF8"><div class="palette-step-swatch" style="background:#FAFAF8"><span class="palette-step-num" style="color:#1F1E1B">25</span></div><div class="palette-step-label">#FAFAF8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic Tokens -->
+    <div class="subsection">
+      <div class="subsection-title">Semantic Tokens — components reference only these, never raw primitives</div>
+
+      <div class="semantic-group">
+        <div class="semantic-group-label">Brand</div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#00833E"></div><div><div class="semantic-token-name">brand/default</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">Primary CTAs, active nav, links</div><div><span class="contrast-badge contrast-pass">5.8:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#005C2B"></div><div><div class="semantic-token-name">brand/strong</div><div class="semantic-source">← Brand green/700</div></div><div class="semantic-usage">Pressed state, hover on dark bg</div><div><span class="contrast-badge contrast-pass">9.4:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#E6F4ED;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">brand/subtle</div><div class="semantic-source">← Brand green/50</div></div><div class="semantic-usage">Selected bg, tinted surfaces</div><div><span class="contrast-badge contrast-fail">1.1:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#FFFFFF;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">brand/on-default</div><div class="semantic-source">← White</div></div><div class="semantic-usage">Text/icon on brand/default</div><div><span class="contrast-badge contrast-pass">5.8:1</span></div></div>
+      </div>
+
+      <div class="semantic-group">
+        <div class="semantic-group-label">Neutral — Text</div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#1F1E1B"></div><div><div class="semantic-token-name">text/primary</div><div class="semantic-source">← Neutral/900</div></div><div class="semantic-usage">Headings, body text</div><div><span class="contrast-badge contrast-pass">17.5:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#5E5D58"></div><div><div class="semantic-token-name">text/secondary</div><div class="semantic-source">← Neutral/600</div></div><div class="semantic-usage">Labels, captions</div><div><span class="contrast-badge contrast-pass">6.2:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#9B9A94"></div><div><div class="semantic-token-name">text/tertiary</div><div class="semantic-source">← Neutral/400</div></div><div class="semantic-usage">Placeholders, hints</div><div><span class="contrast-badge contrast-large">3.1:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">text/disabled</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled text</div><div><span class="contrast-badge contrast-fail">1.8:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#FAFAF8;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">text/inverse</div><div class="semantic-source">← Neutral/25</div></div><div class="semantic-usage">Text on dark surfaces</div><div><span class="contrast-badge contrast-fail">1.1:1</span></div></div>
+      </div>
+
+      <div class="semantic-group">
+        <div class="semantic-group-label">Neutral — Surface</div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#F5F4F1;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">surface/page</div><div class="semantic-source">← Neutral/50</div></div><div class="semantic-usage">App/page background</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#FFFFFF;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">surface/default</div><div class="semantic-source">← White</div></div><div class="semantic-usage">Card, sheet, modal bg</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#EBEAE6;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">surface/raised</div><div class="semantic-source">← Neutral/100</div></div><div class="semantic-usage">Elevated surface, grouped bg</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#D8D7D2"></div><div><div class="semantic-token-name">border/default</div><div class="semantic-source">← Neutral/200</div></div><div class="semantic-usage">Dividers, input borders</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">border/strong</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Focused input border</div><div></div></div>
+      </div>
+
+      <div class="semantic-group">
+        <div class="semantic-group-label">Error · Warning · Success · Info</div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#A62628"></div><div><div class="semantic-token-name">error/default</div><div class="semantic-source">← Red/700</div></div><div class="semantic-usage">Destructive actions, error icons</div><div><span class="contrast-badge contrast-pass">7.2:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#FBEAE8;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">error/subtle</div><div class="semantic-source">← Red/50</div></div><div class="semantic-usage">Error banner bg</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#7B1111"></div><div><div class="semantic-token-name">error/text</div><div class="semantic-source">← Red/900</div></div><div class="semantic-usage">Error text on light bg</div><div><span class="contrast-badge contrast-pass">12.4:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#9A7505"></div><div><div class="semantic-token-name">warning/default</div><div class="semantic-source">← Yellow/700</div></div><div class="semantic-usage">Warning icons, alert borders</div><div><span class="contrast-badge contrast-pass">4.6:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#FEFACE;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">warning/subtle</div><div class="semantic-source">← Yellow/50</div></div><div class="semantic-usage">Warning banner bg</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#3A7018"></div><div><div class="semantic-token-name">success/default</div><div class="semantic-source">← Green/700</div></div><div class="semantic-usage">Success icons, confirmed states</div><div><span class="contrast-badge contrast-pass">7.1:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#F2FAED;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">success/subtle</div><div class="semantic-source">← Green/50</div></div><div class="semantic-usage">Success banner bg</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#1250A8"></div><div><div class="semantic-token-name">info/default</div><div class="semantic-source">← Blue/700</div></div><div class="semantic-usage">Info icons, tooltip borders</div><div><span class="contrast-badge contrast-pass">7.9:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#ECF3FF;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">info/subtle</div><div class="semantic-source">← Blue/50</div></div><div class="semantic-usage">Info banner bg</div><div></div></div>
+      </div>
+
+      <div class="semantic-group">
+        <div class="semantic-group-label">Interactive States</div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#00833E"></div><div><div class="semantic-token-name">state/focus</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">3px focus ring on all controls</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#EBEAE6;border:1px solid #D8D7D2"></div><div><div class="semantic-token-name">state/disabled-fill</div><div class="semantic-source">← Neutral/100</div></div><div class="semantic-usage">Disabled control background</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">state/disabled-text</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled control text</div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TYPOGRAPHY ─────────────────────────────────── -->
+  <div class="section" id="typography">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Typography</h2>
+      <span class="section-desc">16 tokens · Hiragino Sans (JP) · SF Pro (numerals) · iOS + Android mapped</span>
+    </div>
+
+    <!-- Font stack cards -->
+    <div class="type-font-cards">
+      <div class="type-font-card">
+        <div class="type-font-card-title">Japanese text</div>
+        <div class="type-font-card-mono">Hiragino Sans W3 / W5 / W6 / W7</div>
+        <div class="type-font-card-desc">All kana, kanji, and mixed JP/Latin body text</div>
+      </div>
+      <div class="type-font-card">
+        <div class="type-font-card-title">Numerals &amp; currency</div>
+        <div class="type-font-card-mono">SF Pro Display / Text, tabular figures</div>
+        <div class="type-font-card-desc">All digits, ¥ symbol, time, fares, balances</div>
+      </div>
+    </div>
+
+    <!-- Display -->
+    <div class="subsection">
+      <div class="subsection-title">Display</div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:40px;font-weight:700;line-height:46px;letter-spacing:-1px;font-variant-numeric:tabular-nums;font-family:-apple-system,sans-serif;color:var(--text-primary)">¥3,240</p></div>
+          <div class="type-meta">
+            <div class="type-token">display/balance</div>
+            <div class="type-spec">40px · W700 · lh 46px · ls −1px</div>
+            <div class="type-note">SF Pro — numerals only</div>
+            <div class="type-platform"><span>iOS: largeTitle, SF Pro Display</span><span>Android: displaySmall, tabular</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">IC card balance — the most prominent number in the app</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:34px;font-weight:700;line-height:41px;letter-spacing:-0.5px;color:var(--text-primary)">Suicaで、どこへでも。</p></div>
+          <div class="type-meta">
+            <div class="type-token">display/large</div>
+            <div class="type-spec">34px · W700 · lh 41px · ls −0.5px</div>
+            <div class="type-note">Hiragino Sans W7</div>
+            <div class="type-platform"><span>iOS: largeTitle</span><span>Android: displaySmall</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Hero section titles, onboarding headlines</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:28px;font-weight:700;line-height:36px;letter-spacing:-0.3px;color:var(--text-primary)">チャージ完了</p></div>
+          <div class="type-meta">
+            <div class="type-token">display/small</div>
+            <div class="type-spec">28px · W700 · lh 36px · ls −0.3px</div>
+            <div class="type-note">Hiragino Sans W7</div>
+            <div class="type-platform"><span>iOS: title1</span><span>Android: headlineLarge</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Modal hero text, campaign headers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heading -->
+    <div class="subsection">
+      <div class="subsection-title">Heading</div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:22px;font-weight:600;line-height:30px;letter-spacing:-0.2px;color:var(--text-primary)">利用履歴</p></div>
+          <div class="type-meta">
+            <div class="type-token">heading/large</div>
+            <div class="type-spec">22px · W600 · lh 30px · ls −0.2px</div>
+            <div class="type-note">Hiragino Sans W6</div>
+            <div class="type-platform"><span>iOS: title2</span><span>Android: headlineMedium</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Page titles, sheet headers</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:18px;font-weight:600;line-height:26px;letter-spacing:-0.1px;color:var(--text-primary)">定期券情報</p></div>
+          <div class="type-meta">
+            <div class="type-token">heading/medium</div>
+            <div class="type-spec">18px · W600 · lh 26px · ls −0.1px</div>
+            <div class="type-note">Hiragino Sans W6</div>
+            <div class="type-platform"><span>iOS: title3</span><span>Android: headlineSmall</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Card titles, section headers</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:15px;font-weight:600;line-height:22px;letter-spacing:0;color:var(--text-primary)">品川 → 新宿</p></div>
+          <div class="type-meta">
+            <div class="type-token">heading/small</div>
+            <div class="type-spec">15px · W600 · lh 22px</div>
+            <div class="type-note">Hiragino Sans W6</div>
+            <div class="type-platform"><span>iOS: headline</span><span>Android: titleMedium</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">List row titles, grouped section headers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="subsection">
+      <div class="subsection-title">Body</div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:17px;font-weight:400;line-height:28px;letter-spacing:0;color:var(--text-primary)">Suicaはご利用の交通機関でチャージできます。</p></div>
+          <div class="type-meta">
+            <div class="type-token">body/large</div>
+            <div class="type-spec">17px · W400 · lh 28px</div>
+            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-platform"><span>iOS: body</span><span>Android: bodyLarge</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Primary reading text, station descriptions</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:15px;font-weight:400;line-height:24px;letter-spacing:0;color:var(--text-primary)">2024年3月26日 08:42</p></div>
+          <div class="type-meta">
+            <div class="type-token">body/medium</div>
+            <div class="type-spec">15px · W400 · lh 24px</div>
+            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-platform"><span>iOS: subheadline</span><span>Android: bodyMedium</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Secondary text, list row subtitles</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:13px;font-weight:400;line-height:20px;letter-spacing:0;color:var(--text-primary)">有効期限：2026年3月31日</p></div>
+          <div class="type-meta">
+            <div class="type-token">body/small</div>
+            <div class="type-spec">13px · W400 · lh 20px</div>
+            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-platform"><span>iOS: footnote</span><span>Android: bodySmall</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Supporting info, timestamps, station codes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Label -->
+    <div class="subsection">
+      <div class="subsection-title">Label</div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:15px;font-weight:500;line-height:20px;letter-spacing:0;color:var(--text-primary)">チャージする</p></div>
+          <div class="type-meta">
+            <div class="type-token">label/large</div>
+            <div class="type-spec">15px · W500 · lh 20px</div>
+            <div class="type-note">Hiragino Sans W5</div>
+            <div class="type-platform"><span>iOS: subheadline W5</span><span>Android: labelLarge</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Button text, tab bar labels, primary actions</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:13px;font-weight:500;line-height:18px;letter-spacing:0.1px;color:var(--text-primary)">定期券</p></div>
+          <div class="type-meta">
+            <div class="type-token">label/medium</div>
+            <div class="type-spec">13px · W500 · lh 18px · ls 0.1px</div>
+            <div class="type-note">Hiragino Sans W5</div>
+            <div class="type-platform"><span>iOS: footnote W5</span><span>Android: labelMedium</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Badges, status chips, tags</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:11px;font-weight:500;line-height:14px;letter-spacing:0.3px;color:var(--text-primary)">残高</p></div>
+          <div class="type-meta">
+            <div class="type-token">label/small</div>
+            <div class="type-spec">11px · W500 · lh 14px · ls 0.3px</div>
+            <div class="type-note">Hiragino Sans W5</div>
+            <div class="type-platform"><span>iOS: caption1 W5</span><span>Android: labelSmall</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Overlines, category labels, step indicators</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caption -->
+    <div class="subsection">
+      <div class="subsection-title">Caption</div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:11px;font-weight:400;line-height:14px;letter-spacing:0;color:var(--text-secondary)">※ご利用には条件があります</p></div>
+          <div class="type-meta">
+            <div class="type-token">caption/default</div>
+            <div class="type-spec">11px · W400 · lh 14px</div>
+            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-platform"><span>iOS: caption1</span><span>Android: bodySmall</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Fine print, legal text, image captions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Numeric -->
+    <div class="subsection">
+      <div class="subsection-title">Numeric — SF Pro</div>
+      <div class="type-numeric-note">
+        <strong>SF Pro only</strong> — applied to numerals and currency symbols. For mixed strings like「残高 ¥3,240」wrap the numeral in a separate element with the numeric font stack. Never apply SF Pro to the full string — kanji rendered in SF Pro falls back incorrectly.
+      </div>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:40px;font-weight:700;line-height:46px;letter-spacing:-1px;font-variant-numeric:tabular-nums;font-family:-apple-system,sans-serif;color:var(--text-primary)">¥3,240</p></div>
+          <div class="type-meta">
+            <div class="type-token">display/balance</div>
+            <div class="type-spec">40px · W700 · lh 46px · ls −1px · tabular</div>
+            <div class="type-note">SF Pro Display — tabular figures</div>
+            <div class="type-platform"><span>iOS: largeTitle, SF Pro Display</span><span>Android: displaySmall, tabular</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">IC card balance — the most prominent number in the app</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:22px;font-weight:700;line-height:28px;letter-spacing:-0.2px;font-variant-numeric:tabular-nums;font-family:-apple-system,sans-serif;color:var(--text-primary)">¥198</p></div>
+          <div class="type-meta">
+            <div class="type-token">numeric/fare</div>
+            <div class="type-spec">22px · W700 · lh 28px · ls −0.2px · tabular</div>
+            <div class="type-note">SF Pro Display — tabular figures</div>
+            <div class="type-platform"><span>iOS: title2, SF Pro, tabular</span><span>Android: headlineMedium, tabular</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Fare amounts, transaction prices</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:17px;font-weight:600;line-height:22px;letter-spacing:0;font-variant-numeric:tabular-nums;font-family:-apple-system,sans-serif;color:var(--text-primary)">¥1,080 → ¥882</p></div>
+          <div class="type-meta">
+            <div class="type-token">numeric/medium</div>
+            <div class="type-spec">17px · W600 · lh 22px · tabular</div>
+            <div class="type-note">SF Pro Text — tabular figures</div>
+            <div class="type-platform"><span>iOS: body W6, SF Pro, tabular</span><span>Android: bodyLarge W600, tabular</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Inline amounts, point values in lists</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="type-preview"><p style="font-size:13px;font-weight:500;line-height:18px;letter-spacing:0;font-variant-numeric:tabular-nums;font-family:-apple-system,sans-serif;color:var(--text-primary)">08:42:33</p></div>
+          <div class="type-meta">
+            <div class="type-token">numeric/small</div>
+            <div class="type-spec">13px · W500 · lh 18px · tabular</div>
+            <div class="type-note">SF Pro Text — tabular figures</div>
+            <div class="type-platform"><span>iOS: footnote W5, SF Pro, tabular</span><span>Android: bodySmall W500, tabular</span></div>
+          </div>
+          <div class="type-aside">
+            <div class="type-usage">Small amounts, timestamps with seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SPACING ─────────────────────────────────────── -->
+  <div class="section" id="spacing">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Spacing</h2>
+      <span class="section-desc">4pt grid-based spacing scale</span>
+    </div>
+
+    <div class="spacing-grid">
+      <div class="spacing-row"><div class="spacing-label">4pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px"></div></div><div class="spacing-token">--space-4</div></div>
+      <div class="spacing-row"><div class="spacing-label">8pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div><div class="spacing-token">--space-8</div></div>
+      <div class="spacing-row"><div class="spacing-label">12pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:12px"></div></div><div class="spacing-token">--space-12</div></div>
+      <div class="spacing-row"><div class="spacing-label">16pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div><div class="spacing-token">--space-16</div></div>
+      <div class="spacing-row"><div class="spacing-label">20pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:20px"></div></div><div class="spacing-token">--space-20</div></div>
+      <div class="spacing-row"><div class="spacing-label">24pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div><div class="spacing-token">--space-24</div></div>
+      <div class="spacing-row"><div class="spacing-label">32pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div><div class="spacing-token">--space-32</div></div>
+      <div class="spacing-row"><div class="spacing-label">40pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div><div class="spacing-token">--space-40</div></div>
+      <div class="spacing-row"><div class="spacing-label">48pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div><div class="spacing-token">--space-48</div></div>
+      <div class="spacing-row"><div class="spacing-label">56pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:56px"></div></div><div class="spacing-token">--space-56</div></div>
+      <div class="spacing-row"><div class="spacing-label">64pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px"></div></div><div class="spacing-token">--space-64</div></div>
+      <div class="spacing-row"><div class="spacing-label">80pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:80px"></div></div><div class="spacing-token">--space-80</div></div>
+      <div class="spacing-row"><div class="spacing-label">96pt</div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px"></div></div><div class="spacing-token">--space-96</div></div>
+    </div>
+  </div>
+
+  <!-- ── ICONS ────────────────────────────────────────── -->
+  <div class="section" id="icons">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Icons</h2>
+      <span class="section-desc">Material 3 + JR Custom · 47 icons · 7 categories</span>
+    </div>
+
+    <div class="icon-guidelines">
+      <strong>Material 3 icons</strong> are Google's open-source icon library. Use <code>Icon(Icons.Outlined.X)</code> in Jetpack Compose, or import SVGs for iOS. Always set <code>fill="currentColor"</code> so icons inherit text colour. Minimum touch target: 48×48dp.
+    </div>
+
+    <!-- Navigation & Controls -->
+    <div class="subsection">
+      <div class="subsection-title">Navigation &amp; Controls</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 20C11.45 20 10.9792 19.8042 10.5875 19.4125C10.1958 19.0208 10 18.55 10 18C10 17.45 10.1958 16.9792 10.5875 16.5875C10.9792 16.1958 11.45 16 12 16C12.55 16 13.0208 16.1958 13.4125 16.5875C13.8042 16.9792 14 17.45 14 18C14 18.55 13.8042 19.0208 13.4125 19.4125C13.0208 19.8042 12.55 20 12 20ZM12 14C11.45 14 10.9792 13.8042 10.5875 13.4125C10.1958 13.0208 10 12.55 10 12C10 11.45 10.1958 10.9792 10.5875 10.5875C10.9792 10.1958 11.45 10 12 10C12.55 10 13.0208 10.1958 13.4125 10.5875C13.8042 10.9792 14 11.45 14 12C14 12.55 13.8042 13.0208 13.4125 13.4125C13.0208 13.8042 12.55 14 12 14ZM12 8C11.45 8 10.9792 7.80417 10.5875 7.4125C10.1958 7.02083 10 6.55 10 6C10 5.45 10.1958 4.97917 10.5875 4.5875C10.9792 4.19583 11.45 4 12 4C12.55 4 13.0208 4.19583 13.4125 4.5875C13.8042 4.97917 14 5.45 14 6C14 6.55 13.8042 7.02083 13.4125 7.4125C13.0208 7.80417 12.55 8 12 8Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">more_vert</div>
+          <div class="icon-usage">Overflow menu</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Actions -->
+    <div class="subsection">
+      <div class="subsection-title">Common Actions</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 19H6.425L16.2 9.225L14.775 7.8L5 17.575V19ZM3 21V16.75L16.2 3.575C16.4 3.39167 16.6208 3.25 16.8625 3.15C17.1042 3.05 17.3583 3 17.625 3C17.8917 3 18.15 3.05 18.4 3.15C18.65 3.25 18.8667 3.4 19.05 3.6L20.425 5C20.625 5.18333 20.7708 5.4 20.8625 5.65C20.9542 5.9 21 6.15 21 6.4C21 6.66667 20.9542 6.92083 20.8625 7.1625C20.7708 7.40417 20.625 7.625 20.425 7.825L7.25 21H3ZM15.475 8.525L14.775 7.8L16.2 9.225L15.475 8.525Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">edit</div>
+          <div class="icon-usage">Edit, modify</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM17 6H7V19H17V6ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">delete</div>
+          <div class="icon-usage">Delete, remove</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 22C17.1667 22 16.4583 21.7083 15.875 21.125C15.2917 20.5417 15 19.8333 15 19C15 18.8833 15.0083 18.7625 15.025 18.6375C15.0417 18.5125 15.0667 18.4 15.1 18.3L8.05 14.2C7.76667 14.45 7.45 14.6458 7.1 14.7875C6.75 14.9292 6.38333 15 6 15C5.16667 15 4.45833 14.7083 3.875 14.125C3.29167 13.5417 3 12.8333 3 12C3 11.1667 3.29167 10.4583 3.875 9.875C4.45833 9.29167 5.16667 9 6 9C6.38333 9 6.75 9.07083 7.1 9.2125C7.45 9.35417 7.76667 9.55 8.05 9.8L15.1 5.7C15.0667 5.6 15.0417 5.4875 15.025 5.3625C15.0083 5.2375 15 5.11667 15 5C15 4.16667 15.2917 3.45833 15.875 2.875C16.4583 2.29167 17.1667 2 18 2C18.8333 2 19.5417 2.29167 20.125 2.875C20.7083 3.45833 21 4.16667 21 5C21 5.83333 20.7083 6.54167 20.125 7.125C19.5417 7.70833 18.8333 8 18 8C17.6167 8 17.25 7.92917 16.9 7.7875C16.55 7.64583 16.2333 7.45 15.95 7.2L8.9 11.3C8.93333 11.4 8.95833 11.5125 8.975 11.6375C8.99167 11.7625 9 11.8833 9 12C9 12.1167 8.99167 12.2375 8.975 12.3625C8.95833 12.4875 8.93333 12.6 8.9 12.7L15.95 16.8C16.2333 16.55 16.55 16.3542 16.9 16.2125C17.25 16.0708 17.6167 16 18 16C18.8333 16 19.5417 16.2917 20.125 16.875C20.7083 17.4583 21 18.1667 21 19C21 19.8333 20.7083 20.5417 20.125 21.125C19.5417 21.7083 18.8333 22 18 22ZM18 6C18.2833 6 18.5208 5.90417 18.7125 5.7125C18.9042 5.52083 19 5.28333 19 5C19 4.71667 18.9042 4.47917 18.7125 4.2875C18.5208 4.09583 18.2833 4 18 4C17.7167 4 17.4792 4.09583 17.2875 4.2875C17.0958 4.47917 17 4.71667 17 5C17 5.28333 17.0958 5.52083 17.2875 5.7125C17.4792 5.90417 17.7167 6 18 6ZM6 13C6.28333 13 6.52083 12.9042 6.7125 12.7125C6.90417 12.5208 7 12.2833 7 12C7 11.7167 6.90417 11.4792 6.7125 11.2875C6.52083 11.0958 6.28333 11 6 11C5.71667 11 5.47917 11.0958 5.2875 11.2875C5.09583 11.4792 5 11.7167 5 12C5 12.2833 5.09583 12.5208 5.2875 12.7125C5.47917 12.9042 5.71667 13 6 13ZM18 20C18.2833 20 18.5208 19.9042 18.7125 19.7125C18.9042 19.5208 19 19.2833 19 19C19 18.7167 18.9042 18.4792 18.7125 18.2875C18.5208 18.0958 18.2833 18 18 18C17.7167 18 17.4792 18.0958 17.2875 18.2875C17.0958 18.4792 17 18.7167 17 19C17 19.2833 17.0958 19.5208 17.2875 19.7125C17.4792 19.9042 17.7167 20 18 20Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">share</div>
+          <div class="icon-usage">Share, send</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 16V7.85L8.4 10.45L7 9L12 4L17 9L15.6 10.45L13 7.85V16H11ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">upload</div>
+          <div class="icon-usage">Upload</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">download</div>
+          <div class="icon-usage">Download</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 20V4L22 12L3 20ZM5 17L16.85 12L5 7V10.5L11 12L5 13.5V17ZM5 17V12V7V10.5V13.5V17Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">send</div>
+          <div class="icon-usage">Send, submit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transit -->
+    <div class="subsection">
+      <div class="subsection-title">Transit</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 21C5.71667 21 5.47917 20.9042 5.2875 20.7125C5.09583 20.5208 5 20.2833 5 20V17.95C4.7 17.6167 4.45833 17.2458 4.275 16.8375C4.09167 16.4292 4 15.9833 4 15.5V6C4 4.61667 4.64167 3.60417 5.925 2.9625C7.20833 2.32083 9.23333 2 12 2C14.8667 2 16.9167 2.30833 18.15 2.925C19.3833 3.54167 20 4.56667 20 6V15.5C20 15.9833 19.9083 16.4292 19.725 16.8375C19.5417 17.2458 19.3 17.6167 19 17.95V20C19 20.2833 18.9042 20.5208 18.7125 20.7125C18.5208 20.9042 18.2833 21 18 21H17C16.7167 21 16.4792 20.9042 16.2875 20.7125C16.0958 20.5208 16 20.2833 16 20V19H8V20C8 20.2833 7.90417 20.5208 7.7125 20.7125C7.52083 20.9042 7.28333 21 7 21H6ZM6 10H18V7H6V10ZM8.5 16C8.91667 16 9.27083 15.8542 9.5625 15.5625C9.85417 15.2708 10 14.9167 10 14.5C10 14.0833 9.85417 13.7292 9.5625 13.4375C9.27083 13.1458 8.91667 13 8.5 13C8.08333 13 7.72917 13.1458 7.4375 13.4375C7.14583 13.7292 7 14.0833 7 14.5C7 14.9167 7.14583 15.2708 7.4375 15.5625C7.72917 15.8542 8.08333 16 8.5 16ZM15.5 16C15.9167 16 16.2708 15.8542 16.5625 15.5625C16.8542 15.2708 17 14.9167 17 14.5C17 14.0833 16.8542 13.7292 16.5625 13.4375C16.2708 13.1458 15.9167 13 15.5 13C15.0833 13 14.7292 13.1458 14.4375 13.4375C14.1458 13.7292 14 14.0833 14 14.5C14 14.9167 14.1458 15.2708 14.4375 15.5625C14.7292 15.8542 15.0833 16 15.5 16ZM6.45 5H17.65C17.4 4.71667 16.8625 4.47917 16.0375 4.2875C15.2125 4.09583 13.8833 4 12.05 4C10.2667 4 8.9625 4.10417 8.1375 4.3125C7.3125 4.52083 6.75 4.75 6.45 5ZM8 17H16C16.55 17 17.0208 16.8042 17.4125 16.4125C17.8042 16.0208 18 15.55 18 15V12H6V15C6 15.55 6.19583 16.0208 6.5875 16.4125C6.97917 16.8042 7.45 17 8 17Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">directions_bus</div>
+          <div class="icon-usage">Bus route</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 21V20L7.5 19C6.51667 19 5.6875 18.6625 5.0125 17.9875C4.3375 17.3125 4 16.4833 4 15.5V6C4 4.61667 4.64167 3.60417 5.925 2.9625C7.20833 2.32083 9.23333 2 12 2C14.8667 2 16.9167 2.30833 18.15 2.925C19.3833 3.54167 20 4.56667 20 6V15.5C20 16.4833 19.6625 17.3125 18.9875 17.9875C18.3125 18.6625 17.4833 19 16.5 19L18 20V21H6ZM6 10H11V7H6V10ZM13 10H18V7H13V10ZM8.5 16C8.91667 16 9.27083 15.8542 9.5625 15.5625C9.85417 15.2708 10 14.9167 10 14.5C10 14.0833 9.85417 13.7292 9.5625 13.4375C9.27083 13.1458 8.91667 13 8.5 13C8.08333 13 7.72917 13.1458 7.4375 13.4375C7.14583 13.7292 7 14.0833 7 14.5C7 14.9167 7.14583 15.2708 7.4375 15.5625C7.72917 15.8542 8.08333 16 8.5 16ZM15.5 16C15.9167 16 16.2708 15.8542 16.5625 15.5625C16.8542 15.2708 17 14.9167 17 14.5C17 14.0833 16.8542 13.7292 16.5625 13.4375C16.2708 13.1458 15.9167 13 15.5 13C15.0833 13 14.7292 13.1458 14.4375 13.4375C14.1458 13.7292 14 14.0833 14 14.5C14 14.9167 14.1458 15.2708 14.4375 15.5625C14.7292 15.8542 15.0833 16 15.5 16ZM7.5 17H16.5C16.9333 17 17.2917 16.8583 17.575 16.575C17.8583 16.2917 18 15.9333 18 15.5V12H6V15.5C6 15.9333 6.14167 16.2917 6.425 16.575C6.70833 16.8583 7.06667 17 7.5 17ZM12 4C10.5667 4 9.37917 4.08333 8.4375 4.25C7.49583 4.41667 6.83333 4.66667 6.45 5H17.65C17.35 4.66667 16.7292 4.41667 15.7875 4.25C14.8458 4.08333 13.5833 4 12 4Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">directions_subway</div>
+          <div class="icon-usage">Subway, train</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 23L9.8 8.9L8 9.6V13H6V8.3L11.05 6.15C11.2833 6.05 11.5292 5.99167 11.7875 5.975C12.0458 5.95833 12.2917 5.99167 12.525 6.075C12.7583 6.15833 12.9792 6.275 13.1875 6.425C13.3958 6.575 13.5667 6.76667 13.7 7L14.7 8.6C15.1333 9.3 15.7208 9.875 16.4625 10.325C17.2042 10.775 18.05 11 19 11V13C17.8333 13 16.7917 12.7583 15.875 12.275C14.9583 11.7917 14.175 11.175 13.525 10.425L12.9 13.5L15 15.5V23H13V16.5L10.9 14.9L9.1 23H7ZM13.5 5.5C12.95 5.5 12.4792 5.30417 12.0875 4.9125C11.6958 4.52083 11.5 4.05 11.5 3.5C11.5 2.95 11.6958 2.47917 12.0875 2.0875C12.4792 1.69583 12.95 1.5 13.5 1.5C14.05 1.5 14.5208 1.69583 14.9125 2.0875C15.3042 2.47917 15.5 2.95 15.5 3.5C15.5 4.05 15.3042 4.52083 14.9125 4.9125C14.5208 5.30417 14.05 5.5 13.5 5.5Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">directions_walk</div>
+          <div class="icon-usage">Walking</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 19.35V13.65L11.4 9.65C11.4833 9.46667 11.6 9.31667 11.75 9.2C11.9167 9.06667 12.1167 9 12.35 9H19.65C19.8833 9 20.0833 9.06667 20.25 9.2C20.4167 9.31667 20.5333 9.46667 20.6 9.65L22 13.65V19.35C22 19.5333 21.9333 19.6917 21.8 19.825C21.6833 19.9417 21.5333 20 21.35 20H20.65C20.4667 20 20.3083 19.9417 20.175 19.825C20.0583 19.6917 20 19.5333 20 19.35V18.5H12V19.35C12 19.5333 11.9333 19.6917 11.8 19.825C11.6833 19.9417 11.5333 20 11.35 20H10.65C10.4667 20 10.3083 19.9417 10.175 19.825C10.0583 19.6917 10 19.5333 10 19.35ZM12 12.5H20L19.3 10.5H12.7L12 12.5ZM11.5 14V17V14ZM13 16.5C13.2833 16.5 13.5167 16.4083 13.7 16.225C13.9 16.025 14 15.7833 14 15.5C14 15.2167 13.9 14.9833 13.7 14.8C13.5167 14.6 13.2833 14.5 13 14.5C12.7167 14.5 12.475 14.6 12.275 14.8C12.0917 14.9833 12 15.2167 12 15.5C12 15.7833 12.0917 16.025 12.275 16.225C12.475 16.4083 12.7167 16.5 13 16.5ZM19 16.5C19.2833 16.5 19.5167 16.4083 19.7 16.225C19.9 16.025 20 15.7833 20 15.5C20 15.2167 19.9 14.9833 19.7 14.8C19.5167 14.6 19.2833 14.5 19 14.5C18.7167 14.5 18.475 14.6 18.275 14.8C18.0917 14.9833 18 15.2167 18 15.5C18 15.7833 18.0917 16.025 18.275 16.225C18.475 16.4083 18.7167 16.5 19 16.5ZM4 20V19L5 18C4.16667 18 3.45833 17.7083 2.875 17.125C2.29167 16.5417 2 15.8333 2 15V7C2 5.9 2.49167 5.125 3.475 4.675C4.45833 4.225 6.13333 4 8.5 4C10.9667 4 12.6667 4.21667 13.6 4.65C14.5333 5.08333 15 5.86667 15 7V8H13V7H4V13H9V20H4ZM5 16C5.28333 16 5.51667 15.9083 5.7 15.725C5.9 15.525 6 15.2833 6 15C6 14.7167 5.9 14.4833 5.7 14.3C5.51667 14.1 5.28333 14 5 14C4.71667 14 4.475 14.1 4.275 14.3C4.09167 14.4833 4 14.7167 4 15C4 15.2833 4.09167 15.525 4.275 15.725C4.475 15.9083 4.71667 16 5 16ZM11.5 17H20.5V14H11.5V17Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">commute</div>
+          <div class="icon-usage">Commute, transit</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12C12.55 12 13.0208 11.8042 13.4125 11.4125C13.8042 11.0208 14 10.55 14 10C14 9.45 13.8042 8.97917 13.4125 8.5875C13.0208 8.19583 12.55 8 12 8C11.45 8 10.9792 8.19583 10.5875 8.5875C10.1958 8.97917 10 9.45 10 10C10 10.55 10.1958 11.0208 10.5875 11.4125C10.9792 11.8042 11.45 12 12 12ZM12 19.35C14.0333 17.4833 15.5417 15.7875 16.525 14.2625C17.5083 12.7375 18 11.3833 18 10.2C18 8.38333 17.4208 6.89583 16.2625 5.7375C15.1042 4.57917 13.6833 4 12 4C10.3167 4 8.89583 4.57917 7.7375 5.7375C6.57917 6.89583 6 8.38333 6 10.2C6 11.3833 6.49167 12.7375 7.475 14.2625C8.45833 15.7875 9.96667 17.4833 12 19.35ZM12 22C9.31667 19.7167 7.3125 17.5958 5.9875 15.6375C4.6625 13.6792 4 11.8667 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.8667 19.3375 13.6792 18.0125 15.6375C16.6875 17.5958 14.6833 19.7167 12 22Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">location_on</div>
+          <div class="icon-usage">Location, map pin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status & Feedback -->
+    <div class="subsection">
+      <div class="subsection-title">Status &amp; Feedback</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.55001 18L3.85001 12.3L5.27501 10.875L9.55001 15.15L18.725 5.97501L20.15 7.40001L9.55001 18Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">check</div>
+          <div class="icon-usage">Success, done</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.4 17L12 13.4L15.6 17L17 15.6L13.4 12L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4L10.6 12L7 15.6L8.4 17ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">cancel</div>
+          <div class="icon-usage">Error, failed</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 17C12.2833 17 12.5208 16.9042 12.7125 16.7125C12.9042 16.5208 13 16.2833 13 16C13 15.7167 12.9042 15.4792 12.7125 15.2875C12.5208 15.0958 12.2833 15 12 15C11.7167 15 11.4792 15.0958 11.2875 15.2875C11.0958 15.4792 11 15.7167 11 16C11 16.2833 11.0958 16.5208 11.2875 16.7125C11.4792 16.9042 11.7167 17 12 17ZM11 13H13V7H11V13ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">error</div>
+          <div class="icon-usage">Warning, caution</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19V17H6V10C6 8.61667 6.41667 7.39167 7.25 6.325C8.08333 5.24167 9.16667 4.53333 10.5 4.2V3.5C10.5 3.08333 10.6417 2.73333 10.925 2.45C11.225 2.15 11.5833 2 12 2C12.4167 2 12.7667 2.15 13.05 2.45C13.35 2.73333 13.5 3.08333 13.5 3.5V4.2C14.8333 4.53333 15.9167 5.24167 16.75 6.325C17.5833 7.39167 18 8.61667 18 10V17H20V19H4ZM12 22C11.45 22 10.975 21.8083 10.575 21.425C10.1917 21.025 10 20.55 10 20H14C14 20.55 13.8 21.025 13.4 21.425C13.0167 21.8083 12.55 22 12 22ZM8 17H16V10C16 8.9 15.6083 7.95833 14.825 7.175C14.0417 6.39167 13.1 6 12 6C10.9 6 9.95833 6.39167 9.175 7.175C8.39167 7.95833 8 8.9 8 10V17Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">notifications</div>
+          <div class="icon-usage">Alerts, notifications</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- People & Social -->
+    <div class="subsection">
+      <div class="subsection-title">People &amp; Social</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12C10.9 12 9.95833 11.6083 9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12ZM4 20V17.2C4 16.6333 4.14583 16.1125 4.4375 15.6375C4.72917 15.1625 5.11667 14.8 5.6 14.55C6.63333 14.0333 7.68333 13.6458 8.75 13.3875C9.81667 13.1292 10.9 13 12 13C13.1 13 14.1833 13.1292 15.25 13.3875C16.3167 13.6458 17.3667 14.0333 18.4 14.55C18.8833 14.8 19.2708 15.1625 19.5625 15.6375C19.8542 16.1125 20 16.6333 20 17.2V20H4ZM6 18H18V17.2C18 17.0167 17.9542 16.85 17.8625 16.7C17.7708 16.55 17.65 16.4333 17.5 16.35C16.6 15.9 15.6917 15.5625 14.775 15.3375C13.8583 15.1125 12.9333 15 12 15C11.0667 15 10.1417 15.1125 9.225 15.3375C8.30833 15.5625 7.4 15.9 6.5 16.35C6.35 16.4333 6.22917 16.55 6.1375 16.7C6.04583 16.85 6 17.0167 6 17.2V18ZM12 10C12.55 10 13.0208 9.80417 13.4125 9.4125C13.8042 9.02083 14 8.55 14 8C14 7.45 13.8042 6.97917 13.4125 6.5875C13.0208 6.19583 12.55 6 12 6C11.45 6 10.9792 6.19583 10.5875 6.5875C10.1958 6.97917 10 7.45 10 8C10 8.55 10.1958 9.02083 10.5875 9.4125C10.9792 9.80417 11.45 10 12 10Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">person</div>
+          <div class="icon-usage">User, profile</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.85 17.1C6.7 16.45 7.65 15.9375 8.7 15.5625C9.75 15.1875 10.85 15 12 15C13.15 15 14.25 15.1875 15.3 15.5625C16.35 15.9375 17.3 16.45 18.15 17.1C18.7333 16.4167 19.1875 15.6417 19.5125 14.775C19.8375 13.9083 20 12.9833 20 12C20 9.78333 19.2208 7.89583 17.6625 6.3375C16.1042 4.77917 14.2167 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 12.9833 4.1625 13.9083 4.4875 14.775C4.8125 15.6417 5.26667 16.4167 5.85 17.1ZM12 13C11.0167 13 10.1875 12.6625 9.5125 11.9875C8.8375 11.3125 8.5 10.4833 8.5 9.5C8.5 8.51667 8.8375 7.6875 9.5125 7.0125C10.1875 6.3375 11.0167 6 12 6C12.9833 6 13.8125 6.3375 14.4875 7.0125C15.1625 7.6875 15.5 8.51667 15.5 9.5C15.5 10.4833 15.1625 11.3125 14.4875 11.9875C13.8125 12.6625 12.9833 13 12 13ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">account_circle</div>
+          <div class="icon-usage">Account, avatar</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21L10.55 19.7C8.86667 18.1834 7.475 16.875 6.375 15.775C5.275 14.675 4.4 13.6917 3.75 12.825C3.1 11.9417 2.64167 11.1334 2.375 10.4C2.125 9.66669 2 8.91669 2 8.15002C2 6.58336 2.525 5.27502 3.575 4.22502C4.625 3.17502 5.93333 2.65002 7.5 2.65002C8.36667 2.65002 9.19167 2.83336 9.975 3.20002C10.7583 3.56669 11.4333 4.08336 12 4.75003C12.5667 4.08336 13.2417 3.56669 14.025 3.20002C14.8083 2.83336 15.6333 2.65002 16.5 2.65002C18.0667 2.65002 19.375 3.17502 20.425 4.22502C21.475 5.27502 22 6.58336 22 8.15002C22 8.91669 21.8667 9.66669 21.6 10.4C21.35 11.1334 20.9 11.9417 20.25 12.825C19.6 13.6917 18.725 14.675 17.625 15.775C16.525 16.875 15.1333 18.1834 13.45 19.7L12 21ZM12 18.3C13.6 16.8667 14.9167 15.6417 15.95 14.625C16.9833 13.5917 17.8 12.7 18.4 11.95C19 11.1834 19.4167 10.5084 19.65 9.92503C19.8833 9.32503 20 8.73336 20 8.15002C20 7.15002 19.6667 6.31669 19 5.65003C18.3333 4.98336 17.5 4.65003 16.5 4.65003C15.7167 4.65003 14.9917 4.87503 14.325 5.32503C13.6583 5.75836 13.2 6.31669 12.95 7.00003H11.05C10.8 6.31669 10.3417 5.75836 9.675 5.32503C9.00833 4.87503 8.28333 4.65003 7.5 4.65003C6.5 4.65003 5.66667 4.98336 5 5.65003C4.33333 6.31669 4 7.15002 4 8.15002C4 8.73336 4.11667 9.32503 4.35 9.92503C4.58333 10.5084 5 11.1834 5.6 11.95C6.2 12.7 7.01667 13.5917 8.05 14.625C9.08333 15.6417 10.4 16.8667 12 18.3Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">favorite</div>
+          <div class="icon-usage">Favourite, like</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 21V5C5 4.45 5.19583 3.97917 5.5875 3.5875C5.97917 3.19583 6.45 3 7 3H17C17.55 3 18.0208 3.19583 18.4125 3.5875C18.8042 3.97917 19 4.45 19 5V21L12 18L5 21ZM7 17.95L12 15.8L17 17.95V5H7V17.95Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">bookmark</div>
+          <div class="icon-usage">Save, bookmark</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings & Misc -->
+    <div class="subsection">
+      <div class="subsection-title">Settings &amp; Misc</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.25001 22L8.85001 18.8C8.63335 18.7167 8.42918 18.6167 8.23751 18.5C8.04585 18.3833 7.85835 18.2583 7.67501 18.125L4.70001 19.375L1.95001 14.625L4.52501 12.675C4.50835 12.5583 4.50001 12.4458 4.50001 12.3375V11.6625C4.50001 11.5542 4.50835 11.4417 4.52501 11.325L1.95001 9.375L4.70001 4.625L7.67501 5.875C7.85835 5.74167 8.05001 5.61667 8.25001 5.5C8.45001 5.38333 8.65001 5.28333 8.85001 5.2L9.25001 2H14.75L15.15 5.2C15.3667 5.28333 15.5708 5.38333 15.7625 5.5C15.9542 5.61667 16.1417 5.74167 16.325 5.875L19.3 4.625L22.05 9.375L19.475 11.325C19.4917 11.4417 19.5 11.5542 19.5 11.6625V12.3375C19.5 12.4458 19.4833 12.5583 19.45 12.675L22.025 14.625L19.275 19.375L16.325 18.125C16.1417 18.2583 15.95 18.3833 15.75 18.5C15.55 18.6167 15.35 18.7167 15.15 18.8L14.75 22H9.25001ZM11 20H12.975L13.325 17.35C13.8417 17.2167 14.3208 17.0208 14.7625 16.7625C15.2042 16.5042 15.6083 16.1917 15.975 15.825L18.45 16.85L19.425 15.15L17.275 13.525C17.3583 13.2917 17.4167 13.0458 17.45 12.7875C17.4833 12.5292 17.5 12.2667 17.5 12C17.5 11.7333 17.4833 11.4708 17.45 11.2125C17.4167 10.9542 17.3583 10.7083 17.275 10.475L19.425 8.85L18.45 7.15L15.975 8.2C15.6083 7.81667 15.2042 7.49583 14.7625 7.2375C14.3208 6.97917 13.8417 6.78333 13.325 6.65L13 4H11.025L10.675 6.65C10.1583 6.78333 9.67918 6.97917 9.23751 7.2375C8.79585 7.49583 8.39168 7.80833 8.02501 8.175L5.55001 7.15L4.57501 8.85L6.72501 10.45C6.64168 10.7 6.58335 10.95 6.55001 11.2C6.51668 11.45 6.50001 11.7167 6.50001 12C6.50001 12.2667 6.51668 12.525 6.55001 12.775C6.58335 13.025 6.64168 13.275 6.72501 13.525L4.57501 15.15L5.55001 16.85L8.02501 15.8C8.39168 16.1833 8.79585 16.5042 9.23751 16.7625C9.67918 17.0208 10.1583 17.2167 10.675 17.35L11 20ZM12.05 15.5C13.0167 15.5 13.8417 15.1583 14.525 14.475C15.2083 13.7917 15.55 12.9667 15.55 12C15.55 11.0333 15.2083 10.2083 14.525 9.525C13.8417 8.84167 13.0167 8.5 12.05 8.5C11.0667 8.5 10.2375 8.84167 9.56251 9.525C8.88751 10.2083 8.55001 11.0333 8.55001 12C8.55001 12.9667 8.88751 13.7917 9.56251 14.475C10.2375 15.1583 11.0667 15.5 12.05 15.5Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">settings</div>
+          <div class="icon-usage">Settings, config</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.3 16.7L16.7 15.3L13 11.6V7H11V12.4L15.3 16.7ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22ZM12 20C14.2167 20 16.1042 19.2208 17.6625 17.6625C19.2208 16.1042 20 14.2167 20 12C20 9.78333 19.2208 7.89583 17.6625 6.3375C16.1042 4.77917 14.2167 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 14.2167 4.77917 16.1042 6.3375 17.6625C7.89583 19.2208 9.78333 20 12 20Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">schedule</div>
+          <div class="icon-usage">Time, history</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 14C5.45 14 4.97917 13.8042 4.5875 13.4125C4.19583 13.0208 4 12.55 4 12C4 11.45 4.19583 10.9792 4.5875 10.5875C4.97917 10.1958 5.45 10 6 10C6.55 10 7.02083 10.1958 7.4125 10.5875C7.80417 10.9792 8 11.45 8 12C8 12.55 7.80417 13.0208 7.4125 13.4125C7.02083 13.8042 6.55 14 6 14ZM12 14C11.45 14 10.9792 13.8042 10.5875 13.4125C10.1958 13.0208 10 12.55 10 12C10 11.45 10.1958 10.9792 10.5875 10.5875C10.9792 10.1958 11.45 10 12 10C12.55 10 13.0208 10.1958 13.4125 10.5875C13.8042 10.9792 14 11.45 14 12C14 12.55 13.8042 13.0208 13.4125 13.4125C13.0208 13.8042 12.55 14 12 14ZM18 14C17.45 14 16.9792 13.8042 16.5875 13.4125C16.1958 13.0208 16 12.55 16 12C16 11.45 16.1958 10.9792 16.5875 10.5875C16.9792 10.1958 17.45 10 18 10C18.55 10 19.0208 10.1958 19.4125 10.5875C19.8042 10.9792 20 11.45 20 12C20 12.55 19.8042 13.0208 19.4125 13.4125C19.0208 13.8042 18.55 14 18 14Z" fill="currentColor"/>
+          </svg>
+          <div class="icon-name">more_horiz</div>
+          <div class="icon-usage">More options</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">JR Custom</div>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42 13.7C42 14.1418 41.6418 14.5 41.2 14.5L6.8 14.5C6.35817 14.5 6 14.1418 6 13.7L6 12.3C6 11.8582 6.35817 11.5 6.8 11.5L41.2 11.5C41.6418 11.5 42 11.8582 42 12.3L42 13.7Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42 24.7C42 25.1418 41.6418 25.5 41.2 25.5L6.8 25.5C6.35817 25.5 6 25.1418 6 24.7L6 23.3C6 22.8582 6.35817 22.5 6.8 22.5L41.2 22.5C41.6418 22.5 42 22.8582 42 23.3L42 24.7Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42 35.7C42 36.1418 41.6418 36.5 41.2 36.5L6.8 36.5C6.35817 36.5 6 36.1418 6 35.7L6 34.3C6 33.8582 6.35817 33.5 6.8 33.5L41.2 33.5C41.6418 33.5 42 33.8582 42 34.3L42 35.7Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">menu</div>
+          <div class="icon-usage">Navigation menu</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 6.35566C8.5 5.0854 9.52975 4.05566 10.8 4.05566H32.2C33.4703 4.05566 34.5 5.08541 34.5 6.35566V11.5057C34.5 11.9475 34.1418 12.3057 33.7 12.3057H32.3C31.8582 12.3057 31.5 11.9475 31.5 11.5057V7.85566C31.5 7.41384 31.1418 7.05566 30.7 7.05566H12.3C11.8582 7.05566 11.5 7.41384 11.5 7.85566V40.2557C11.5 40.6975 11.8582 41.0557 12.3 41.0557H30.7C31.1418 41.0557 31.5 40.6975 31.5 40.2557V36.6057C31.5 36.1638 31.8582 35.8057 32.3 35.8057H33.7C34.1418 35.8057 34.5 36.1638 34.5 36.6057V41.7557C34.5 43.0259 33.4703 44.0557 32.2 44.0557H10.8C9.52974 44.0557 8.5 43.0259 8.5 41.7557V6.35566Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M28.5556 16.3633C28.8681 16.6757 28.8681 17.1822 28.5556 17.4946L22.6159 23.4343C22.3035 23.7467 22.3035 24.2533 22.6159 24.5657L28.5556 30.5054C28.8681 30.8178 28.8681 31.3243 28.5556 31.6368L27.5657 32.6267C27.2533 32.9391 26.7467 32.9391 26.4343 32.6267L19.434 25.6264C18.5358 24.7281 18.5358 23.2719 19.434 22.3737L26.4343 15.3733C26.7467 15.0609 27.2533 15.0609 27.5657 15.3733L28.5556 16.3633Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5 23.3C21.5 22.8582 21.8582 22.5 22.3 22.5L41.7 22.5C42.1418 22.5 42.5 22.8582 42.5 23.3L42.5 24.7C42.5 25.1418 42.1418 25.5 41.7 25.5L22.3 25.5C21.8582 25.5 21.5 25.1418 21.5 24.7L21.5 23.3Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">login</div>
+          <div class="icon-usage">Sign in</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.3359 18.4421C15.3359 15.021 18.657 12.5 23.499 12.5C28.3411 12.5 31.6621 15.021 31.6621 18.4421C31.6621 21.959 29.2307 24.416 25.4245 25.9895C25.1296 26.1114 24.999 26.3556 24.999 26.5467V28.0262C24.999 28.468 24.6409 28.8262 24.199 28.8262H22.799C22.3572 28.8262 21.999 28.468 21.999 28.0262V26.5467C21.999 25.016 22.9821 23.7529 24.2784 23.2171C27.5531 21.8633 28.6621 20.2128 28.6621 18.4421C28.6621 17.421 27.5411 15.5 23.499 15.5C19.457 15.5 18.3359 17.421 18.3359 18.4421V19.1421C18.3359 19.5839 17.9778 19.9421 17.5359 19.9421H16.1359C15.6941 19.9421 15.3359 19.5839 15.3359 19.1421V18.4421Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 7.5C14.8873 7.5 7.5 14.8873 7.5 24C7.5 33.1127 14.8873 40.5 24 40.5C33.1127 40.5 40.5 33.1127 40.5 24C40.5 14.8873 33.1127 7.5 24 7.5ZM4.5 24C4.5 13.2304 13.2304 4.5 24 4.5C34.7696 4.5 43.5 13.2304 43.5 24C43.5 34.7696 34.7696 43.5 24 43.5C13.2304 43.5 4.5 34.7696 4.5 24Z" fill="currentColor"/>
+<path d="M21.6875 32.2265C21.6875 31.7847 22.0457 31.4265 22.4875 31.4265H24.5156C24.9574 31.4265 25.3156 31.7847 25.3156 32.2265V34.2546C25.3156 34.6965 24.9574 35.0546 24.5156 35.0546H22.4875C22.0457 35.0546 21.6875 34.6965 21.6875 34.2546V32.2265Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">help</div>
+          <div class="icon-usage">Help, FAQ</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.5459 40.668C17.2335 40.3556 17.2335 39.849 17.5459 39.5366L32.5169 24.5657C32.8293 24.2532 32.8293 23.7467 32.5169 23.4343L17.5459 8.46334C17.2335 8.15092 17.2335 7.64439 17.5459 7.33197L18.5359 6.34202C18.8483 6.0296 19.3548 6.0296 19.6672 6.34202L35.6989 22.3736C36.5971 23.2718 36.5971 24.7281 35.6989 25.6263L19.6672 41.6579C19.3548 41.9704 18.8483 41.9704 18.5359 41.6579L17.5459 40.668Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">next</div>
+          <div class="icon-usage">Forward, next</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.1875 31.9273C22.1875 31.4855 22.5457 31.1273 22.9875 31.1273H25.0156C25.4574 31.1273 25.8156 31.4855 25.8156 31.9273V33.9554C25.8156 34.3973 25.4574 34.7554 25.0156 34.7554H22.9875C22.5457 34.7554 22.1875 34.3973 22.1875 33.9554V31.9273Z" fill="currentColor"/>
+<path d="M23.0786 28H24.9005C25.3792 28 25.7438 27.5819 25.7394 27.1032C25.7388 27.0385 25.7388 26.9745 25.7388 26.9081C25.7388 26.5442 25.7388 26.5442 25.7998 25.0104L26.2266 16.1716C26.2669 15.4333 26.3338 14.5931 26.4009 13.9053C26.4478 13.4247 26.0729 13 25.59 13H22.4462C21.9516 13 21.5695 13.4454 21.6173 13.9377C21.683 14.6142 21.7357 15.426 21.7754 16.1716L22.2022 25.0104L22.2022 25.0104C22.2937 26.5962 22.2937 26.5962 22.2937 26.8821C22.2937 26.975 22.291 27.0632 22.2864 27.1558C22.2636 27.6145 22.6193 28 23.0786 28Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 7.5C14.8873 7.5 7.5 14.8873 7.5 24C7.5 33.1127 14.8873 40.5 24 40.5C33.1127 40.5 40.5 33.1127 40.5 24C40.5 14.8873 33.1127 7.5 24 7.5ZM4.5 24C4.5 13.2304 13.2304 4.5 24 4.5C34.7696 4.5 43.5 13.2304 43.5 24C43.5 34.7696 34.7696 43.5 24 43.5C13.2304 43.5 4.5 34.7696 4.5 24Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">caution</div>
+          <div class="icon-usage">Warning, caution</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.0556 9.93405C20.3681 10.2465 20.3681 10.753 20.0556 11.0654L7.68678 23.4343C7.37436 23.7467 7.37436 24.2532 7.68678 24.5656L20.0556 36.9345C20.3681 37.2469 20.3681 37.7535 20.0556 38.0659L19.0657 39.0558C18.7533 39.3682 18.2467 39.3682 17.9343 39.0558L4.5048 25.6263C3.6066 24.7281 3.60659 23.2718 4.5048 22.3736L17.9343 8.9441C18.2467 8.63168 18.7533 8.63168 19.0657 8.9441L20.0556 9.93405Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 23.3C5.5 22.8582 5.85817 22.5 6.3 22.5L42.7 22.5C43.1418 22.5 43.5 22.8582 43.5 23.3L43.5 24.7C43.5 25.1418 43.1418 25.5 42.7 25.5L6.3 25.5C5.85817 25.5 5.5 25.1418 5.5 24.7L5.5 23.3Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">back</div>
+          <div class="icon-usage">Back, return</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M39.5556 9.4343C39.8681 9.74672 39.8681 10.2532 39.5556 10.5657L10.5657 39.5556C10.2533 39.868 9.74673 39.868 9.43431 39.5556L8.44437 38.5657C8.13195 38.2532 8.13194 37.7467 8.44436 37.4343L37.4343 8.44435C37.7467 8.13193 38.2533 8.13193 38.5657 8.44435L39.5556 9.4343Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M38.5694 39.5556C38.2569 39.8681 37.7504 39.8681 37.438 39.5556L8.44805 10.5657C8.13563 10.2533 8.13563 9.74673 8.44805 9.43431L9.438 8.44437C9.75042 8.13195 10.2569 8.13194 10.5694 8.44436L39.5593 37.4343C39.8717 37.7467 39.8717 38.2533 39.5593 38.5657L38.5694 39.5556Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">close</div>
+          <div class="icon-usage">Close, dismiss</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.10918 9.50197C6.41901 9.18698 6.92553 9.18281 7.24051 9.49265L23.4378 25.4253C23.7491 25.7315 24.2485 25.7315 24.5598 25.4253L40.7571 9.49264C41.0721 9.18281 41.5786 9.18698 41.8885 9.50196L42.8702 10.5C43.1801 10.815 43.1759 11.3215 42.8609 11.6314L25.6117 28.5987C24.7167 29.4792 23.281 29.4792 22.3859 28.5987L5.13673 11.6314C4.82175 11.3215 4.81758 10.815 5.12741 10.5L6.10918 9.50197Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 10.9787C4.25 9.70846 5.27975 8.67871 6.55 8.67871H41.4685C42.7388 8.67871 43.7685 9.70846 43.7685 10.9787V37.0213C43.7685 38.2915 42.7388 39.3213 41.4685 39.3213H6.55C5.27974 39.3213 4.25 38.2915 4.25 37.0213V10.9787ZM8.05 11.6787C7.60817 11.6787 7.25 12.0369 7.25 12.4787V35.5213C7.25 35.9631 7.60817 36.3213 8.05 36.3213H39.9685C40.4103 36.3213 40.7685 35.9631 40.7685 35.5213V12.4787C40.7685 12.0369 40.4103 11.6787 39.9685 11.6787H8.05Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">email</div>
+          <div class="icon-usage">Email, messages</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.1875 13.9274C22.1875 13.4856 22.5457 13.1274 22.9875 13.1274H25.0156C25.4574 13.1274 25.8156 13.4856 25.8156 13.9274V15.9556C25.8156 16.3974 25.4574 16.7556 25.0156 16.7556H22.9875C22.5457 16.7556 22.1875 16.3974 22.1875 15.9556V13.9274Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 7.5C14.8873 7.5 7.5 14.8873 7.5 24C7.5 33.1127 14.8873 40.5 24 40.5C33.1127 40.5 40.5 33.1127 40.5 24C40.5 14.8873 33.1127 7.5 24 7.5ZM4.5 24C4.5 13.2304 13.2304 4.5 24 4.5C34.7696 4.5 43.5 13.2304 43.5 24C43.5 34.7696 34.7696 43.5 24 43.5C13.2304 43.5 4.5 34.7696 4.5 24Z" fill="currentColor"/>
+<path d="M26 34.2005C26 34.6424 25.6418 35 25.2 35L22.8 35C22.3582 35 22 34.6424 22 34.2005C22 32.688 22 29.3489 22 27C22 24.6511 22 21.312 22 19.7995C22 19.3576 22.3582 19 22.8 19L25.2 19C25.6418 19 26 19.3576 26 19.7995C26 21.312 26 24.6511 26 27C26 29.3489 26 32.688 26 34.2005Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">info</div>
+          <div class="icon-usage">Information, details</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 17.2445C5.5 15.9742 6.52974 14.9445 7.8 14.9445H40.2C41.4703 14.9445 42.5 15.9742 42.5 17.2445V23.6445C42.5 24.9147 41.4703 25.9445 40.2 25.9445H7.8C6.52974 25.9445 5.5 24.9147 5.5 23.6445V17.2445ZM9.3 17.9445C8.85817 17.9445 8.5 18.3026 8.5 18.7445V22.1445C8.5 22.5863 8.85817 22.9445 9.3 22.9445H38.7C39.1418 22.9445 39.5 22.5863 39.5 22.1445V18.7445C39.5 18.3026 39.1418 17.9445 38.7 17.9445H9.3Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M25.4961 14.9445V42.5H22.4961V14.9445H25.4961Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.5087 10.5414C18.2064 9.09434 16.8108 8.47822 15.5257 8.50061L15.5126 8.50084H15.4996C14.645 8.50084 13.8254 8.84032 13.2211 9.4446C12.6168 10.0489 12.2773 10.8685 12.2773 11.7231C12.2773 12.5776 12.6168 13.3972 13.2211 14.0015C13.8254 14.6058 14.645 14.9453 15.4996 14.9453H16.9996V17.9453H15.4996C13.8493 17.9453 12.2667 17.2897 11.0998 16.1228C9.9329 14.9559 9.27734 13.3733 9.27734 11.7231C9.27734 10.0728 9.9329 8.49017 11.0998 7.32328C12.2636 6.1595 13.8409 5.50433 15.4864 5.50085C17.8406 5.46418 20.0116 6.61561 21.7386 8.53447C22.6127 9.50576 23.3704 10.667 23.9996 11.9663C24.6287 10.667 25.3864 9.50576 26.2606 8.53447C27.9875 6.61561 30.1585 5.46418 32.5127 5.50085C34.1582 5.50433 35.7355 6.1595 36.8993 7.32328C38.0662 8.49017 38.7218 10.0728 38.7218 11.7231C38.7218 13.3733 38.0662 14.9559 36.8993 16.1228C35.7324 17.2897 34.1498 17.9453 32.4996 17.9453H30.9996V14.9453H32.4996C33.3541 14.9453 34.1737 14.6058 34.778 14.0015C35.3823 13.3972 35.7218 12.5776 35.7218 11.7231C35.7218 10.8685 35.3823 10.0489 34.778 9.4446C34.1737 8.84032 33.3541 8.50084 32.4996 8.50084H32.4865L32.4734 8.50061C31.1883 8.47822 29.7928 9.09434 28.4904 10.5414C27.1805 11.9969 26.0978 14.1595 25.4573 16.799H22.5419C21.9013 14.1595 20.8186 11.9969 19.5087 10.5414Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.7 22.9445C11.1418 22.9445 11.5 23.3026 11.5 23.7445V38.7C11.5 39.1418 11.8582 39.5 12.3 39.5H34.7C35.1418 39.5 35.5 39.1418 35.5 38.7V23.7445C35.5 23.3026 35.8582 22.9445 36.3 22.9445H37.7C38.1418 22.9445 38.5 23.3026 38.5 23.7445V40.2C38.5 41.4702 37.4703 42.5 36.2 42.5H10.8C9.52974 42.5 8.5 41.4702 8.5 40.2V23.7445C8.5 23.3026 8.85817 22.9445 9.3 22.9445H10.7Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">campaign</div>
+          <div class="icon-usage">Campaign, promotion</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.04297 10.576C6.04297 9.30574 7.07272 8.276 8.34297 8.276H39.6355C40.9058 8.276 41.9355 9.30575 41.9355 10.576V39.1993C41.9355 40.4695 40.9058 41.4993 39.6355 41.4993H8.34297C7.07271 41.4993 6.04297 40.4695 6.04297 39.1993V10.576ZM9.84297 11.276C9.40114 11.276 9.04297 11.6342 9.04297 12.076V37.6993C9.04297 38.1411 9.40114 38.4993 9.84297 38.4993H38.1355C38.5774 38.4993 38.9355 38.1411 38.9355 37.6993V12.076C38.9355 11.6342 38.5774 11.276 38.1355 11.276H9.84297Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.7938 4.41174C16.2356 4.41174 16.5938 4.76992 16.5938 5.21174L16.5938 14.3402C16.5938 14.782 16.2356 15.1402 15.7938 15.1402L14.3938 15.1402C13.9519 15.1402 13.5938 14.782 13.5938 14.3402L13.5938 5.21174C13.5938 4.76992 13.9519 4.41174 14.3937 4.41174L15.7938 4.41174Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.5 19.2764C41.5 19.7182 41.1418 20.0764 40.7 20.0764L7.3 20.0764C6.85817 20.0764 6.5 19.7182 6.5 19.2764V17.8764C6.5 17.4346 6.85817 17.0764 7.3 17.0764L40.7 17.0764C41.1418 17.0764 41.5 17.4346 41.5 17.8764V19.2764Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.8841 25.8337C17.1966 25.5213 17.7031 25.5213 18.0155 25.8337L21.9326 29.7512C22.245 30.0636 22.7515 30.0637 23.064 29.7512L29.9837 22.8315C30.2961 22.5191 30.8026 22.5191 31.115 22.8315L32.105 23.8215C32.4174 24.1339 32.4174 24.6404 32.105 24.9528L24.1246 32.9333C23.2263 33.8315 21.77 33.8315 20.8718 32.9332L15.8941 27.9549C15.5817 27.6425 15.5817 27.136 15.8941 26.8236L16.8841 25.8337Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.5828 4.41174C34.0246 4.41174 34.3828 4.76992 34.3828 5.21174L34.3828 14.3402C34.3828 14.782 34.0246 15.1402 33.5828 15.1402L32.1828 15.1402C31.741 15.1402 31.3828 14.782 31.3828 14.3402L31.3828 5.21174C31.3828 4.76992 31.741 4.41174 32.1828 4.41174L33.5828 4.41174Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">date picker</div>
+          <div class="icon-usage">Date selection</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.8862 16.2631C9.67701 19.0479 7.27218 22.2443 6.17011 23.8301C6.09434 23.9392 6.09434 24.0608 6.17011 24.1698C7.27218 25.7556 9.67701 28.952 12.8862 31.7368C16.1241 34.5466 19.9774 36.761 24.0003 36.761C28.0233 36.761 31.8766 34.5466 35.1145 31.7368C38.3237 28.952 40.7285 25.7556 41.8306 24.1698C41.9063 24.0608 41.9063 23.9392 41.8306 23.8301C40.7285 22.2443 38.3237 19.0479 35.1145 16.2631C31.8766 13.4533 28.0233 11.2389 24.0003 11.2389C19.9774 11.2389 16.1241 13.4533 12.8862 16.2631ZM10.92 13.9973C14.3659 11.007 18.9072 8.23889 24.0003 8.23889C29.0935 8.23889 33.6348 11.007 37.0807 13.9973C40.5553 17.0125 43.1235 20.4337 44.2941 22.1181C45.0852 23.2564 45.0852 24.7435 44.2941 25.8818C43.1235 27.5662 40.5553 30.9874 37.0807 34.0027C33.6348 36.9929 29.0935 39.761 24.0003 39.761C18.9072 39.761 14.3659 36.9929 10.92 34.0027C7.44533 30.9874 4.8772 27.5662 3.7066 25.8818C2.91551 24.7435 2.91551 23.2564 3.7066 22.1181C4.8772 20.4337 7.44533 17.0125 10.92 13.9973Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.0034 17.7074C20.5282 17.7074 17.7109 20.5246 17.7109 23.9999C17.7109 27.4752 20.5282 30.2924 24.0034 30.2924C27.4787 30.2924 30.296 27.4752 30.296 23.9999C30.296 20.5246 27.4787 17.7074 24.0034 17.7074ZM14.7109 23.9999C14.7109 18.8678 18.8713 14.7074 24.0034 14.7074C29.1356 14.7074 33.296 18.8678 33.296 23.9999C33.296 29.132 29.1356 33.2924 24.0034 33.2924C18.8713 33.2924 14.7109 29.132 14.7109 23.9999Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">visible</div>
+          <div class="icon-usage">Show, visible</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M34.1172 35.158C34.4662 35.5069 34.4196 36.0863 34.0093 36.3605C31.1021 38.3032 27.6965 39.761 24.0003 39.761C18.9072 39.761 14.3659 36.9929 10.92 34.0027C7.44533 30.9874 4.8772 27.5662 3.7066 25.8818C2.91551 24.7435 2.91551 23.2564 3.7066 22.1181C4.8772 20.4337 7.44533 17.0125 10.92 13.9973C11.103 13.8385 11.289 13.6803 11.4781 13.5231C11.7909 13.2631 12.2492 13.29 12.5368 13.5775L13.5269 14.5677C13.8675 14.9082 13.8316 15.4698 13.4604 15.7766C13.267 15.9365 13.0755 16.0988 12.8862 16.2631C9.67701 19.0479 7.27218 22.2443 6.17011 23.8301C6.09434 23.9392 6.09434 24.0608 6.17011 24.1698C7.27218 25.7556 9.67701 28.952 12.8862 31.7368C16.1241 34.5466 19.9774 36.761 24.0003 36.761C26.8278 36.761 29.5714 35.6672 32.0765 34.0415C32.4003 33.8314 32.8284 33.8692 33.1014 34.1421L34.1172 35.158ZM38.3824 29.6547C38.0771 29.3494 38.0698 28.8575 38.359 28.537C39.944 26.7813 41.1417 25.1609 41.8306 24.1698C41.9063 24.0608 41.9063 23.9392 41.8306 23.8301C40.7285 22.2443 38.3237 19.0479 35.1145 16.2631C31.8766 13.4533 28.0233 11.2389 24.0003 11.2389C22.9738 11.2389 21.9583 11.3831 20.9613 11.6445C20.6767 11.7192 20.3718 11.644 20.1637 11.436L19.0073 10.2796C18.6009 9.87317 18.7439 9.1849 19.2908 9.00822C20.792 8.52328 22.3678 8.23889 24.0003 8.23889C29.0935 8.23889 33.6348 11.007 37.0807 13.9973C40.5553 17.0125 43.1235 20.4337 44.2941 22.1181C45.0852 23.2564 45.0852 24.7435 44.2941 25.8818C43.5532 26.9479 42.2526 28.7095 40.5168 30.6236C40.2136 30.958 39.6932 30.9655 39.374 30.6463L38.3824 29.6547Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29.4201 30.4593C29.7501 30.7894 29.7302 31.3335 29.3487 31.6022C27.8369 32.6672 25.9932 33.2925 24.0034 33.2925C18.8713 33.2925 14.7109 29.1321 14.7109 24C14.7109 22.0103 15.3363 20.1666 16.4012 18.6548C16.67 18.2733 17.2141 18.2533 17.5441 18.5833L18.5599 19.5991C18.8468 19.886 18.8684 20.3397 18.6543 20.6844C18.0563 21.6472 17.7109 22.7833 17.7109 24C17.7109 27.4753 20.5282 30.2925 24.0034 30.2925C25.2202 30.2925 26.3563 29.9472 27.3191 29.3491C27.6638 29.135 28.1174 29.1566 28.4044 29.4436L29.4201 30.4593ZM29.1978 20.4472C29.2275 20.4906 29.2608 20.5315 29.298 20.5687L32.8904 24.1611C33.0413 24.312 33.296 24.2134 33.296 24C33.296 18.8679 29.1356 14.7075 24.0034 14.7075C23.79 14.7075 23.6915 14.9622 23.8424 15.1131L27.4347 18.7055C27.472 18.7427 27.5128 18.776 27.5562 18.8057C28.1996 19.2466 28.7569 19.8039 29.1978 20.4472Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.16567 8.17596C9.47809 7.86355 9.98462 7.86355 10.297 8.17596L39.8239 37.7028C40.1363 38.0153 40.1363 38.5218 39.8239 38.8342L38.834 39.8242C38.5215 40.1366 38.015 40.1366 37.7026 39.8242L8.17572 10.2973C7.8633 9.98487 7.8633 9.47833 8.17572 9.16591L9.16567 8.17596Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">hidden</div>
+          <div class="icon-usage">Hide, invisible</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.04297 10.576C6.04297 9.30574 7.07272 8.276 8.34297 8.276H39.6355C40.9058 8.276 41.9355 9.30575 41.9355 10.576V39.1993C41.9355 40.4695 40.9058 41.4993 39.6355 41.4993H8.34297C7.07271 41.4993 6.04297 40.4695 6.04297 39.1993V10.576ZM9.84297 11.276C9.40114 11.276 9.04297 11.6342 9.04297 12.076V37.6993C9.04297 38.1411 9.40114 38.4993 9.84297 38.4993H38.1355C38.5774 38.4993 38.9355 38.1411 38.9355 37.6993V12.076C38.9355 11.6342 38.5774 11.276 38.1355 11.276H9.84297Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.7938 4.41174C16.2356 4.41174 16.5938 4.76992 16.5938 5.21174L16.5938 14.3402C16.5938 14.782 16.2356 15.1402 15.7938 15.1402L14.3938 15.1402C13.9519 15.1402 13.5938 14.782 13.5938 14.3402L13.5938 5.21174C13.5938 4.76992 13.9519 4.41174 14.3937 4.41174L15.7938 4.41174Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.5 22.2763C41.5 22.7181 41.1418 23.0763 40.7 23.0763L7.3 23.0763C6.85817 23.0763 6.5 22.7181 6.5 22.2763V20.8763C6.5 20.4345 6.85817 20.0763 7.3 20.0763L40.7 20.0763C41.1418 20.0763 41.5 20.4345 41.5 20.8763V22.2763Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.5828 4.41174C34.0246 4.41174 34.3828 4.76992 34.3828 5.21174L34.3828 14.3402C34.3828 14.782 34.0246 15.1402 33.5828 15.1402L32.1828 15.1402C31.741 15.1402 31.3828 14.782 31.3828 14.3402L31.3828 5.21174C31.3828 4.76992 31.741 4.41174 32.1828 4.41174L33.5828 4.41174Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">calendar</div>
+          <div class="icon-usage">Calendar, date</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M26.5 8.05554C19.3203 8.05554 13.5 13.8758 13.5 21.0555C13.5 28.2352 19.3203 34.0555 26.5 34.0555C33.6797 34.0555 39.5 28.2352 39.5 21.0555C39.5 13.8758 33.6797 8.05554 26.5 8.05554ZM10.5 21.0555C10.5 12.219 17.6634 5.05554 26.5 5.05554C35.3366 5.05554 42.5 12.219 42.5 21.0555C42.5 29.8921 35.3366 37.0555 26.5 37.0555C17.6634 37.0555 10.5 29.8921 10.5 21.0555Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.667 31.3273C15.3546 31.0149 14.8481 31.0149 14.5357 31.3273L5.44491 40.4186C5.13251 40.7311 5.13252 41.2376 5.44493 41.55L6.43488 42.5399C6.74731 42.8524 7.25385 42.8524 7.56627 42.5399L16.657 33.4486C16.9694 33.1362 16.9694 32.6297 16.657 32.3172L15.667 31.3273Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M26.8869 14.2834C26.4769 14.2107 26.1562 13.8684 26.1562 13.452V12.0303C26.1562 11.5699 26.5453 11.2017 27.0014 11.2646C31.8156 11.9283 35.6258 15.7376 36.2906 20.5514C36.3536 21.0077 35.9854 21.3968 35.5249 21.3968H34.1031C33.6868 21.3968 33.3445 21.0763 33.2717 20.6664C32.6953 17.4196 30.134 14.8589 26.8869 14.2834Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">search</div>
+          <div class="icon-usage">Search</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M34.5 24.7C34.5 25.1418 34.1418 25.5 33.7 25.5L14.3 25.5C13.8582 25.5 13.5 25.1418 13.5 24.7L13.5 23.3C13.5 22.8582 13.8582 22.5 14.3 22.5L33.7 22.5C34.1418 22.5 34.5 22.8582 34.5 23.3L34.5 24.7Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.3 34.5C22.8582 34.5 22.5 34.1418 22.5 33.7L22.5 14.3C22.5 13.8582 22.8582 13.5 23.3 13.5L24.7 13.5C25.1418 13.5 25.5 13.8582 25.5 14.3L25.5 33.7C25.5 34.1418 25.1418 34.5 24.7 34.5L23.3 34.5Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 7.5C14.8873 7.5 7.5 14.8873 7.5 24C7.5 33.1127 14.8873 40.5 24 40.5C33.1127 40.5 40.5 33.1127 40.5 24C40.5 14.8873 33.1127 7.5 24 7.5ZM4.5 24C4.5 13.2304 13.2304 4.5 24 4.5C34.7696 4.5 43.5 13.2304 43.5 24C43.5 34.7696 34.7696 43.5 24 43.5C13.2304 43.5 4.5 34.7696 4.5 24Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">add</div>
+          <div class="icon-usage">Add, plus</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 6.3C8.5 5.02974 9.52975 4 10.8 4H32.2C33.4703 4 34.5 5.02975 34.5 6.3V11.45C34.5 11.8918 34.1418 12.25 33.7 12.25H32.3C31.8582 12.25 31.5 11.8918 31.5 11.45V7.8C31.5 7.35817 31.1418 7 30.7 7H12.3C11.8582 7 11.5 7.35817 11.5 7.8V40.2C11.5 40.6418 11.8582 41 12.3 41H30.7C31.1418 41 31.5 40.6418 31.5 40.2V36.55C31.5 36.1082 31.8582 35.75 32.3 35.75H33.7C34.1418 35.75 34.5 36.1082 34.5 36.55V41.7C34.5 42.9703 33.4703 44 32.2 44H10.8C9.52974 44 8.5 42.9703 8.5 41.7V6.3Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.2178 16.3076C32.9054 16.62 32.9054 17.1265 33.2178 17.439L39.1575 23.3787C39.4699 23.6911 39.4699 24.1976 39.1575 24.51L33.2178 30.4497C32.9054 30.7621 32.9054 31.2687 33.2178 31.5811L34.2078 32.571C34.5202 32.8835 35.0267 32.8835 35.3391 32.571L42.3395 25.5707C43.2377 24.6725 43.2377 23.2162 42.3395 22.318L35.3391 15.3176C35.0267 15.0052 34.5202 15.0052 34.2078 15.3176L33.2178 16.3076Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M40.2734 23.2443C40.2734 22.8025 39.9153 22.4443 39.4734 22.4443L20.0734 22.4443C19.6316 22.4443 19.2734 22.8025 19.2734 23.2443L19.2734 24.6443C19.2734 25.0862 19.6316 25.4443 20.0734 25.4443L39.4734 25.4443C39.9153 25.4443 40.2734 25.0862 40.2734 24.6443L40.2734 23.2443Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">logout</div>
+          <div class="icon-usage">Sign out</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30.4541 40.668C30.7665 40.3556 30.7665 39.849 30.4541 39.5366L15.4831 24.5657C15.1707 24.2532 15.1707 23.7467 15.4831 23.4343L30.4541 8.46334C30.7665 8.15092 30.7665 7.64439 30.4541 7.33197L29.4641 6.34202C29.1517 6.0296 28.6452 6.0296 28.3328 6.34202L12.3011 22.3736C11.4029 23.2718 11.4029 24.7281 12.3011 25.6263L28.3328 41.6579C28.6452 41.9704 29.1517 41.9704 29.4641 41.6579L30.4541 40.668Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">previous</div>
+          <div class="icon-usage">Back, previous</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M27.9444 9.93405C27.6319 10.2465 27.6319 10.753 27.9444 11.0654L40.3132 23.4343C40.6256 23.7467 40.6256 24.2532 40.3132 24.5656L27.9444 36.9345C27.6319 37.2469 27.6319 37.7535 27.9444 38.0659L28.9343 39.0558C29.2467 39.3682 29.7533 39.3682 30.0657 39.0558L43.4952 25.6263C44.3934 24.7281 44.3934 23.2718 43.4952 22.3736L30.0657 8.9441C29.7533 8.63168 29.2467 8.63168 28.9343 8.9441L27.9444 9.93405Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M42.5 23.3C42.5 22.8582 42.1418 22.5 41.7 22.5L5.3 22.5C4.85817 22.5 4.5 22.8582 4.5 23.3L4.5 24.7C4.5 25.1418 4.85817 25.5 5.3 25.5L41.7 25.5C42.1418 25.5 42.5 25.1418 42.5 24.7L42.5 23.3Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">forward</div>
+          <div class="icon-usage">Forward, proceed</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6991 8.95874C18.2909 8.95874 17.9481 9.26614 17.9038 9.67198L17.5402 13.0048C17.413 14.1716 16.4275 15.0554 15.2538 15.0554H7.8C7.35817 15.0554 7 15.4135 7 15.8554V36.2554C7 36.6972 7.35817 37.0554 7.8 37.0554H40.2C40.6418 37.0554 41 36.6972 41 36.2554V15.8554C41 15.4135 40.6418 15.0554 40.2 15.0554H32.7462C31.5725 15.0554 30.587 14.1716 30.4598 13.0048L30.0962 9.67198C30.0519 9.26614 29.7092 8.95874 29.3009 8.95874H18.6991ZM15.0674 8.00931C15.1947 6.84251 16.1801 5.95874 17.3538 5.95874H30.6462C31.8199 5.95874 32.8053 6.84252 32.9326 8.00931L33.2962 11.3421C33.3405 11.748 33.6832 12.0554 34.0915 12.0554H41.7C42.9703 12.0554 44 13.0851 44 14.3554V37.7554C44 39.0256 42.9703 40.0554 41.7 40.0554H6.3C5.02974 40.0554 4 39.0256 4 37.7554V14.3554C4 13.0851 5.02975 12.0554 6.3 12.0554H13.9085C14.3168 12.0554 14.6595 11.748 14.7038 11.3421L15.0674 8.00931Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 20.0554C21.2386 20.0554 19 22.294 19 25.0554C19 27.8168 21.2386 30.0554 24 30.0554C26.7614 30.0554 29 27.8168 29 25.0554C29 22.294 26.7614 20.0554 24 20.0554ZM16 25.0554C16 20.6371 19.5817 17.0554 24 17.0554C28.4183 17.0554 32 20.6371 32 25.0554C32 29.4737 28.4183 33.0554 24 33.0554C19.5817 33.0554 16 29.4737 16 25.0554Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">camera</div>
+          <div class="icon-usage">Camera, scan</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.2575 8.56322C23.9488 8.27675 23.4708 8.27875 23.1644 8.5678L10.1413 20.8552C10.0096 20.9794 10.0975 21.2007 10.2785 21.2007H11.133C12.4033 21.2007 13.433 22.2304 13.433 23.5007V38.1014C13.433 38.5432 13.7912 38.9014 14.233 38.9014H17.6995C18.1414 38.9014 18.4995 38.5432 18.4995 38.1014V30.3C18.4995 29.0297 19.5293 28 20.7995 28H27.1995C28.4698 28 29.4995 29.0297 29.4995 30.3V38.1014C29.4995 38.5432 29.8577 38.9014 30.2995 38.9014H33.6995C34.1414 38.9014 34.4995 38.5432 34.4995 38.1014V23.5007C34.4995 22.2304 35.5293 21.2007 36.7995 21.2007H37.3689C37.5507 21.2007 37.6382 20.9777 37.505 20.8541L24.2575 8.56322ZM22.1264 5.42262C23.0072 4.5916 24.3814 4.58585 25.2691 5.40945L41.9737 20.9078C43.2399 22.0826 42.4087 24.2007 40.6815 24.2007H38.2995C37.8577 24.2007 37.4995 24.5588 37.4995 25.0007V39.6014C37.4995 40.8716 36.4698 41.9014 35.1995 41.9014H28.7995C27.5293 41.9014 26.4995 40.8716 26.4995 39.6014V31.8C26.4995 31.3582 26.1414 31 25.6995 31H22.2995C21.8577 31 21.4995 31.3582 21.4995 31.8V39.6014C21.4995 40.8716 20.4698 41.9014 19.1995 41.9014H12.733C11.4628 41.9014 10.433 40.8716 10.433 39.6014V25.0007C10.433 24.5588 10.0749 24.2007 9.63303 24.2007H7.00636C5.28688 24.2007 4.45181 22.0987 5.70246 20.9187L22.1264 5.42262Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">home</div>
+          <div class="icon-usage">Home screen</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M32.957 21.6282C33.7855 21.6282 34.457 22.2997 34.457 23.1282V23.1476C34.457 23.9761 33.7855 24.6476 32.957 24.6476C32.1286 24.6476 31.457 23.9761 31.457 23.1476V23.1282C31.457 22.2997 32.1286 21.6282 32.957 21.6282Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.66796 18.7135C6.92334 19.0741 6.83809 19.5734 6.47755 19.8288L5.9033 20.2355C5.69877 20.3804 5.51916 20.5945 5.39135 20.843C5.25979 21.0987 5.21826 21.3217 5.21836 21.4427C5.21935 22.6506 5.60024 22.9776 5.83122 23.1204C6.21593 23.3581 6.83114 23.4522 7.70249 23.4522H8.4062C8.84803 23.4522 9.2062 23.8104 9.2062 24.2522V25.6596C9.2062 26.1014 8.84803 26.4596 8.4062 26.4596H7.70249C6.79031 26.4596 5.4129 26.3972 4.25023 25.6787C2.93382 24.8652 2.21256 23.4363 2.21094 21.4452C2.2099 20.167 2.91019 18.6702 4.16496 17.7814L4.73921 17.3746C5.09975 17.1193 5.59906 17.2045 5.85444 17.5651L6.66796 18.7135Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.679 19.838C21.7638 19.6171 19.9445 19.8363 18.5165 20.129L17.8271 20.2703C17.3943 20.3591 16.9715 20.0801 16.8828 19.6473L16.6001 18.2686C16.5114 17.8357 16.7903 17.4129 17.2232 17.3242L17.9125 17.1829C19.5256 16.8522 21.6849 16.5806 24.0236 16.8504L24.7227 16.9311C25.1616 16.9817 25.4764 17.3785 25.4258 17.8175L25.2645 19.2156C25.2138 19.6545 24.817 19.9693 24.3781 19.9187L23.679 19.838Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M31.3571 10.9797C31.7021 10.7808 32.1158 11.1304 32.0412 11.5217C31.8779 12.3782 31.8655 13.363 32.1279 14.4731L32.1982 14.7701C32.2491 14.9855 32.387 15.1701 32.579 15.2801L32.8438 15.4319C35.1669 16.7629 36.9224 18.9694 37.6621 21.5961L37.8065 22.109C37.9037 22.4539 38.2183 22.6922 38.5766 22.6922H40.581C41.0228 22.6922 41.381 23.0503 41.381 23.4922V26.7043C41.381 27.1461 41.0228 27.5043 40.581 27.5043H38.1557C37.8342 27.5043 37.544 27.6967 37.4188 27.9928L37.2372 28.4225C36.6733 29.7565 35.8362 30.9489 34.795 31.9287L34.4375 32.2651C34.1934 32.4949 34.1184 32.8525 34.2497 33.161L35.2135 35.4253C35.4975 36.0924 35.1869 36.8635 34.5197 37.1475C33.8525 37.4315 33.0814 37.1209 32.7975 36.4537L32.0306 34.6522C31.8735 34.2831 31.4672 34.0874 31.0806 34.1947L30.4864 34.3596C29.6065 34.6038 28.6779 34.7348 27.7162 34.7348H20.0263C19.4268 34.7348 18.8404 34.6839 18.2708 34.5865L17.7226 34.4928C17.3572 34.4303 16.9968 34.627 16.8516 34.968L16.2192 36.4537C15.9352 37.1209 15.1641 37.4315 14.497 37.1475C13.8298 36.8635 13.5192 36.0924 13.8031 35.4253L14.4509 33.9035C14.5942 33.5669 14.4909 33.176 14.2002 32.9541L13.7654 32.6223C11.2885 30.7322 9.69493 27.7542 9.69493 24.4034C9.69493 18.6975 14.3205 14.072 20.0264 14.072H26.4647C26.6342 14.072 26.7994 14.0181 26.9363 13.9182L27.1217 13.7829C28.4344 12.8249 29.9417 11.7955 31.3571 10.9797ZM36.2881 9.69642C36.2798 9.70666 36.2717 9.71661 36.2638 9.72624C35.6745 10.4495 34.9196 11.403 34.9328 12.8152C34.9351 13.0573 35.0738 13.2731 35.2732 13.4104C37.343 14.8357 38.9908 16.8309 39.9897 19.172C40.1203 19.4779 40.4161 19.6847 40.7487 19.6847H42.5884C43.5825 19.6847 44.3884 20.4906 44.3884 21.4847V28.7117C44.3884 29.7058 43.5825 30.5117 42.5884 30.5117H40.0645C39.7651 30.5117 39.4926 30.6799 39.3457 30.9407C38.9391 31.6626 38.4675 32.3425 37.9388 32.9726C37.7382 33.2117 37.6806 33.5424 37.8028 33.8296L37.9807 34.2474C38.9152 36.4428 37.893 38.9802 35.6976 39.9147C33.5022 40.8492 30.9648 39.827 30.0303 37.6316C30.0095 37.5827 29.9578 37.5546 29.9053 37.5632C29.1924 37.681 28.461 37.7422 27.7162 37.7422H20.0263C19.8573 37.7422 19.6889 37.7391 19.5212 37.7328C19.1824 37.7202 18.8704 37.9113 18.6934 38.2003C17.5936 39.9966 15.315 40.7643 13.3191 39.9147C11.3021 39.0561 10.2754 36.8448 10.8464 34.7886C10.9372 34.4619 10.8638 34.1032 10.6233 33.8642C8.19416 31.4494 6.6875 28.1022 6.6875 24.4034C6.6875 17.0365 12.6595 11.0645 20.0264 11.0645H25.4899C25.6575 11.0645 25.8208 11.0118 25.9572 10.9144C27.1725 10.0472 28.5352 9.13495 29.8553 8.37407C31.343 7.51663 32.9766 6.73079 34.336 6.55725C34.6696 6.51466 35.0157 6.48107 35.3161 6.49607C35.4616 6.50333 35.7038 6.52562 35.9627 6.62518C36.2386 6.73129 36.6719 6.98432 36.8948 7.52347C37.1036 8.02836 36.9968 8.47649 36.9257 8.68725C36.8516 8.90687 36.7457 9.07999 36.6817 9.17797C36.5631 9.3594 36.4033 9.55534 36.2881 9.69642Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">savings</div>
+          <div class="icon-usage">Save, piggy bank</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.0702 32.3684C10.7729 31.6656 11.8379 30.7788 13.0665 30.0767C14.3075 29.3676 15.6042 28.9103 16.8044 28.9103C17.3814 28.9103 18.275 29.0629 19.3843 29.3681C20.468 29.6662 21.6656 30.084 22.8144 30.5529C23.9648 31.0224 25.0383 31.5318 25.8783 32.0054C26.2988 32.2425 26.6425 32.4603 26.9008 32.6492C27.0292 32.7432 27.1268 32.823 27.1975 32.8873L27.2047 32.894C27.2084 32.8973 27.209 32.9027 27.2062 32.9068C27.1534 32.9824 27.0771 33.072 26.9758 33.1717C26.7697 33.3743 26.5192 33.5605 26.3035 33.7028C26.1992 33.7715 26.1111 33.8248 26.0517 33.8594C26.0221 33.8767 26.0002 33.889 25.9875 33.896L25.977 33.9018L25.9756 33.9026L25.6925 34.0524C25.5476 34.1291 25.3776 34.1432 25.222 34.0913L21.1016 32.7179C20.7872 32.6131 20.4474 32.783 20.3426 33.0973L19.7734 34.805C19.6686 35.1193 19.8385 35.4591 20.1529 35.5639L25.9104 37.4831C26.0094 37.5161 26.1154 37.5227 26.2178 37.5022L26.4522 37.4553L26.9549 37.3554C27.2767 37.2916 27.7383 37.2005 28.2973 37.0912C29.4154 36.8724 30.9216 36.5809 32.4754 36.2895C34.0308 35.9979 35.627 35.7077 36.9276 35.491C37.3847 35.4148 37.7866 35.3511 38.128 35.3C38.3728 35.2634 38.5236 35.5283 38.3486 35.7033C37.6321 36.4197 35.9626 37.9056 33.927 39.201C31.8496 40.523 29.6168 41.4998 27.7169 41.4998C25.6325 41.4998 23.8753 40.9826 22.1503 40.4076C21.9755 40.3493 21.7984 40.2893 21.6192 40.2286C20.118 39.72 18.4694 39.1614 16.8041 39.1614H9.00934H8.10928C7.77791 39.1614 7.50928 39.43 7.50928 39.7614V41.5614C7.50928 41.8927 7.77791 42.1614 8.10928 42.1614H9.0095H16.8041C17.9452 42.1614 19.1036 42.55 20.7112 43.0894L20.7123 43.0898C20.8709 43.143 21.0338 43.1977 21.2016 43.2536C22.9843 43.8478 25.1245 44.4998 27.7169 44.4998C30.4939 44.4998 33.3278 43.1382 35.5376 41.732C37.7892 40.2991 39.6274 38.6671 40.4699 37.8246C41.3646 36.9299 42.0785 35.7883 42.0785 34.6204C42.0785 33.9793 41.8524 33.2913 41.2739 32.7851C40.7216 32.3018 40.0325 32.146 39.4092 32.146C38.8646 32.146 37.693 32.322 36.4344 32.5318C35.1043 32.7535 33.4851 33.0479 31.9226 33.3409C31.654 33.3913 31.3869 33.4416 31.1231 33.4916C30.6777 33.5759 30.29 33.1431 30.2634 32.6906C30.2335 32.1825 30.0566 31.6671 29.6966 31.1872C29.4185 30.8164 29.0355 30.4939 28.6721 30.228C28.2894 29.9481 27.8384 29.6665 27.3516 29.3921C26.3768 28.8426 25.1849 28.2802 23.9481 27.7753C22.7098 27.2699 21.3984 26.8107 20.1802 26.4756C18.9876 26.1474 17.7863 25.9103 16.8044 25.9103C14.8866 25.9103 13.0653 26.6222 11.5781 27.472C10.0785 28.3289 8.80507 29.3908 7.94885 30.247L7.31245 30.8834C7.07814 31.1178 7.07814 31.4977 7.31245 31.732L8.58525 33.0048C8.81956 33.2391 9.19946 33.2391 9.43377 33.0048L10.0702 32.3684Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.8763 6.5C20.3823 6.5 16.7393 10.1431 16.7393 14.637C16.7393 19.131 20.3823 22.774 24.8763 22.774C29.3702 22.774 33.0133 19.131 33.0133 14.637C33.0133 10.1431 29.3702 6.5 24.8763 6.5ZM13.7393 14.637C13.7393 8.48622 18.7255 3.5 24.8763 3.5C31.0271 3.5 36.0133 8.48622 36.0133 14.637C36.0133 20.7878 31.0271 25.774 24.8763 25.774C18.7255 25.774 13.7393 20.7878 13.7393 14.637Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.1725 14.0219L24.1725 11.8115H26.4302C27.0406 11.8115 27.5354 12.3063 27.5354 12.9167C27.5354 13.527 27.0406 14.0219 26.4302 14.0219H24.1725ZM24.1725 16.4219H26.4302C28.3661 16.4219 29.9354 14.8525 29.9354 12.9167C29.9354 10.9808 28.3661 9.4115 26.4302 9.4115H24.1725H22.9725H21.7725V10.6115V15.2219V19.684C21.7725 20.1258 22.1306 20.484 22.5725 20.484H23.3725C23.8143 20.484 24.1725 20.1258 24.1725 19.684L24.1725 16.4219Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">spend</div>
+          <div class="icon-usage">Use, spend</div>
+        </div>
+        <div class="icon-card">
+          <svg class="icon-preview" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.11588 6.07742C9.13655 6.07743 9.15699 6.07744 9.1772 6.07744H18.9467C19.6042 6.07744 19.9329 6.07744 20.1542 6.25903C20.1947 6.29228 20.2319 6.32942 20.2651 6.36993C20.4467 6.5912 20.4467 6.91994 20.4467 7.57744C20.4467 8.23494 20.4467 8.56368 20.2651 8.78495C20.2319 8.82546 20.1947 8.8626 20.1542 8.89585C19.9329 9.07744 19.6042 9.07744 18.9467 9.07744H9.1772C9.12196 9.07744 9.0772 9.1222 9.0772 9.17744V18.3153C9.0772 18.9728 9.0772 19.3015 8.8956 19.5228C8.86236 19.5633 8.82522 19.6005 8.78471 19.6337C8.56344 19.8153 8.23469 19.8153 7.5772 19.8153C6.9197 19.8153 6.59095 19.8153 6.36968 19.6337C6.32917 19.6005 6.29203 19.5633 6.25879 19.5228C6.0772 19.3015 6.0772 18.9728 6.0772 18.3153V9.17744C6.0772 9.15724 6.07718 9.13679 6.07717 9.11613C6.07699 8.79443 6.07678 8.4202 6.11986 8.09975C6.17151 7.71557 6.30854 7.19341 6.75085 6.75109C7.19316 6.30878 7.71532 6.17176 8.09951 6.12011C8.41996 6.07702 8.79418 6.07723 9.11588 6.07742Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9228 9.11613C41.9228 9.13679 41.9228 9.15724 41.9228 9.17744L41.9228 18.9469C41.9228 19.6044 41.9228 19.9332 41.7412 20.1545C41.708 20.195 41.6708 20.2321 41.6303 20.2653C41.409 20.4469 41.0803 20.4469 40.4228 20.4469C39.7653 20.4469 39.4366 20.4469 39.2153 20.2653C39.1748 20.2321 39.1376 20.195 39.1044 20.1545C38.9228 19.9332 38.9228 19.6044 38.9228 18.9469L38.9228 9.17744C38.9228 9.1222 38.878 9.07744 38.8228 9.07744L29.6849 9.07744C29.0274 9.07744 28.6987 9.07744 28.4774 8.89585C28.4369 8.8626 28.3998 8.82546 28.3665 8.78495C28.1849 8.56368 28.1849 8.23494 28.1849 7.57744C28.1849 6.91994 28.1849 6.59119 28.3665 6.36992C28.3998 6.32942 28.4369 6.29227 28.4774 6.25903C28.6987 6.07744 29.0274 6.07744 29.6849 6.07744L38.8228 6.07744C38.843 6.07744 38.8635 6.07743 38.8841 6.07742C39.2058 6.07723 39.58 6.07702 39.9005 6.1201C40.2847 6.17176 40.8068 6.30878 41.2491 6.75109C41.6915 7.1934 41.8285 7.71557 41.8801 8.09975C41.9232 8.4202 41.923 8.79442 41.9228 9.11613Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M38.8841 41.9226C38.8635 41.9226 38.843 41.9226 38.8228 41.9226L29.0533 41.9226C28.3958 41.9226 28.0671 41.9226 27.8458 41.741C27.8053 41.7077 27.7681 41.6706 27.7349 41.6301C27.5533 41.4088 27.5533 41.0801 27.5533 40.4226C27.5533 39.7651 27.5533 39.4363 27.7349 39.215C27.7681 39.1745 27.8053 39.1374 27.8458 39.1042C28.0671 38.9226 28.3958 38.9226 29.0533 38.9226L38.8228 38.9226C38.878 38.9226 38.9228 38.8778 38.9228 38.8226L38.9228 29.6847C38.9228 29.0272 38.9228 28.6985 39.1044 28.4772C39.1376 28.4367 39.1748 28.3995 39.2153 28.3663C39.4366 28.1847 39.7653 28.1847 40.4228 28.1847C41.0803 28.1847 41.409 28.1847 41.6303 28.3663C41.6708 28.3995 41.708 28.4367 41.7412 28.4772C41.9228 28.6985 41.9228 29.0272 41.9228 29.6847L41.9228 38.8226C41.9228 38.8428 41.9228 38.8632 41.9228 38.8839C41.923 39.2056 41.9232 39.5798 41.8801 39.9002C41.8285 40.2844 41.6915 40.8066 41.2491 41.2489C40.8068 41.6912 40.2847 41.8282 39.9005 41.8799C39.58 41.923 39.2058 41.9228 38.8841 41.9226Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.07717 38.8839C6.07718 38.8632 6.0772 38.8428 6.0772 38.8226L6.0772 29.0531C6.0772 28.3956 6.0772 28.0668 6.25879 27.8455C6.29203 27.805 6.32918 27.7679 6.36968 27.7347C6.59095 27.5531 6.9197 27.5531 7.5772 27.5531C8.23469 27.5531 8.56344 27.5531 8.78471 27.7347C8.82522 27.7679 8.86236 27.805 8.89561 27.8455C9.0772 28.0668 9.0772 28.3956 9.0772 29.0531L9.0772 38.8226C9.0772 38.8778 9.12196 38.9226 9.1772 38.9226L18.3151 38.9226C18.9726 38.9226 19.3013 38.9226 19.5226 39.1042C19.5631 39.1374 19.6002 39.1745 19.6335 39.215C19.8151 39.4363 19.8151 39.7651 19.8151 40.4226C19.8151 41.0801 19.8151 41.4088 19.6335 41.6301C19.6002 41.6706 19.5631 41.7077 19.5226 41.741C19.3013 41.9226 18.9726 41.9226 18.3151 41.9226L9.1772 41.9226C9.15699 41.9226 9.13655 41.9226 9.11588 41.9226C8.79418 41.9228 8.41996 41.923 8.09951 41.8799C7.71532 41.8282 7.19316 41.6912 6.75085 41.2489C6.30854 40.8066 6.17151 40.2844 6.11986 39.9002C6.07678 39.5798 6.07699 39.2056 6.07717 38.8839Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.3447 16.4598C16.0022 16.4598 16.331 16.4598 16.5522 16.6414C16.5927 16.6747 16.6299 16.7118 16.6631 16.7523C16.8447 16.9736 16.8447 17.3023 16.8447 17.9598L16.8447 30.0401C16.8447 30.6976 16.8447 31.0264 16.6631 31.2477C16.6299 31.2882 16.5927 31.3253 16.5522 31.3585C16.331 31.5401 16.0022 31.5401 15.3447 31.5401C14.6872 31.5401 14.3585 31.5401 14.1372 31.3585C14.0967 31.3253 14.0596 31.2882 14.0263 31.2477C13.8447 31.0264 13.8447 30.6976 13.8447 30.0401L13.8447 17.9598C13.8447 17.3023 13.8447 16.9736 14.0263 16.7523C14.0596 16.7118 14.0967 16.6747 14.1372 16.6414C14.3585 16.4598 14.6872 16.4598 15.3447 16.4598Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M21.3447 16.4598C22.0022 16.4598 22.331 16.4598 22.5522 16.6414C22.5927 16.6747 22.6299 16.7118 22.6631 16.7523C22.8447 16.9736 22.8447 17.3023 22.8447 17.9598L22.8447 30.0401C22.8447 30.6976 22.8447 31.0264 22.6631 31.2477C22.6299 31.2882 22.5927 31.3253 22.5522 31.3585C22.331 31.5401 22.0022 31.5401 21.3447 31.5401C20.6872 31.5401 20.3585 31.5401 20.1372 31.3585C20.0967 31.3253 20.0596 31.2882 20.0263 31.2477C19.8447 31.0264 19.8447 30.6976 19.8447 30.0401L19.8447 17.9598C19.8447 17.3023 19.8447 16.9736 20.0263 16.7523C20.0596 16.7118 20.0967 16.6747 20.1372 16.6414C20.3585 16.4598 20.6872 16.4598 21.3447 16.4598Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M27.3447 16.4598C28.0022 16.4598 28.331 16.4598 28.5522 16.6414C28.5927 16.6747 28.6299 16.7118 28.6631 16.7523C28.8447 16.9736 28.8447 17.3023 28.8447 17.9598L28.8447 30.0401C28.8447 30.6976 28.8447 31.0264 28.6631 31.2477C28.6299 31.2882 28.5927 31.3253 28.5522 31.3585C28.331 31.5401 28.0022 31.5401 27.3447 31.5401C26.6872 31.5401 26.3585 31.5401 26.1372 31.3585C26.0967 31.3253 26.0596 31.2882 26.0263 31.2477C25.8447 31.0264 25.8447 30.6976 25.8447 30.0401L25.8447 17.9598C25.8447 17.3023 25.8447 16.9736 26.0263 16.7523C26.0596 16.7118 26.0967 16.6747 26.1372 16.6414C26.3585 16.4598 26.6872 16.4598 27.3447 16.4598Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.3447 16.4598C34.0022 16.4598 34.331 16.4598 34.5522 16.6414C34.5927 16.6747 34.6299 16.7118 34.6631 16.7523C34.8447 16.9736 34.8447 17.3023 34.8447 17.9598L34.8447 30.0401C34.8447 30.6976 34.8447 31.0264 34.6631 31.2477C34.6299 31.2882 34.5927 31.3253 34.5522 31.3585C34.331 31.5401 34.0022 31.5401 33.3447 31.5401C32.6872 31.5401 32.3585 31.5401 32.1372 31.3585C32.0967 31.3253 32.0596 31.2882 32.0263 31.2477C31.8447 31.0264 31.8447 30.6976 31.8447 30.0401L31.8447 17.9598C31.8447 17.3023 31.8447 16.9736 32.0263 16.7523C32.0596 16.7118 32.0967 16.6747 32.1372 16.6414C32.3585 16.4598 32.6872 16.4598 33.3447 16.4598Z" fill="currentColor"/>
+</svg>
+          <div class="icon-name">qr_code</div>
+          <div class="icon-usage">QR code, scan</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BUTTONS ───────────────────────────────────── -->
+  <div class="section" id="buttons">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Button</h2>
+      <span class="section-desc">Material Design 3 — 5 variants · 3 sizes · icon support · interactive states</span>
+    </div>
+
+    <!-- ── Variants ── -->
+    <div class="subsection">
+      <div class="subsection-title">Variants</div>
+      <div class="btn-demo-row">
+        <button class="btn btn-filled">Filled</button>
+        <button class="btn btn-tonal">Filled Tonal</button>
+        <button class="btn btn-elevated">Elevated</button>
+        <button class="btn btn-outlined">Outlined</button>
+        <button class="btn btn-text">Text</button>
+      </div>
+      <table class="btn-spec-table">
+        <thead>
+          <tr>
+            <th style="width:140px">Variant</th>
+            <th>When to use</th>
+            <th style="width:160px">Background</th>
+            <th style="width:160px">Text Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button class="btn btn-sm btn-filled">Filled</button></td>
+            <td>The highest-emphasis action. Use at most once per screen.</td>
+            <td><code>--brand-default</code></td>
+            <td><code>--brand-on-default</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-sm btn-tonal">Filled Tonal</button></td>
+            <td>High-emphasis but not the sole primary action on the screen.</td>
+            <td><code>--brand-subtle</code></td>
+            <td><code>--brand-strong</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-sm btn-elevated">Elevated</button></td>
+            <td>Use when visual separation from a flat background is needed.</td>
+            <td><code>--surface-default</code></td>
+            <td><code>--brand-default</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-sm btn-outlined">Outlined</button></td>
+            <td>Secondary actions, filters, and cancel operations.</td>
+            <td>transparent</td>
+            <td><code>--brand-default</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-sm btn-text">Text</button></td>
+            <td>Lowest emphasis. Supplementary actions and inline links.</td>
+            <td>transparent</td>
+            <td><code>--brand-default</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="subsection">
+      <div class="subsection-title">Sizes</div>
+      <div class="btn-size-grid">
+        <div class="btn-size-col">
+          <div class="btn-size-label">SM — 32px</div>
+          <button class="btn btn-filled btn-sm">Filled SM</button>
+          <button class="btn btn-tonal btn-sm">Tonal SM</button>
+          <button class="btn btn-elevated btn-sm">Elevated SM</button>
+          <button class="btn btn-outlined btn-sm">Outlined SM</button>
+          <button class="btn btn-text btn-sm">Text SM</button>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-32)</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-16)</code>
+          </div>
+        </div>
+        <div class="btn-size-col">
+          <div class="btn-size-label">MD — 40px (default)</div>
+          <button class="btn btn-filled">Filled MD</button>
+          <button class="btn btn-tonal">Tonal MD</button>
+          <button class="btn btn-elevated">Elevated MD</button>
+          <button class="btn btn-outlined">Outlined MD</button>
+          <button class="btn btn-text">Text MD</button>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">40px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-24)</code>
+          </div>
+        </div>
+        <div class="btn-size-col">
+          <div class="btn-size-label">LG — 48px</div>
+          <button class="btn btn-filled btn-lg">Filled LG</button>
+          <button class="btn btn-tonal btn-lg">Tonal LG</button>
+          <button class="btn btn-elevated btn-lg">Elevated LG</button>
+          <button class="btn btn-outlined btn-lg">Outlined LG</button>
+          <button class="btn btn-text btn-lg">Text LG</button>
+          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-48)</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-24)</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── With Icons ── -->
+    <div class="subsection">
+      <div class="subsection-title">With Icons</div>
+      <div class="btn-demo-row">
+        <button class="btn btn-filled">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+          Filled
+        </button>
+        <button class="btn btn-tonal">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+          Filled Tonal
+        </button>
+        <button class="btn btn-elevated">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+          Elevated
+        </button>
+        <button class="btn btn-outlined">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+          Outlined
+        </button>
+        <button class="btn btn-text">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+          Text
+        </button>
+      </div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Icon-only — use when the action is self-evident from context. Always include an <code style="font-size:11px;font-family:monospace;background:var(--surface-raised);padding:1px 5px;border-radius:3px;color:var(--brand-default);">aria-label</code> for accessibility.</p>
+      <div class="btn-demo-row">
+        <button class="btn btn-filled btn-icon-only" aria-label="Add">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-tonal btn-icon-only" aria-label="Add">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-elevated btn-icon-only" aria-label="Add">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-outlined btn-icon-only" aria-label="Add">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-text btn-icon-only" aria-label="Add">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-filled btn-icon-only btn-sm" aria-label="Add (SM)">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+        <button class="btn btn-filled btn-icon-only btn-lg" aria-label="Add (LG)">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── States ── -->
+    <div class="subsection">
+      <div class="subsection-title">States</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Interactive states across all variants. Hover and focus states are live — try them in the browser.</p>
+      <div class="btn-states-grid">
+        <div></div>
+        <div class="btn-states-header">Default</div>
+        <div class="btn-states-header">Hover</div>
+        <div class="btn-states-header">Pressed</div>
+        <div class="btn-states-header">Focused</div>
+        <div class="btn-states-header">Disabled</div>
+
+        <!-- Filled -->
+        <div class="btn-states-label">Filled</div>
+        <div class="btn-states-cell"><button class="btn btn-filled">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-state-demo-hover">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-state-demo-pressed">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-state-demo-focus">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled" disabled>Button</button></div>
+
+        <!-- Tonal -->
+        <div class="btn-states-label">Tonal</div>
+        <div class="btn-states-cell"><button class="btn btn-tonal">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-state-demo-hover">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-state-demo-pressed">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-state-demo-focus">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal" disabled>Button</button></div>
+
+        <!-- Elevated -->
+        <div class="btn-states-label">Elevated</div>
+        <div class="btn-states-cell"><button class="btn btn-elevated">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-elevated btn-state-demo-hover">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-elevated btn-state-demo-pressed">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-elevated btn-state-demo-focus">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-elevated" disabled>Button</button></div>
+
+        <!-- Outlined -->
+        <div class="btn-states-label">Outlined</div>
+        <div class="btn-states-cell"><button class="btn btn-outlined">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-state-demo-hover">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-state-demo-pressed">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-state-demo-focus">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined" disabled>Button</button></div>
+
+        <!-- Text -->
+        <div class="btn-states-label">Text</div>
+        <div class="btn-states-cell"><button class="btn btn-text">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-text btn-state-demo-hover">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-text btn-state-demo-pressed">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-text btn-state-demo-focus">Button</button></div>
+        <div class="btn-states-cell"><button class="btn btn-text" disabled>Button</button></div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  // Scrollspy: highlight active nav link
+  const sections = document.querySelectorAll('.section[id], .page-hero[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const id = entry.target.getAttribute('id');
+        const active = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

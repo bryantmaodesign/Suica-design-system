@@ -1,0 +1,196 @@
+:root {
+  /* ─── Primitives: Brand Green ───────────────────── */
+  --brand-green-950: #001A0D;
+  --brand-green-900: #002E16;
+  --brand-green-700: #005C2B;
+  --brand-green-500: #00833E;
+  --brand-green-400: #34A86A;
+  --brand-green-300: #7DCBA0;
+  --brand-green-200: #B8E5CE;
+  --brand-green-100: #D9F0E5;
+  --brand-green-50:  #E6F4ED;
+  --brand-green-25:  #F3FAF6;
+
+  /* ─── Primitives: Red ───────────────────────────── */
+  --red-950: #4A0A0A;
+  --red-900: #7B1111;
+  --red-700: #A62628;
+  --red-500: #D93134;
+  --red-400: #E15B5D;
+  --red-300: #EE9092;
+  --red-200: #F5BFC0;
+  --red-100: #F9DADA;
+  --red-50:  #FBEAE8;
+  --red-25:  #FDF4F4;
+
+  /* ─── Primitives: Orange ────────────────────────── */
+  --orange-950: #3D1200;
+  --orange-900: #6B2100;
+  --orange-700: #A33A05;
+  --orange-500: #D34D07;
+  --orange-400: #F17A25;
+  --orange-300: #F9AA72;
+  --orange-200: #FCC9A8;
+  --orange-100: #FDE3D1;
+  --orange-50:  #FEF2EA;
+  --orange-25:  #FFF8F5;
+
+  /* ─── Primitives: Yellow ────────────────────────── */
+  --yellow-950: #2E1F00;
+  --yellow-900: #503800;
+  --yellow-700: #9A7505;
+  --yellow-500: #D8A807;
+  --yellow-400: #F1C328;
+  --yellow-300: #F7DA7A;
+  --yellow-200: #FAEAB6;
+  --yellow-100: #FCF3D5;
+  --yellow-50:  #FEFACE;
+  --yellow-25:  #FFFDF5;
+
+  /* ─── Primitives: Green ─────────────────────────── */
+  --green-950: #0D2206;
+  --green-900: #1A3D0A;
+  --green-700: #3A7018;
+  --green-500: #5AA82D;
+  --green-400: #7CCB4F;
+  --green-300: #AADD82;
+  --green-200: #CCEAB0;
+  --green-100: #E2F5D2;
+  --green-50:  #F2FAED;
+  --green-25:  #F8FDF5;
+
+  /* ─── Primitives: Emerald ───────────────────────── */
+  --emerald-950: #062420;
+  --emerald-900: #0D3D38;
+  --emerald-700: #0F6B5E;
+  --emerald-500: #29A093;
+  --emerald-400: #60CCC1;
+  --emerald-300: #96DDD8;
+  --emerald-200: #C0ECEB;
+  --emerald-100: #DDF5F3;
+  --emerald-50:  #EFFAF9;
+  --emerald-25:  #F6FDFC;
+
+  /* ─── Primitives: Blue ──────────────────────────── */
+  --blue-950: #041836;
+  --blue-900: #082D62;
+  --blue-700: #1250A8;
+  --blue-500: #1B60D6;
+  --blue-400: #4D88F0;
+  --blue-300: #8DB3F5;
+  --blue-200: #BCCFFA;
+  --blue-100: #DAE8FC;
+  --blue-50:  #ECF3FF;
+  --blue-25:  #F5F8FF;
+
+  /* ─── Primitives: Purple ────────────────────────── */
+  --purple-950: #1A0840;
+  --purple-900: #2E1270;
+  --purple-700: #5B0EAD;
+  --purple-500: #7B35E0;
+  --purple-400: #9B6CF3;
+  --purple-300: #BFA0F7;
+  --purple-200: #D8C8FB;
+  --purple-100: #EBE2FD;
+  --purple-50:  #F2EDFE;
+  --purple-25:  #F8F5FF;
+
+  /* ─── Primitives: Pink ──────────────────────────── */
+  --pink-950: #2E0420;
+  --pink-900: #560A3C;
+  --pink-700: #8C0E60;
+  --pink-500: #BA1380;
+  --pink-400: #D855A8;
+  --pink-300: #E896CC;
+  --pink-200: #F2BFE2;
+  --pink-100: #F8DCF1;
+  --pink-50:  #FCF1F8;
+  --pink-25:  #FEF7FC;
+
+  /* ─── Primitives: Neutral (13 steps) ────────────── */
+  --neutral-1000: #000000;
+  --neutral-950: #121210;
+  --neutral-900: #1F1E1B;
+  --neutral-800: #2E2D29;
+  --neutral-700: #454440;
+  --neutral-600: #5E5D58;
+  --neutral-500: #797872;
+  --neutral-400: #9B9A94;
+  --neutral-300: #C0BEB8;
+  --neutral-200: #D8D7D2;
+  --neutral-100: #EBEAE6;
+  --neutral-50:  #F5F4F1;
+  --neutral-25:  #FAFAF8;
+
+  /* ─── Semantic: Brand ───────────────────────────── */
+  --brand-default:    #00833E;
+  --brand-strong:     #005C2B;
+  --brand-subtle:     #E6F4ED;
+  --brand-on-default: #FFFFFF;
+
+  /* ─── Semantic: Text ────────────────────────────── */
+  --text-primary:   #1F1E1B;
+  --text-secondary: #5E5D58;
+  --text-tertiary:  #9B9A94;
+  --text-disabled:  #C0BEB8;
+  --text-inverse:   #FAFAF8;
+
+  /* ─── Semantic: Surface ─────────────────────────── */
+  --surface-page:    #F5F4F1;
+  --surface-default: #FFFFFF;
+  --surface-raised:  #EBEAE6;
+  --border-default:  #D8D7D2;
+  --border-strong:   #C0BEB8;
+
+  /* ─── Semantic: Error ───────────────────────────── */
+  --error-default: #A62628;
+  --error-subtle:  #FBEAE8;
+  --error-text:    #7B1111;
+
+  /* ─── Semantic: Warning ─────────────────────────── */
+  --warning-default: #9A7505;
+  --warning-subtle:  #FEFACE;
+  --warning-text:    #503800;
+
+  /* ─── Semantic: Success ─────────────────────────── */
+  --success-default: #3A7018;
+  --success-subtle:  #F2FAED;
+  --success-text:    #1A3D0A;
+
+  /* ─── Semantic: Info ────────────────────────────── */
+  --info-default: #1250A8;
+  --info-subtle:  #ECF3FF;
+  --info-text:    #082D62;
+
+  /* ─── Semantic: States ──────────────────────────── */
+  --state-focus:         #00833E;
+  --state-disabled-fill: #EBEAE6;
+  --state-disabled-text: #C0BEB8;
+
+  /* ─── Spacing ────────────────────────────────────── */
+  --space-4:  4px;
+  --space-8:  8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+
+  /* ─── Border Radius ─────────────────────────────── */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ─── Typography ────────────────────────────────── */
+  --font-jp: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-en: "SF Pro", -apple-system, sans-serif;
+}
