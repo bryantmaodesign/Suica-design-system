@@ -191,6 +191,6 @@
   --radius-full: 9999px;
 
   /* ─── Typography ────────────────────────────────── */
-  --font-jp: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  --font-en: "SF Pro", -apple-system, sans-serif;
+  --font-jp: "Hiragino Sans", "Noto Sans JP", -apple-system, sans-serif;
+  --font-en: -apple-system, "Inter", sans-serif;
 }
