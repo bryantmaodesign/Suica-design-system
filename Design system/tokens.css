@@ -3,6 +3,7 @@
   --brand-green-950: #001A0D;
   --brand-green-900: #002E16;
   --brand-green-700: #005C2B;
+  --brand-green-600: #006B33;
   --brand-green-500: #00833E;
   --brand-green-400: #34A86A;
   --brand-green-300: #7DCBA0;
@@ -150,6 +151,7 @@
   /* ─── Semantic: Warning ─────────────────────────── */
   --warning-default: #9A7505;
   --warning-subtle:  #FEFACE;
+  --warning-border:  var(--yellow-300);
   --warning-text:    #503800;
 
   /* ─── Semantic: Success ─────────────────────────── */
@@ -181,6 +183,21 @@
   --space-64: 64px;
   --space-80: 80px;
   --space-96: 96px;
+
+  /* ─── Shadows ───────────────────────────────────── */
+  --shadow-xs:       0 1px 2px rgba(0,0,0,0.08);
+  --shadow-sm:       0 1px 4px rgba(0,0,0,0.04);
+  --shadow-md:       0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-lg:       0 3px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.10);
+  --shadow-brand-sm: 0 4px 12px rgba(0,131,62,0.1);
+  --shadow-brand-md: 0 6px 20px rgba(0,131,62,0.1), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-sidebar:  8px 0 32px rgba(0,0,0,0.18);
+
+  /* ─── Overlays & State Backgrounds ──────────────── */
+  --overlay-border:  rgba(0,0,0,0.07);
+  --overlay-dark:    rgba(0,0,0,0.35);
+  --nav-hover-bg:    rgba(0,131,62,0.05);
+  --nav-active-bg:   rgba(0,131,62,0.07);
 
   /* ─── Border Radius ─────────────────────────────── */
   --radius-none: 0px;
