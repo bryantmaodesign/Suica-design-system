@@ -26,7 +26,7 @@
 
     /* ─── Layout ─────────────────────────────────────── */
     .sidebar {
-      width: 224px;
+      width: var(--sidebar-width);
       flex-shrink: 0;
       position: sticky;
       top: 0;
@@ -46,7 +46,7 @@
     .sidebar-logo .logo-badge {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
+      gap: var(--space-8);
     }
 
     .sidebar-logo .logo-dot {
@@ -65,7 +65,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.8);
+      background: var(--overlay-white-80);
     }
 
     .sidebar-logo .logo-name {
@@ -78,7 +78,7 @@
     .sidebar-logo .logo-sub {
       font-size: 11px;
       color: var(--text-tertiary);
-      margin-top: 3px;
+      margin-top: var(--space-3);
       letter-spacing: 0.01em;
     }
 
@@ -107,7 +107,7 @@
       text-decoration: none;
       border-radius: 0;
       border-left: 2px solid transparent;
-      transition: background 0.12s, color 0.12s, border-color 0.12s;
+      transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
     }
 
     .nav-link:hover {
@@ -127,7 +127,7 @@
       height: 15px;
       opacity: 0.45;
       flex-shrink: 0;
-      transition: opacity 0.12s;
+      transition: opacity var(--duration-fast);
     }
 
     .nav-link.active .nav-icon,
@@ -155,7 +155,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
+      background-image: radial-gradient(circle, var(--overlay-white-12) 1.5px, transparent 1.5px);
       background-size: 28px 28px;
       pointer-events: none;
     }
@@ -168,7 +168,7 @@
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.04);
+      background: var(--overlay-white-04);
       pointer-events: none;
     }
 
@@ -183,7 +183,7 @@
     .page-hero p {
       font-size: 15px;
       opacity: 0.82;
-      max-width: 520px;
+      max-width: var(--prose-max-width);
       line-height: 1.65;
       font-weight: 400;
       position: relative;
@@ -192,12 +192,12 @@
     .page-hero .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.25);
+      gap: var(--space-6);
+      background: var(--overlay-white-18);
+      border: 1px solid var(--overlay-white-25);
       color: var(--brand-on-default);
       border-radius: 99px;
-      padding: 3px 10px;
+      padding: var(--space-3) var(--space-10);
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.05em;
@@ -310,7 +310,7 @@
 
     .comm-swatches {
       display: flex;
-      gap: 6px;
+      gap: var(--space-6);
     }
 
     .comm-swatch {
@@ -341,7 +341,7 @@
 
     .stage-pair {
       display: flex;
-      gap: 6px;
+      gap: var(--space-6);
     }
 
     /* ─── Typography ─────────────────────────────────── */
@@ -466,7 +466,7 @@
       border: 1px solid var(--border-default);
       border-radius: 10px;
       padding: 20px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      transition: border-color var(--duration-normal), box-shadow var(--duration-normal), transform var(--duration-normal);
       cursor: default;
     }
 
@@ -515,7 +515,7 @@
       border-radius: 12px;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      transition: border-color var(--duration-normal), box-shadow var(--duration-normal), transform var(--duration-normal);
     }
 
     .overview-card:hover {
@@ -635,7 +635,7 @@
     .palette-step-label {
       background: var(--surface-default);
       text-align: center;
-      padding: 3px 0;
+      padding: var(--space-3) 0;
       font-size: 8px;
       color: var(--text-tertiary);
       font-family: "DM Mono", monospace;
@@ -673,7 +673,7 @@
       background: var(--surface-default);
       margin-bottom: 5px;
       cursor: default;
-      transition: background 0.12s, border-color 0.12s, box-shadow 0.12s;
+      transition: background var(--duration-fast), border-color var(--duration-fast), box-shadow var(--duration-fast);
     }
 
     .semantic-row:hover {
@@ -749,7 +749,7 @@
     .icon-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
-      gap: 10px;
+      gap: var(--space-10);
     }
 
     .icon-card {
@@ -761,7 +761,7 @@
       border-radius: 10px;
       text-align: center;
       cursor: default;
-      transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.15s;
+      transition: border-color var(--duration-mid), background var(--duration-mid), transform var(--duration-mid), box-shadow var(--duration-mid);
     }
 
     .icon-card:hover {
@@ -898,7 +898,7 @@
       padding-top: 4px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: var(--space-6);
     }
 
     .type-token {
@@ -968,7 +968,7 @@
       letter-spacing: 0.01em;
       text-decoration: none;
       border-radius: var(--radius-full);
-      transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+      transition: background var(--duration-mid), box-shadow var(--duration-mid), border-color var(--duration-mid);
       white-space: nowrap;
       position: relative;
       /* MD (default) */
@@ -1214,7 +1214,7 @@
       z-index: 200;
       align-items: center;
       padding: 0 16px;
-      gap: 10px;
+      gap: var(--space-10);
     }
 
     .hamburger {
@@ -1229,7 +1229,7 @@
       border-radius: 8px;
       color: var(--text-primary);
       flex-shrink: 0;
-      transition: background 0.12s;
+      transition: background var(--duration-fast);
     }
     .hamburger:hover { background: var(--surface-raised); }
 
@@ -1253,7 +1253,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.8);
+      background: var(--overlay-white-80);
     }
     .mobile-header .logo-name {
       font-size: 13px;
@@ -1291,7 +1291,7 @@
       border: none;
       cursor: pointer;
       text-align: left;
-      transition: background 0.12s;
+      transition: background var(--duration-fast);
     }
     .cl-accordion-trigger:hover { background: var(--border-default); }
 
@@ -1322,7 +1322,7 @@
     .cl-accordion-chevron {
       flex-shrink: 0;
       color: var(--text-tertiary);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform var(--duration-normal) var(--ease-smooth);
     }
     .cl-accordion-trigger[aria-expanded="true"] .cl-accordion-chevron {
       transform: rotate(180deg);
@@ -1333,8 +1333,8 @@
       padding: 0 24px;
       overflow: hidden;
       max-height: 0;
-      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  padding 0.2s ease;
+      transition: max-height var(--duration-slow) var(--ease-smooth),
+                  padding var(--duration-normal) ease;
     }
     .cl-accordion-body.open {
       max-height: 2000px;
@@ -1433,8 +1433,8 @@
         z-index: 200;
         width: 240px;
         box-shadow: none;
-        transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: left var(--duration-slide) var(--ease-smooth),
+                    box-shadow var(--duration-slide) var(--ease-smooth);
       }
       .sidebar.open {
         left: 0;
@@ -1466,7 +1466,7 @@
       .cl-accordion-headline { display: none; }
 
       /* Overview cards: 2-col */
-      .overview-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .overview-grid { grid-template-columns: 1fr 1fr; gap: var(--space-10); }
       .overview-card { padding: 16px; }
       .overview-card-title { font-size: 13px; }
 
@@ -2030,18 +2030,18 @@
 
       <div class="semantic-group">
         <div class="semantic-group-label">Brand</div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#00833E"></div><div><div class="semantic-token-name">brand/default</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">Primary CTAs, active nav, links</div><div><span class="contrast-badge contrast-pass">5.8:1</span></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#005C2B"></div><div><div class="semantic-token-name">brand/strong</div><div class="semantic-source">← Brand green/700</div></div><div class="semantic-usage">Pressed state, hover on dark bg</div><div><span class="contrast-badge contrast-pass">9.4:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--brand-default)"></div><div><div class="semantic-token-name">brand/default</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">Primary CTAs, active nav, links</div><div><span class="contrast-badge contrast-pass">5.8:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--brand-strong)"></div><div><div class="semantic-token-name">brand/strong</div><div class="semantic-source">← Brand green/700</div></div><div class="semantic-usage">Pressed state, hover on dark bg</div><div><span class="contrast-badge contrast-pass">9.4:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--brand-subtle);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">brand/subtle</div><div class="semantic-source">← Brand green/50</div></div><div class="semantic-usage">Selected bg, tinted surfaces</div><div><span class="contrast-badge contrast-fail">1.1:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--surface-default);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">brand/on-default</div><div class="semantic-source">← White</div></div><div class="semantic-usage">Text/icon on brand/default</div><div><span class="contrast-badge contrast-pass">5.8:1</span></div></div>
       </div>
 
       <div class="semantic-group">
         <div class="semantic-group-label">Neutral — Text</div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#1F1E1B"></div><div><div class="semantic-token-name">text/primary</div><div class="semantic-source">← Neutral/900</div></div><div class="semantic-usage">Headings, body text</div><div><span class="contrast-badge contrast-pass">17.5:1</span></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#5E5D58"></div><div><div class="semantic-token-name">text/secondary</div><div class="semantic-source">← Neutral/600</div></div><div class="semantic-usage">Labels, captions</div><div><span class="contrast-badge contrast-pass">6.2:1</span></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#9B9A94"></div><div><div class="semantic-token-name">text/tertiary</div><div class="semantic-source">← Neutral/400</div></div><div class="semantic-usage">Placeholders, hints</div><div><span class="contrast-badge contrast-large">3.1:1</span></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">text/disabled</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled text</div><div><span class="contrast-badge contrast-fail">1.8:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--text-primary)"></div><div><div class="semantic-token-name">text/primary</div><div class="semantic-source">← Neutral/900</div></div><div class="semantic-usage">Headings, body text</div><div><span class="contrast-badge contrast-pass">17.5:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--text-secondary)"></div><div><div class="semantic-token-name">text/secondary</div><div class="semantic-source">← Neutral/600</div></div><div class="semantic-usage">Labels, captions</div><div><span class="contrast-badge contrast-pass">6.2:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--text-tertiary)"></div><div><div class="semantic-token-name">text/tertiary</div><div class="semantic-source">← Neutral/400</div></div><div class="semantic-usage">Placeholders, hints</div><div><span class="contrast-badge contrast-large">3.1:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--text-disabled)"></div><div><div class="semantic-token-name">text/disabled</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled text</div><div><span class="contrast-badge contrast-fail">1.8:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--text-inverse);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">text/inverse</div><div class="semantic-source">← Neutral/25</div></div><div class="semantic-usage">Text on dark surfaces</div><div><span class="contrast-badge contrast-fail">1.1:1</span></div></div>
       </div>
 
@@ -2050,28 +2050,28 @@
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--surface-page);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">surface/page</div><div class="semantic-source">← Neutral/50</div></div><div class="semantic-usage">App/page background</div><div></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--surface-default);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">surface/default</div><div class="semantic-source">← White</div></div><div class="semantic-usage">Card, sheet, modal bg</div><div></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--surface-raised);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">surface/raised</div><div class="semantic-source">← Neutral/100</div></div><div class="semantic-usage">Elevated surface, grouped bg</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#D8D7D2"></div><div><div class="semantic-token-name">border/default</div><div class="semantic-source">← Neutral/200</div></div><div class="semantic-usage">Dividers, input borders</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">border/strong</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Focused input border</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--border-default)"></div><div><div class="semantic-token-name">border/default</div><div class="semantic-source">← Neutral/200</div></div><div class="semantic-usage">Dividers, input borders</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--border-strong)"></div><div><div class="semantic-token-name">border/strong</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Focused input border</div><div></div></div>
       </div>
 
       <div class="semantic-group">
         <div class="semantic-group-label">Error · Warning · Success · Info</div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#A62628"></div><div><div class="semantic-token-name">error/default</div><div class="semantic-source">← Red/700</div></div><div class="semantic-usage">Destructive actions, error icons</div><div><span class="contrast-badge contrast-pass">7.2:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--error-default)"></div><div><div class="semantic-token-name">error/default</div><div class="semantic-source">← Red/700</div></div><div class="semantic-usage">Destructive actions, error icons</div><div><span class="contrast-badge contrast-pass">7.2:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--error-subtle);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">error/subtle</div><div class="semantic-source">← Red/50</div></div><div class="semantic-usage">Error banner bg</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#7B1111"></div><div><div class="semantic-token-name">error/text</div><div class="semantic-source">← Red/900</div></div><div class="semantic-usage">Error text on light bg</div><div><span class="contrast-badge contrast-pass">12.4:1</span></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#9A7505"></div><div><div class="semantic-token-name">warning/default</div><div class="semantic-source">← Yellow/700</div></div><div class="semantic-usage">Warning icons, alert borders</div><div><span class="contrast-badge contrast-pass">4.6:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--error-text)"></div><div><div class="semantic-token-name">error/text</div><div class="semantic-source">← Red/900</div></div><div class="semantic-usage">Error text on light bg</div><div><span class="contrast-badge contrast-pass">12.4:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--warning-default)"></div><div><div class="semantic-token-name">warning/default</div><div class="semantic-source">← Yellow/700</div></div><div class="semantic-usage">Warning icons, alert borders</div><div><span class="contrast-badge contrast-pass">4.6:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--warning-subtle);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">warning/subtle</div><div class="semantic-source">← Yellow/50</div></div><div class="semantic-usage">Warning banner bg</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#3A7018"></div><div><div class="semantic-token-name">success/default</div><div class="semantic-source">← Green/700</div></div><div class="semantic-usage">Success icons, confirmed states</div><div><span class="contrast-badge contrast-pass">7.1:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--success-default)"></div><div><div class="semantic-token-name">success/default</div><div class="semantic-source">← Green/700</div></div><div class="semantic-usage">Success icons, confirmed states</div><div><span class="contrast-badge contrast-pass">7.1:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--success-subtle);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">success/subtle</div><div class="semantic-source">← Green/50</div></div><div class="semantic-usage">Success banner bg</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#1250A8"></div><div><div class="semantic-token-name">info/default</div><div class="semantic-source">← Blue/700</div></div><div class="semantic-usage">Info icons, tooltip borders</div><div><span class="contrast-badge contrast-pass">7.9:1</span></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--info-default)"></div><div><div class="semantic-token-name">info/default</div><div class="semantic-source">← Blue/700</div></div><div class="semantic-usage">Info icons, tooltip borders</div><div><span class="contrast-badge contrast-pass">7.9:1</span></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--info-subtle);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">info/subtle</div><div class="semantic-source">← Blue/50</div></div><div class="semantic-usage">Info banner bg</div><div></div></div>
       </div>
 
       <div class="semantic-group">
         <div class="semantic-group-label">Interactive States</div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#00833E"></div><div><div class="semantic-token-name">state/focus</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">3px focus ring on all controls</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--state-focus)"></div><div><div class="semantic-token-name">state/focus</div><div class="semantic-source">← Brand green/500</div></div><div class="semantic-usage">3px focus ring on all controls</div><div></div></div>
         <div class="semantic-row"><div class="semantic-swatch" style="background:var(--surface-raised);border:1px solid var(--border-default)"></div><div><div class="semantic-token-name">state/disabled-fill</div><div class="semantic-source">← Neutral/100</div></div><div class="semantic-usage">Disabled control background</div><div></div></div>
-        <div class="semantic-row"><div class="semantic-swatch" style="background:#C0BEB8"></div><div><div class="semantic-token-name">state/disabled-text</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled control text</div><div></div></div>
+        <div class="semantic-row"><div class="semantic-swatch" style="background:var(--state-disabled-text)"></div><div><div class="semantic-token-name">state/disabled-text</div><div class="semantic-source">← Neutral/300</div></div><div class="semantic-usage">Disabled control text</div><div></div></div>
       </div>
     </div>
   </div>

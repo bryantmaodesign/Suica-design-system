@@ -171,8 +171,11 @@
   --state-disabled-text: #C0BEB8;
 
   /* ─── Spacing ────────────────────────────────────── */
+  --space-3:  3px;
   --space-4:  4px;
+  --space-6:  6px;
   --space-8:  8px;
+  --space-10: 10px;
   --space-12: 12px;
   --space-16: 16px;
   --space-20: 20px;
@@ -195,10 +198,15 @@
   --shadow-sidebar:  8px 0 32px rgba(0,0,0,0.18);
 
   /* ─── Overlays & State Backgrounds ──────────────── */
-  --overlay-border:  rgba(0,0,0,0.07);
-  --overlay-dark:    rgba(0,0,0,0.35);
-  --nav-hover-bg:    rgba(0,131,62,0.05);
-  --nav-active-bg:   rgba(0,131,62,0.07);
+  --overlay-border:   rgba(0,0,0,0.07);
+  --overlay-dark:     rgba(0,0,0,0.35);
+  --overlay-white-04: rgba(255,255,255,0.04);
+  --overlay-white-12: rgba(255,255,255,0.12);
+  --overlay-white-18: rgba(255,255,255,0.18);
+  --overlay-white-25: rgba(255,255,255,0.25);
+  --overlay-white-80: rgba(255,255,255,0.8);
+  --nav-hover-bg:     rgba(0,131,62,0.05);
+  --nav-active-bg:    rgba(0,131,62,0.07);
 
   /* ─── Border Radius ─────────────────────────────── */
   --radius-none: 0px;
@@ -207,6 +215,18 @@
   --radius-lg:   16px;
   --radius-xl:   24px;
   --radius-full: 9999px;
+
+  /* ─── Layout ────────────────────────────────────── */
+  --sidebar-width:    224px;
+  --prose-max-width:  520px;
+
+  /* ─── Motion ────────────────────────────────────── */
+  --duration-fast:   0.12s;
+  --duration-mid:    0.15s;
+  --duration-normal: 0.2s;
+  --duration-slide:  0.28s;
+  --duration-slow:   0.3s;
+  --ease-smooth:     cubic-bezier(0.16, 1, 0.3, 1);
 
   /* ─── Typography: Font stacks ──────────────────── */
   --font-jp: "Hiragino Sans", "Noto Sans JP", -apple-system, sans-serif;
