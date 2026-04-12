@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suica Design System — Changelog</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Plus Jakarta Sans", var(--font-jp);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      display: flex;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .sidebar {
+      width: 224px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--border-default);
+      background: var(--text-inverse);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-logo {
+      padding: 20px 20px 18px;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .sidebar-logo .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .sidebar-logo .logo-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--brand-default);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-logo .logo-dot::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+    }
+
+    .sidebar-logo .logo-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+    }
+
+    .sidebar-logo .logo-sub {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-top: 3px;
+      letter-spacing: 0.01em;
+    }
+
+    .sidebar-nav {
+      padding: 12px 0 16px;
+      flex: 1;
+    }
+
+    .nav-section-label {
+      padding: 10px 20px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px 7px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+
+    .nav-link:hover {
+      background: var(--nav-hover-bg);
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      background: var(--nav-active-bg);
+      color: var(--brand-default);
+      font-weight: 600;
+      border-left-color: var(--brand-default);
+    }
+
+    .nav-link .nav-icon {
+      width: 15px;
+      height: 15px;
+      opacity: 0.45;
+      flex-shrink: 0;
+      transition: opacity 0.12s;
+    }
+
+    .nav-link.active .nav-icon,
+    .nav-link:hover .nav-icon { opacity: 0.7; }
+
+    .nav-link.nav-disabled {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-soon {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--warning-subtle);
+      color: var(--warning-text);
+      border-radius: 3px;
+      padding: 1px 5px;
+      flex-shrink: 0;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      background: var(--surface-default);
+    }
+
+    /* ─── Section ────────────────────────────────────── */
+    .section {
+      padding: 56px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .section-bar {
+      width: 3px;
+      height: 22px;
+      border-radius: 99px;
+      background: var(--brand-default);
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .section-header .section-desc {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── Changelog ──────────────────────────────────── */
+    .cl-entry {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--space-32);
+      padding: var(--space-32) 0;
+      border-bottom: 1px solid var(--border-default);
+    }
+    .cl-entry:last-child { border-bottom: none; }
+
+    .cl-date {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+
+    .cl-changes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    .cl-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .cl-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .cl-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .cl-list li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-8);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .cl-list code {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 1px 5px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .cl-tag {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px var(--space-8);
+      border-radius: var(--radius-sm);
+      line-height: 1.6;
+    }
+    .cl-tag--added   { background: var(--brand-subtle);   color: var(--brand-strong); }
+    .cl-tag--changed { background: var(--info-subtle);    color: var(--info-text); }
+    .cl-tag--fixed   { background: var(--warning-subtle); color: var(--warning-text); }
+    .cl-tag--removed { background: var(--error-subtle);   color: var(--error-text); }
+
+    /* ─── Mobile Header ──────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: var(--surface-default);
+      border-bottom: 1px solid var(--border-default);
+      z-index: 200;
+      align-items: center;
+      padding: 0 16px;
+      gap: 10px;
+    }
+
+    .hamburger {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: var(--text-primary);
+      flex-shrink: 0;
+      transition: background 0.12s;
+    }
+    .hamburger:hover { background: var(--surface-raised); }
+
+    .mobile-header .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .mobile-header .logo-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      background: var(--brand-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mobile-header .logo-dot::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+    }
+    .mobile-header .logo-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-dark);
+      z-index: 199;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.active { display: block; }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .mobile-header { display: flex; }
+      .sidebar {
+        position: fixed;
+        left: -240px;
+        top: 0;
+        height: 100vh;
+        z-index: 200;
+        width: 240px;
+        transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sidebar.open { left: 0; box-shadow: var(--shadow-sidebar); }
+      .main { margin-top: 52px; }
+      .section { padding: 36px 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .section { padding: 28px 16px; }
+      .cl-entry { grid-template-columns: 1fr; gap: var(--space-12); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-header">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="2" y1="4.5" x2="16" y2="4.5"/><line x1="2" y1="9" x2="16" y2="9"/><line x1="2" y1="13.5" x2="16" y2="13.5"/>
+    </svg>
+  </button>
+  <a href="index.html" class="logo-badge">
+    <div class="logo-dot"></div>
+    <span class="logo-name">Suica DS</span>
+  </a>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<aside>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html" class="logo-badge">
+        <div class="logo-dot"></div>
+        <div>
+          <div class="logo-name">Suica Design System</div>
+          <div class="logo-sub">iOS · v0.1</div>
+        </div>
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Getting Started</div>
+      <a href="index.html#overview" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/>
+          <rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>
+        </svg>
+        Overview
+      </a>
+      <a href="changelog.html" class="nav-link active">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 4h10M3 8h7M3 12h5"/><circle cx="13" cy="11" r="2.5"/><path d="M13 10v1.5l1 1" stroke-linecap="round"/>
+        </svg>
+        Changelog
+      </a>
+
+      <div class="nav-section-label" style="margin-top:8px;">Foundations</div>
+      <a href="index.html#colors" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 0 1 6 6H8V2z" fill="currentColor" stroke="none" opacity="0.3"/>
+        </svg>
+        Colors
+      </a>
+      <a href="index.html#typography" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 4h10M8 4v8M5 12h6"/>
+        </svg>
+        Typography
+      </a>
+      <a href="index.html#spacing" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 8h12M2 4v2M2 10v2M14 4v2M14 10v2"/>
+        </svg>
+        Spacing
+      </a>
+      <a href="index.html#icons" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="8" r="2"/><line x1="8" y1="1" x2="8" y2="4"/><line x1="8" y1="12" x2="8" y2="15"/><line x1="1" y1="8" x2="4" y2="8"/><line x1="12" y1="8" x2="15" y2="8"/>
+        </svg>
+        Icons
+      </a>
+
+      <div class="nav-section-label" style="margin-top:8px;">Components</div>
+      <a href="index.html#buttons" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="5" width="14" height="6" rx="3"/>
+        </svg>
+        Button
+      </a>
+      <a href="index.html#chips" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="5" width="14" height="6" rx="3"/><circle cx="5" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Chip
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 2h5.5l6.5 6.5-5 5L2.5 7 2 2z"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        Tag
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2.5 2.5L11 6"/>
+        </svg>
+        Checkbox
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Radio
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a href="index.html#toggle" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="4" width="14" height="8" rx="4"/><circle cx="10" cy="8" r="2.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Toggle
+      </a>
+      <a href="index.html#text-field" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="4" width="14" height="8" rx="1.5"/><line x1="4" y1="8" x2="7" y2="8"/>
+        </svg>
+        Text Field
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="2" width="6" height="4" rx="1"/><rect x="8" y="2" width="7" height="4" rx="1"/><rect x="1" y="8" width="14" height="6" rx="1"/>
+        </svg>
+        Tab
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="12" height="4" rx="1"/><rect x="2" y="8" width="12" height="4" rx="1"/><path d="M10.5 10l-1.5 1.5L7.5 10"/>
+        </svg>
+        Accordion
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="10" y2="12"/>
+        </svg>
+        List
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="2" width="14" height="12" rx="2"/><line x1="4" y1="7" x2="12" y2="7"/><line x1="4" y1="10" x2="9" y2="10"/>
+        </svg>
+        Card
+        <span class="nav-soon">Soon</span>
+      </a>
+      <a class="nav-link nav-disabled">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="10" width="14" height="5" rx="1"/><line x1="4" y1="12.5" x2="4" y2="12.5" stroke-linecap="round" stroke-width="2"/><line x1="8" y1="12.5" x2="8" y2="12.5" stroke-linecap="round" stroke-width="2"/><line x1="12" y1="12.5" x2="12" y2="12.5" stroke-linecap="round" stroke-width="2"/>
+        </svg>
+        Navigation
+        <span class="nav-soon">Soon</span>
+      </a>
+    </nav>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Changelog</h2>
+      <span class="section-desc">Design system updates, token changes, and component revisions</span>
+    </div>
+
+    <!--
+    ═══════════════════════════════════════════════════════
+    HOW TO ADD A NEW ENTRY
+    ═══════════════════════════════════════════════════════
+    Copy the block below and paste it ABOVE the previous entry.
+    Use the appropriate tag for each change:
+      Added   → new feature, state, token, or component
+      Changed → modification to existing behaviour or value
+      Fixed   → correcting something off-spec or broken
+      Removed → deletion of a feature or token
+
+    <div class="cl-entry">
+      <div class="cl-date">YYYY-MM-DD</div>
+      <div class="cl-changes">
+
+        <div class="cl-group">
+          <div class="cl-group-label">Section name (e.g. Token System · Text Field · Button)</div>
+          <ul class="cl-list">
+            <li>
+              <span class="cl-tag cl-tag--added">Added</span>
+              Description of the change. Reference tokens as <code>--token-name</code>.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    ═══════════════════════════════════════════════════════ -->
+
+    <!-- ── 2026-04-13 ── -->
+    <div class="cl-entry">
+      <div class="cl-date">2026-04-13</div>
+      <div class="cl-changes">
+
+        <div class="cl-group">
+          <div class="cl-group-label">Token System</div>
+          <ul class="cl-list">
+            <li>
+              <span class="cl-tag cl-tag--added">Added</span>
+              Type scale — 52 new variables in <code>tokens.css</code> covering all 13 named styles: display, heading, body, label, and caption. Each style exposes <code>-size</code>, <code>-weight</code>, <code>-lh</code>, and <code>-ls</code> (where non-zero).
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--changed">Changed</span>
+              Component heights aligned to 8pt spacing grid — Button MD <code>44px</code> → <code>var(--space-48)</code>, Button SM <code>36px</code> → <code>var(--space-40)</code>, Text Field MD <code>44px</code> → <code>var(--space-48)</code>, Text Field SM <code>36px</code> → <code>var(--space-40)</code>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <div class="cl-group-label">Text Field</div>
+          <ul class="cl-list">
+            <li>
+              <span class="cl-tag cl-tag--added">Added</span>
+              Display state — flat list-row with pencil icon, representing the pre-edit / view mode. Added as the 7th state in both the States section and Size × State Matrix. Renamed from "idle" to "Display" to match Carbon / Atlassian / Salesforce conventions.
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--changed">Changed</span>
+              Font sizes tokenized — <code>.tf-label</code>, <code>.tf-input</code> (all 3 sizes), and <code>.tf-display-value</code> (all 3 sizes) now reference type scale tokens instead of hardcoded px values.
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--fixed">Fixed</span>
+              LG input height was hardcoded — <code>56px</code> → <code>var(--space-56)</code>.
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--fixed">Fixed</span>
+              Display body gap had no token — <code>2px</code> → <code>var(--space-4)</code>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <div class="cl-group-label">Button</div>
+          <ul class="cl-list">
+            <li>
+              <span class="cl-tag cl-tag--changed">Changed</span>
+              Font sizes tokenized — MD snapped from off-spec <code>14px</code> to <code>var(--type-label-lg-size)</code> (15px, matching <code>label/large</code> which explicitly targets button text). SM and LG also tokenized.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  // Mobile sidebar drawer
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) closeSidebar();
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeSidebar();
+  });
+</script>
+
+</body>
+</html>

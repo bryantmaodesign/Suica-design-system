@@ -1273,6 +1273,154 @@
     }
     .sidebar-overlay.active { display: block; }
 
+    /* ─── Changelog (embedded accordion) ────────────── */
+    .cl-accordion {
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .cl-accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--surface-raised);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.12s;
+    }
+    .cl-accordion-trigger:hover { background: var(--border-default); }
+
+    .cl-accordion-summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .cl-accordion-latest-date {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cl-accordion-headline {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cl-accordion-chevron {
+      flex-shrink: 0;
+      color: var(--text-tertiary);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cl-accordion-trigger[aria-expanded="true"] .cl-accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .cl-accordion-body {
+      border-top: 1px solid var(--border-default);
+      padding: 0 24px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  padding 0.2s ease;
+    }
+    .cl-accordion-body.open {
+      max-height: 2000px;
+      padding: 8px 24px 24px;
+    }
+
+    .cl-entry {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: var(--space-32);
+      padding: var(--space-24) 0;
+      border-bottom: 1px solid var(--border-default);
+    }
+    .cl-entry:last-child { border-bottom: none; }
+
+    .cl-date {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+
+    .cl-changes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    .cl-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .cl-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .cl-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .cl-list li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-8);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .cl-list code {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 1px 5px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .cl-tag {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px var(--space-8);
+      border-radius: var(--radius-sm);
+      line-height: 1.6;
+    }
+    .cl-tag--added   { background: var(--brand-subtle);   color: var(--brand-strong); }
+    .cl-tag--changed { background: var(--info-subtle);    color: var(--info-text); }
+    .cl-tag--fixed   { background: var(--warning-subtle); color: var(--warning-text); }
+    .cl-tag--removed { background: var(--error-subtle);   color: var(--error-text); }
+
     /* ─── Responsive: Tablet (≤ 900px) ──────────────── */
     @media (max-width: 900px) {
       .mobile-header { display: flex; }
@@ -1312,6 +1460,10 @@
       .page-hero { padding: 28px 20px 24px; }
       .page-hero h1 { font-size: 28px; letter-spacing: -0.02em; }
       .page-hero p { font-size: 14px; }
+
+      /* Changelog accordion: stack date above content */
+      .cl-entry { grid-template-columns: 1fr; gap: var(--space-12); }
+      .cl-accordion-headline { display: none; }
 
       /* Overview cards: 2-col */
       .overview-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1417,6 +1569,12 @@
         <rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>
       </svg>
       Overview
+    </a>
+    <a href="#changelog" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 4h10M3 8h7M3 12h5"/><circle cx="13" cy="11" r="2.5"/><path d="M13 10v1.5l1 1" stroke-linecap="round"/>
+      </svg>
+      Changelog
     </a>
 
     <div class="nav-section-label" style="margin-top:8px;">Foundations</div>
@@ -1585,6 +1743,85 @@
         <div class="principle-number">03 — Trustworthy</div>
         <div class="principle-title">Build trust</div>
         <div class="principle-desc">JR East's corporate green anchors every screen — expressing quality, reliability, and safety through color and form.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHANGELOG ────────────────────────────────────── -->
+  <div class="section" id="changelog">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Changelog</h2>
+      <span class="section-desc">Design system updates, token changes, and component revisions</span>
+    </div>
+
+    <div class="cl-accordion">
+      <button class="cl-accordion-trigger" id="cl-trigger" aria-expanded="false" aria-controls="cl-body">
+        <div class="cl-accordion-summary">
+          <span class="cl-accordion-latest-date">2026-04-13</span>
+          <span class="cl-accordion-headline">Type scale added · Component heights tokenized · Text Field display state</span>
+        </div>
+        <svg class="cl-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6l4 4 4-4"/>
+        </svg>
+      </button>
+
+      <div class="cl-accordion-body" id="cl-body" role="region" aria-labelledby="cl-trigger">
+
+        <!-- ── 2026-04-13 ── -->
+        <div class="cl-entry">
+          <div class="cl-date">2026-04-13</div>
+          <div class="cl-changes">
+
+            <div class="cl-group">
+              <div class="cl-group-label">Token System</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  Type scale — 52 new variables in <code>tokens.css</code> covering all 13 named styles: display, heading, body, label, and caption. Each style exposes <code>-size</code>, <code>-weight</code>, <code>-lh</code>, and <code>-ls</code> (where non-zero).
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  Component heights aligned to 8pt spacing grid — Button MD <code>44px</code> → <code>var(--space-48)</code>, Button SM <code>36px</code> → <code>var(--space-40)</code>, Text Field MD <code>44px</code> → <code>var(--space-48)</code>, Text Field SM <code>36px</code> → <code>var(--space-40)</code>.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cl-group">
+              <div class="cl-group-label">Text Field</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  Display state — flat list-row with pencil icon, representing the pre-edit / view mode. Added as the 7th state in both the States section and Size × State Matrix. Renamed from "idle" to "Display" to match Carbon / Atlassian / Salesforce conventions.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  Font sizes tokenized — <code>.tf-label</code>, <code>.tf-input</code> (all 3 sizes), and <code>.tf-display-value</code> (all 3 sizes) now reference type scale tokens instead of hardcoded px values.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--fixed">Fixed</span>
+                  LG input height was hardcoded — <code>56px</code> → <code>var(--space-56)</code>.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--fixed">Fixed</span>
+                  Display body gap had no token — <code>2px</code> → <code>var(--space-4)</code>.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cl-group">
+              <div class="cl-group-label">Button</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  Font sizes tokenized — MD snapped from off-spec <code>14px</code> to <code>var(--type-label-lg-size)</code> (15px, matching <code>label/large</code> which explicitly targets button text). SM and LG also tokenized.
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -2768,6 +3005,14 @@
 </main>
 
 <script>
+  // Changelog accordion
+  const clTrigger = document.getElementById('cl-trigger');
+  const clBody    = document.getElementById('cl-body');
+  clTrigger.addEventListener('click', () => {
+    const isOpen = clBody.classList.toggle('open');
+    clTrigger.setAttribute('aria-expanded', isOpen);
+  });
+
   // Scrollspy: highlight active nav link
   const sections = document.querySelectorAll('.section[id], .page-hero[id]');
   const navLinks = document.querySelectorAll('.nav-link');
