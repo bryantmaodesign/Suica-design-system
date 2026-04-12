@@ -1759,7 +1759,7 @@
       <button class="cl-accordion-trigger" id="cl-trigger" aria-expanded="false" aria-controls="cl-body">
         <div class="cl-accordion-summary">
           <span class="cl-accordion-latest-date">2026-04-13</span>
-          <span class="cl-accordion-headline">Type scale added · Component heights tokenized · Text Field display state</span>
+          <span class="cl-accordion-headline">Typography synced with Figma · Type scale added · Component heights tokenized · Text Field display state</span>
         </div>
         <svg class="cl-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 6l4 4 4-4"/>
@@ -1815,6 +1815,28 @@
                 <li>
                   <span class="cl-tag cl-tag--changed">Changed</span>
                   Font sizes tokenized — MD snapped from off-spec <code>14px</code> to <code>var(--type-label-lg-size)</code> (15px, matching <code>label/large</code> which explicitly targets button text). SM and LG also tokenized.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cl-group">
+              <div class="cl-group-label">Typography</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  <code>display/xlarge</code> — 45px · W700 · lh 54px · ls −0.2px (Hiragino Sans W7). Previously missing from the DS site; now matches Figma source.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  SF Pro numeric scale — 4 new tokens: <code>--type-numeric-xl-*</code> (40px · W600), <code>--type-numeric-lg-*</code> (22px · W700), <code>--type-numeric-md-*</code> (17px · W600), <code>--type-numeric-sm-*</code> (13px · W500). Replaces the old <code>--type-display-balance-*</code> group.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--fixed">Fixed</span>
+                  <code>heading/medium</code> size was off-spec — <code>18px</code> → <code>20px</code>. Removed incorrect letter-spacing of <code>−0.1px</code> (Figma specifies 0%).
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  All 17 type scale preview rows now reference <code>var(--type-*)</code> CSS variables instead of hardcoded pixel values.
                 </li>
               </ul>
             </div>
@@ -2059,7 +2081,7 @@
     <div class="section-header">
       <div class="section-bar"></div>
       <h2>Typography</h2>
-      <span class="section-desc">16 tokens · Hiragino Sans (JP) · SF Pro (numerals) · iOS + Android mapped</span>
+      <span class="section-desc">17 tokens · Hiragino Sans (JP) · SF Pro (numerals) · iOS + Android mapped</span>
     </div>
 
     <!-- Font stack cards -->
@@ -2070,7 +2092,7 @@
         <div class="type-font-card-desc">All kana, kanji, and mixed JP/Latin body text</div>
       </div>
       <div class="type-font-card">
-        <div class="type-font-card-title">Numerals &amp; currency</div>
+        <div class="type-font-card-title">Latin &amp; Numerals</div>
         <div class="type-font-card-mono">SF Pro Display / Text, tabular figures</div>
         <div class="type-font-card-desc">All digits, ¥ symbol, time, fares, balances</div>
       </div>
@@ -2081,19 +2103,19 @@
       <div class="subsection-title">Display</div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:40px;font-weight:700;line-height:46px;letter-spacing:-1px;font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥3,240</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-display-xl-size);font-weight:var(--type-display-xl-weight);line-height:var(--type-display-xl-lh);letter-spacing:var(--type-display-xl-ls);font-family:var(--font-jp);color:var(--text-primary)">はじめよう</p></div>
           <div class="type-meta">
-            <div class="type-token">display/balance</div>
-            <div class="type-spec">40px · W700 · lh 46px · ls −1px</div>
-            <div class="type-note">SF Pro — numerals only</div>
-            <div class="type-platform"><span>iOS: largeTitle, SF Pro Display</span><span>Android: displaySmall, tabular</span></div>
+            <div class="type-token">display/xlarge</div>
+            <div class="type-spec">45px · W700 · lh 54px · ls −0.2px</div>
+            <div class="type-note">Hiragino Sans W7</div>
+            <div class="type-platform"><span>iOS: largeTitle, SF Pro Display</span><span>Android: displaySmall</span></div>
           </div>
           <div class="type-aside">
-            <div class="type-usage">IC card balance — the most prominent number in the app</div>
+            <div class="type-usage">IC card balance hero text — largest Japanese style in the app</div>
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:34px;font-weight:700;line-height:41px;letter-spacing:-0.5px;color:var(--text-primary)">Suicaで、どこへでも。</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-display-lg-size);font-weight:var(--type-display-lg-weight);line-height:var(--type-display-lg-lh);letter-spacing:var(--type-display-lg-ls);font-family:var(--font-jp);color:var(--text-primary)">Suicaで、どこへでも。</p></div>
           <div class="type-meta">
             <div class="type-token">display/large</div>
             <div class="type-spec">34px · W700 · lh 41px · ls −0.5px</div>
@@ -2105,7 +2127,7 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:28px;font-weight:700;line-height:36px;letter-spacing:-0.3px;color:var(--text-primary)">チャージ完了</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-display-sm-size);font-weight:var(--type-display-sm-weight);line-height:var(--type-display-sm-lh);letter-spacing:var(--type-display-sm-ls);font-family:var(--font-jp);color:var(--text-primary)">チャージ完了</p></div>
           <div class="type-meta">
             <div class="type-token">display/small</div>
             <div class="type-spec">28px · W700 · lh 36px · ls −0.3px</div>
@@ -2124,7 +2146,7 @@
       <div class="subsection-title">Heading</div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:22px;font-weight:600;line-height:30px;letter-spacing:-0.2px;color:var(--text-primary)">利用履歴</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-heading-lg-size);font-weight:var(--type-heading-lg-weight);line-height:var(--type-heading-lg-lh);letter-spacing:var(--type-heading-lg-ls);font-family:var(--font-jp);color:var(--text-primary)">利用履歴</p></div>
           <div class="type-meta">
             <div class="type-token">heading/large</div>
             <div class="type-spec">22px · W600 · lh 30px · ls −0.2px</div>
@@ -2136,10 +2158,10 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:18px;font-weight:600;line-height:26px;letter-spacing:-0.1px;color:var(--text-primary)">定期券情報</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-heading-md-size);font-weight:var(--type-heading-md-weight);line-height:var(--type-heading-md-lh);font-family:var(--font-jp);color:var(--text-primary)">定期券情報</p></div>
           <div class="type-meta">
             <div class="type-token">heading/medium</div>
-            <div class="type-spec">18px · W600 · lh 26px · ls −0.1px</div>
+            <div class="type-spec">20px · W600 · lh 26px</div>
             <div class="type-note">Hiragino Sans W6</div>
             <div class="type-platform"><span>iOS: title3</span><span>Android: headlineSmall</span></div>
           </div>
@@ -2148,7 +2170,7 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:15px;font-weight:600;line-height:22px;letter-spacing:0;color:var(--text-primary)">品川 → 新宿</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-heading-sm-size);font-weight:var(--type-heading-sm-weight);line-height:var(--type-heading-sm-lh);font-family:var(--font-jp);color:var(--text-primary)">品川 → 新宿</p></div>
           <div class="type-meta">
             <div class="type-token">heading/small</div>
             <div class="type-spec">15px · W600 · lh 22px</div>
@@ -2167,11 +2189,11 @@
       <div class="subsection-title">Body</div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:17px;font-weight:400;line-height:28px;letter-spacing:0;color:var(--text-primary)">Suicaはご利用の交通機関でチャージできます。</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-body-lg-size);font-weight:var(--type-body-lg-weight);line-height:var(--type-body-lg-lh);font-family:var(--font-jp);color:var(--text-primary)">Suicaはご利用の交通機関でチャージできます。</p></div>
           <div class="type-meta">
             <div class="type-token">body/large</div>
             <div class="type-spec">17px · W400 · lh 28px</div>
-            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-note">Hiragino Sans W4</div>
             <div class="type-platform"><span>iOS: body</span><span>Android: bodyLarge</span></div>
           </div>
           <div class="type-aside">
@@ -2179,11 +2201,11 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:15px;font-weight:400;line-height:24px;letter-spacing:0;color:var(--text-primary)">2024年3月26日 08:42</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-body-md-size);font-weight:var(--type-body-md-weight);line-height:var(--type-body-md-lh);font-family:var(--font-jp);color:var(--text-primary)">2024年3月26日 08:42</p></div>
           <div class="type-meta">
             <div class="type-token">body/medium</div>
             <div class="type-spec">15px · W400 · lh 24px</div>
-            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-note">Hiragino Sans W4</div>
             <div class="type-platform"><span>iOS: subheadline</span><span>Android: bodyMedium</span></div>
           </div>
           <div class="type-aside">
@@ -2191,11 +2213,11 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:13px;font-weight:400;line-height:20px;letter-spacing:0;color:var(--text-primary)">有効期限：2026年3月31日</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-body-sm-size);font-weight:var(--type-body-sm-weight);line-height:var(--type-body-sm-lh);font-family:var(--font-jp);color:var(--text-primary)">有効期限：2026年3月31日</p></div>
           <div class="type-meta">
             <div class="type-token">body/small</div>
             <div class="type-spec">13px · W400 · lh 20px</div>
-            <div class="type-note">Hiragino Sans W3</div>
+            <div class="type-note">Hiragino Sans W4</div>
             <div class="type-platform"><span>iOS: footnote</span><span>Android: bodySmall</span></div>
           </div>
           <div class="type-aside">
@@ -2210,7 +2232,7 @@
       <div class="subsection-title">Label</div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:15px;font-weight:500;line-height:20px;letter-spacing:0;color:var(--text-primary)">チャージする</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-label-lg-size);font-weight:var(--type-label-lg-weight);line-height:var(--type-label-lg-lh);font-family:var(--font-jp);color:var(--text-primary)">チャージする</p></div>
           <div class="type-meta">
             <div class="type-token">label/large</div>
             <div class="type-spec">15px · W500 · lh 20px</div>
@@ -2222,10 +2244,10 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:13px;font-weight:500;line-height:18px;letter-spacing:0.1px;color:var(--text-primary)">定期券</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-label-md-size);font-weight:var(--type-label-md-weight);line-height:var(--type-label-md-lh);font-family:var(--font-jp);color:var(--text-primary)">定期券</p></div>
           <div class="type-meta">
             <div class="type-token">label/medium</div>
-            <div class="type-spec">13px · W500 · lh 18px · ls 0.1px</div>
+            <div class="type-spec">13px · W500 · lh 18px</div>
             <div class="type-note">Hiragino Sans W5</div>
             <div class="type-platform"><span>iOS: footnote W5</span><span>Android: labelMedium</span></div>
           </div>
@@ -2234,7 +2256,7 @@
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:11px;font-weight:500;line-height:14px;letter-spacing:0.3px;color:var(--text-primary)">残高</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-label-sm-size);font-weight:var(--type-label-sm-weight);line-height:var(--type-label-sm-lh);letter-spacing:var(--type-label-sm-ls);font-family:var(--font-jp);color:var(--text-primary)">残高</p></div>
           <div class="type-meta">
             <div class="type-token">label/small</div>
             <div class="type-spec">11px · W500 · lh 14px · ls 0.3px</div>
@@ -2253,7 +2275,7 @@
       <div class="subsection-title">Caption</div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:11px;font-weight:400;line-height:14px;letter-spacing:0;color:var(--text-secondary)">※ご利用には条件があります</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-caption-size);font-weight:var(--type-caption-weight);line-height:var(--type-caption-lh);font-family:var(--font-jp);color:var(--text-secondary)">※ご利用には条件があります</p></div>
           <div class="type-meta">
             <div class="type-token">caption/default</div>
             <div class="type-spec">11px · W400 · lh 14px</div>
@@ -2275,48 +2297,48 @@
       </div>
       <div class="type-scale">
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:40px;font-weight:700;line-height:46px;letter-spacing:-1px;font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥3,240</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-numeric-xl-size);font-weight:var(--type-numeric-xl-weight);line-height:var(--type-numeric-xl-lh);letter-spacing:var(--type-numeric-xl-ls);font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥3,240</p></div>
           <div class="type-meta">
-            <div class="type-token">display/balance</div>
-            <div class="type-spec">40px · W700 · lh 46px · ls −1px · tabular</div>
-            <div class="type-note">SF Pro Display — tabular figures</div>
+            <div class="type-token">numeric/xlarge</div>
+            <div class="type-spec">40px · W600 · lh 48px · ls −0.2px · tabular</div>
+            <div class="type-note">SF Pro Display — Semibold</div>
             <div class="type-platform"><span>iOS: largeTitle, SF Pro Display</span><span>Android: displaySmall, tabular</span></div>
           </div>
           <div class="type-aside">
-            <div class="type-usage">IC card balance — the most prominent number in the app</div>
+            <div class="type-usage">IC card balance — most prominent number in the app</div>
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:22px;font-weight:700;line-height:28px;letter-spacing:-0.2px;font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥198</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-numeric-lg-size);font-weight:var(--type-numeric-lg-weight);line-height:var(--type-numeric-lg-lh);font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥198</p></div>
           <div class="type-meta">
-            <div class="type-token">numeric/fare</div>
-            <div class="type-spec">22px · W700 · lh 28px · ls −0.2px · tabular</div>
-            <div class="type-note">SF Pro Display — tabular figures</div>
-            <div class="type-platform"><span>iOS: title2, SF Pro, tabular</span><span>Android: headlineMedium, tabular</span></div>
+            <div class="type-token">numeric/large</div>
+            <div class="type-spec">22px · W700 · lh 26px · tabular</div>
+            <div class="type-note">SF Pro Display — Bold</div>
+            <div class="type-platform"><span>iOS: title2, SF Pro, tabular</span><span>Android: headlineMedium</span></div>
           </div>
           <div class="type-aside">
             <div class="type-usage">Fare amounts, transaction prices</div>
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:17px;font-weight:600;line-height:22px;letter-spacing:0;font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥1,080 → ¥882</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-numeric-md-size);font-weight:var(--type-numeric-md-weight);line-height:var(--type-numeric-md-lh);font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">¥1,080 → ¥882</p></div>
           <div class="type-meta">
             <div class="type-token">numeric/medium</div>
             <div class="type-spec">17px · W600 · lh 22px · tabular</div>
-            <div class="type-note">SF Pro Text — tabular figures</div>
-            <div class="type-platform"><span>iOS: body W6, SF Pro, tabular</span><span>Android: bodyLarge W600, tabular</span></div>
+            <div class="type-note">SF Pro — Semibold</div>
+            <div class="type-platform"><span>iOS: body W6, SF Pro, tabular</span><span>Android: bodyLarge W600</span></div>
           </div>
           <div class="type-aside">
             <div class="type-usage">Inline amounts, point values in lists</div>
           </div>
         </div>
         <div class="type-row">
-          <div class="type-preview"><p style="font-size:13px;font-weight:500;line-height:18px;letter-spacing:0;font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">08:42:33</p></div>
+          <div class="type-preview"><p style="font-size:var(--type-numeric-sm-size);font-weight:var(--type-numeric-sm-weight);line-height:var(--type-numeric-sm-lh);font-variant-numeric:tabular-nums;font-family:var(--font-en);color:var(--text-primary)">08:42:33</p></div>
           <div class="type-meta">
             <div class="type-token">numeric/small</div>
-            <div class="type-spec">13px · W500 · lh 18px · tabular</div>
-            <div class="type-note">SF Pro Text — tabular figures</div>
-            <div class="type-platform"><span>iOS: footnote W5, SF Pro, tabular</span><span>Android: bodySmall W500, tabular</span></div>
+            <div class="type-spec">13px · W500 · lh 17px · tabular</div>
+            <div class="type-note">SF Pro — Medium</div>
+            <div class="type-platform"><span>iOS: footnote W5, SF Pro, tabular</span><span>Android: bodySmall W500</span></div>
           </div>
           <div class="type-aside">
             <div class="type-usage">Small amounts, timestamps with seconds</div>

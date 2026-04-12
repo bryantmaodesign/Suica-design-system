@@ -212,12 +212,12 @@
   --font-jp: "Hiragino Sans", "Noto Sans JP", -apple-system, sans-serif;
   --font-en: -apple-system, "Inter", sans-serif;
 
-  /* ─── Typography: Type scale ────────────────────── */
-  /* display/balance */
-  --type-display-balance-size:   40px;
-  --type-display-balance-weight: 700;
-  --type-display-balance-lh:     46px;
-  --type-display-balance-ls:    -1px;
+  /* ─── Typography: Type scale — Hiragino ─────────── */
+  /* display/xlarge */
+  --type-display-xl-size:   45px;
+  --type-display-xl-weight: 700;
+  --type-display-xl-lh:     54px;
+  --type-display-xl-ls:    -0.2px;
 
   /* display/large */
   --type-display-lg-size:   34px;
@@ -238,10 +238,9 @@
   --type-heading-lg-ls:    -0.2px;
 
   /* heading/medium */
-  --type-heading-md-size:   18px;
+  --type-heading-md-size:   20px;
   --type-heading-md-weight: 600;
   --type-heading-md-lh:     26px;
-  --type-heading-md-ls:    -0.1px;
 
   /* heading/small */
   --type-heading-sm-size:   15px;
@@ -283,4 +282,26 @@
   --type-caption-size:   11px;
   --type-caption-weight: 400;
   --type-caption-lh:     14px;
+
+  /* ─── Typography: Type scale — SF Pro (numeric) ─── */
+  /* numeric/xlarge — SF Pro Display, Semibold */
+  --type-numeric-xl-size:   40px;
+  --type-numeric-xl-weight: 600;
+  --type-numeric-xl-lh:     48px;
+  --type-numeric-xl-ls:    -0.2px;
+
+  /* numeric/large — SF Pro Display, Bold */
+  --type-numeric-lg-size:   22px;
+  --type-numeric-lg-weight: 700;
+  --type-numeric-lg-lh:     26px;
+
+  /* numeric/medium — SF Pro, Semibold */
+  --type-numeric-md-size:   17px;
+  --type-numeric-md-weight: 600;
+  --type-numeric-md-lh:     22px;
+
+  /* numeric/small — SF Pro, Medium */
+  --type-numeric-sm-size:   13px;
+  --type-numeric-sm-weight: 500;
+  --type-numeric-sm-lh:     17px;
 }

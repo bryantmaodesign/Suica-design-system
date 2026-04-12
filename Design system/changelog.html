@@ -608,6 +608,28 @@
           </ul>
         </div>
 
+        <div class="cl-group">
+          <div class="cl-group-label">Typography</div>
+          <ul class="cl-list">
+            <li>
+              <span class="cl-tag cl-tag--added">Added</span>
+              <code>display/xlarge</code> — 45px · W700 · lh 54px · ls −0.2px (Hiragino Sans W7). Previously missing from the DS site; now matches Figma source.
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--added">Added</span>
+              SF Pro numeric scale — 4 new tokens: <code>--type-numeric-xl-*</code> (40px · W600), <code>--type-numeric-lg-*</code> (22px · W700), <code>--type-numeric-md-*</code> (17px · W600), <code>--type-numeric-sm-*</code> (13px · W500). Replaces the old <code>--type-display-balance-*</code> group.
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--fixed">Fixed</span>
+              <code>heading/medium</code> size was off-spec — <code>18px</code> → <code>20px</code>. Removed incorrect letter-spacing of <code>−0.1px</code> (Figma specifies 0%).
+            </li>
+            <li>
+              <span class="cl-tag cl-tag--changed">Changed</span>
+              All 17 type scale preview rows now reference <code>var(--type-*)</code> CSS variables instead of hardcoded pixel values.
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
