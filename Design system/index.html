@@ -1203,6 +1203,304 @@
     .btn-state-demo-pressed.btn-outlined { background: var(--brand-green-100); }
     .btn-state-demo-pressed.btn-text    { background: var(--brand-green-100); }
 
+    /* ─── Text Field ─────────────────────────────────── */
+    .tf-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      min-width: 320px;
+    }
+
+    .tf-label {
+      font-size: var(--type-label-md-size);
+      font-weight: var(--type-label-md-weight);
+      line-height: var(--type-label-md-lh);
+      color: var(--text-secondary);
+    }
+
+    .tf-field {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .tf-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 var(--space-12);
+      background: var(--surface-default);
+      border: 1.5px solid var(--border-default);
+      border-radius: var(--radius-md);
+      font-family: var(--font-jp);
+      font-size: var(--type-body-md-size);
+      line-height: 1;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color var(--duration-mid), background var(--duration-mid);
+      -webkit-appearance: none;
+    }
+    .tf-input::placeholder { color: var(--text-tertiary); }
+    .tf-input:focus { border-color: var(--state-focus); }
+    .tf-input:focus::placeholder { color: var(--brand-green-300); }
+
+    .tf-field:has(.tf-action) .tf-input { padding-right: var(--space-40); }
+
+    .tf-action {
+      position: absolute;
+      right: var(--space-10);
+      width: var(--space-24);
+      height: var(--space-24);
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      transition: color var(--duration-fast);
+    }
+    .tf-action:hover { color: var(--text-secondary); }
+    .tf-action svg { display: block; }
+
+    .tf-helper {
+      font-size: var(--type-caption-size);
+      line-height: var(--type-caption-lh);
+      color: var(--text-tertiary);
+    }
+
+    /* Sizes */
+    .tf-sm .tf-input { height: 36px; font-size: var(--type-body-sm-size); }
+    .tf-lg .tf-input { height: var(--space-56); font-size: var(--type-body-lg-size); padding: 0 var(--space-16); }
+    .tf-lg .tf-field:has(.tf-action) .tf-input { padding-right: 52px; }
+    .tf-lg .tf-action { right: var(--space-16); width: 28px; height: 28px; }
+
+    /* Error state */
+    .tf-error .tf-label { color: var(--error-text); }
+    .tf-error .tf-input { border-color: var(--error-default); }
+    .tf-error .tf-helper { color: var(--error-default); }
+    .tf-error .tf-action { color: var(--error-default); }
+    .tf-error .tf-action:hover { color: var(--red-700); }
+
+    /* Disabled state */
+    .tf-disabled .tf-label { color: var(--text-disabled); }
+    .tf-disabled .tf-input {
+      background: var(--state-disabled-fill);
+      border-color: var(--border-default);
+      color: var(--state-disabled-text);
+      cursor: not-allowed;
+    }
+    .tf-disabled .tf-helper { color: var(--text-disabled); }
+    .tf-disabled .tf-action { pointer-events: none; opacity: 0.35; }
+
+    /* Read-only state */
+    .tf-readonly .tf-label { color: var(--text-secondary); }
+    .tf-readonly .tf-input {
+      background: var(--surface-raised);
+      border-color: var(--border-default);
+      color: var(--text-secondary);
+      cursor: default;
+    }
+    .tf-readonly .tf-helper { color: var(--text-tertiary); }
+
+    /* Display state */
+    .tf-display-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      padding: var(--space-4) 0 var(--space-12);
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .tf-display-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .tf-display-value {
+      font-size: var(--type-body-md-size);
+      color: var(--text-secondary);
+    }
+
+    .tf-display-edit {
+      flex-shrink: 0;
+      width: var(--space-32);
+      height: var(--space-32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: background var(--duration-mid), color var(--duration-mid);
+    }
+    .tf-display-edit:hover {
+      background: var(--surface-raised);
+      color: var(--text-primary);
+    }
+
+    /* Simulated focused state (for demo grid) */
+    .tf-demo-focus .tf-input { border-color: var(--state-focus); }
+    .tf-demo-focus .tf-input::placeholder { color: var(--brand-green-300); }
+
+    /* Layout helpers */
+    .tf-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-16);
+      padding: var(--space-24);
+      background: var(--surface-raised);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-default);
+      margin-bottom: var(--space-16);
+    }
+
+    .tf-demo-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      padding: var(--space-20);
+      background: var(--surface-raised);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-default);
+    }
+
+    .tf-demo-col-label {
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--border-default);
+      margin-bottom: var(--space-4);
+    }
+
+    .tf-states-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    .tf-state-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .tf-states-head {
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .tf-states-cell {
+      padding: var(--space-12);
+      background: var(--surface-default);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-default);
+    }
+
+    /* tf-wrap fills its container inside grid cells */
+    .tf-states-cell .tf-wrap,
+    .tf-demo-col .tf-wrap {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .tf-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .tf-spec-table th {
+      text-align: left;
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-secondary);
+      padding: 0 0 var(--space-8);
+      border-bottom: 1px solid var(--border-default);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .tf-spec-table td {
+      padding: var(--space-12) var(--space-8) var(--space-12) 0;
+      border-bottom: 1px solid var(--border-default);
+      vertical-align: middle;
+      color: var(--text-primary);
+    }
+    .tf-spec-table tr:last-child td { border-bottom: none; }
+    .tf-spec-table code {
+      font-size: 10px;
+      font-family: "DM Mono", monospace;
+      background: var(--surface-raised);
+      color: var(--brand-default);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .tf-demo-grid--2col { grid-template-columns: repeat(2, 1fr); }
+
+    .tf-table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ─── Text Field: Component matrix ──────────────── */
+    .tf-matrix-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tf-matrix {
+      display: grid;
+      grid-template-columns: 88px repeat(3, 1fr);
+      gap: var(--space-8);
+      min-width: 620px;
+      align-items: start;
+    }
+
+    .tf-matrix-col-head {
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-8) var(--space-4);
+      text-align: center;
+    }
+
+    .tf-matrix-row-head {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: var(--space-16);
+    }
+
+    .tf-matrix-cell {
+      padding: var(--space-16);
+      background: var(--surface-default);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-default);
+    }
+
+    .tf-matrix-cell .tf-wrap {
+      width: 100%;
+      min-width: 0;
+    }
+
     /* ─── Mobile Header ──────────────────────────────── */
     .mobile-header {
       display: none;
@@ -1452,6 +1750,9 @@
       .principles-grid { grid-template-columns: 1fr; gap: 12px; }
       .btn-size-grid { grid-template-columns: 1fr 1fr; }
       .type-font-cards { grid-template-columns: 1fr; }
+
+      /* Text field: sizes grid → 2 cols on tablet */
+      .tf-demo-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ─── Responsive: Phone (≤ 600px) ───────────────── */
@@ -1509,6 +1810,13 @@
       .btn-states-grid {
         min-width: 560px;
       }
+
+      /* Text field: all demo grids → 1 col on phone */
+      .tf-demo-grid,
+      .tf-demo-grid--2col { grid-template-columns: 1fr; }
+
+      /* Text field: states grid → 2 cols on phone */
+      .tf-states-grid { grid-template-columns: repeat(2, 1fr); }
 
       /* Icon grid: smaller */
       .icon-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
@@ -1639,12 +1947,11 @@
       Toggle
       <span class="nav-soon">Soon</span>
     </a>
-    <a class="nav-link nav-disabled">
+    <a href="#text-field" class="nav-link">
       <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="1" y="4" width="14" height="8" rx="1.5"/><line x1="4" y1="8" x2="7" y2="8"/>
       </svg>
       Text Field
-      <span class="nav-soon">Soon</span>
     </a>
     <a class="nav-link nav-disabled">
       <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -3024,6 +3331,540 @@
 
   </div>
 
+  <!-- ── TEXT FIELD ────────────────────────────────── -->
+  <div class="section" id="text-field">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Text Field</h2>
+      <span class="section-desc">2 variants · 3 sizes · 7 states — Default, Secure</span>
+    </div>
+
+    <!-- Variants -->
+    <div class="subsection">
+      <div class="subsection-title">Variants</div>
+      <div class="tf-demo-grid tf-demo-grid--2col">
+        <!-- Default -->
+        <div class="tf-states-cell" style="background: var(--surface-raised);">
+          <div style="font-size:var(--type-label-sm-size);font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.07em;margin-bottom:var(--space-16);">Default</div>
+          <div class="tf-wrap">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" placeholder="Placeholder">
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <!-- Secure -->
+        <div class="tf-states-cell" style="background: var(--surface-raised);">
+          <div style="font-size:var(--type-label-sm-size);font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.07em;margin-bottom:var(--space-16);">Secure</div>
+          <div class="tf-wrap">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input tf-password" type="password" placeholder="Enter password">
+              <button class="tf-action tf-pw-toggle" aria-label="Show password">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1.5 9s2.5-5.25 7.5-5.25S16.5 9 16.5 9s-2.5 5.25-7.5 5.25S1.5 9 1.5 9z"/>
+                  <circle cx="9" cy="9" r="2.25"/>
+                </svg>
+              </button>
+            </div>
+            <span class="tf-helper">Must be at least 8 characters</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tf-table-scroll">
+      <table class="tf-spec-table">
+        <thead>
+          <tr>
+            <th style="width:130px">Variant</th>
+            <th>When to use</th>
+            <th style="width:160px">Input type</th>
+            <th style="width:160px">Trailing icon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Default</td>
+            <td>General text entry — names, search queries, addresses.</td>
+            <td><code>type="text"</code></td>
+            <td>Clear × (when populated)</td>
+          </tr>
+          <tr>
+            <td>Secure</td>
+            <td>Sensitive input — passwords, PINs. Masks value by default.</td>
+            <td><code>type="password"</code></td>
+            <td>Eye toggle (show/hide)</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="subsection">
+      <div class="subsection-title">Sizes</div>
+      <div class="tf-demo-grid">
+        <!-- SM -->
+        <div class="tf-demo-col">
+          <div class="tf-demo-col-label">SM — 36px</div>
+          <div class="tf-wrap tf-sm">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" placeholder="Placeholder">
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">36px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-12)</code>
+          </div>
+        </div>
+        <!-- MD -->
+        <div class="tf-demo-col">
+          <div class="tf-demo-col-label">MD — 44px (default)</div>
+          <div class="tf-wrap">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" placeholder="Placeholder">
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">44px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-12)</code>
+          </div>
+        </div>
+        <!-- LG -->
+        <div class="tf-demo-col">
+          <div class="tf-demo-col-label">LG — 56px</div>
+          <div class="tf-wrap tf-lg">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" placeholder="Placeholder">
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">56px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-16)</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="subsection">
+      <div class="subsection-title">States</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Seven states across the default variant at MD size. Focus and type in the Empty field to see live states.</p>
+      <div class="tf-states-grid">
+
+        <!-- Empty -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Empty</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input" type="text" placeholder="Placeholder">
+              </div>
+              <span class="tf-helper">Helper text</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focused -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Focused</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap tf-demo-focus">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input" type="text" placeholder="Placeholder">
+              </div>
+              <span class="tf-helper">Helper text</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Populated -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Populated</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input tf-clearable" type="text" value="Shinjuku Station">
+                <button class="tf-action tf-clear-btn" aria-label="Clear" tabindex="-1">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM5.47 5.47a.75.75 0 011.06 0L8 6.94l1.47-1.47a.75.75 0 111.06 1.06L9.06 8l1.47 1.47a.75.75 0 11-1.06 1.06L8 9.06l-1.47 1.47a.75.75 0 01-1.06-1.06L6.94 8 5.47 6.53a.75.75 0 010-1.06z"/>
+                  </svg>
+                </button>
+              </div>
+              <span class="tf-helper">Helper text</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Error</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap tf-error">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input" type="text" value="Invalid input" readonly>
+                <span class="tf-action" style="cursor:default;pointer-events:none;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM8 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 5zm0 6.5a.875.875 0 110 1.75.875.875 0 010-1.75z"/>
+                  </svg>
+                </span>
+              </div>
+              <span class="tf-helper">Please check your input</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Disabled</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap tf-disabled">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input" type="text" placeholder="Placeholder" disabled>
+              </div>
+              <span class="tf-helper">Helper text</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Read-only -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Read-only</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap tf-readonly">
+              <label class="tf-label">Label</label>
+              <div class="tf-field">
+                <input class="tf-input" type="text" value="Read-only text" readonly>
+              </div>
+              <span class="tf-helper">Cannot be edited</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display -->
+        <div class="tf-state-card">
+          <div class="tf-states-head">Display</div>
+          <div class="tf-states-cell">
+            <div class="tf-wrap">
+              <div class="tf-display-row">
+                <div class="tf-display-content">
+                  <span class="tf-label">Label</span>
+                  <span class="tf-display-value">Placeholder</span>
+                  <span class="tf-helper">Helper text</span>
+                </div>
+                <button class="tf-display-edit" aria-label="Edit">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 14l1.5-4.5L11 2l3 3-7.5 7.5L2 14z"/>
+                    <path d="M9.5 3.5l3 3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Components matrix -->
+    <div class="subsection">
+      <div class="subsection-title">Components</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">All 7 states × 3 sizes — 21 component variants.</p>
+      <div class="tf-matrix-scroll">
+      <div class="tf-matrix">
+
+        <!-- Column headers -->
+        <div></div>
+        <div class="tf-matrix-col-head">SM · 36px</div>
+        <div class="tf-matrix-col-head">MD · 44px</div>
+        <div class="tf-matrix-col-head">LG · 56px</div>
+
+        <!-- Empty -->
+        <div class="tf-matrix-row-head">Empty</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+
+        <!-- Focused -->
+        <div class="tf-matrix-row-head">Focused</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm tf-demo-focus">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-demo-focus">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg tf-demo-focus">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder"></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+
+        <!-- Populated -->
+        <div class="tf-matrix-row-head">Populated</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input tf-clearable" type="text" value="Shinjuku Station">
+              <button class="tf-action tf-clear-btn" aria-label="Clear" tabindex="-1">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM5.47 5.47a.75.75 0 011.06 0L8 6.94l1.47-1.47a.75.75 0 111.06 1.06L9.06 8l1.47 1.47a.75.75 0 11-1.06 1.06L8 9.06l-1.47 1.47a.75.75 0 01-1.06-1.06L6.94 8 5.47 6.53a.75.75 0 010-1.06z"/></svg>
+              </button>
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input tf-clearable" type="text" value="Shinjuku Station">
+              <button class="tf-action tf-clear-btn" aria-label="Clear" tabindex="-1">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM5.47 5.47a.75.75 0 011.06 0L8 6.94l1.47-1.47a.75.75 0 111.06 1.06L9.06 8l1.47 1.47a.75.75 0 11-1.06 1.06L8 9.06l-1.47 1.47a.75.75 0 01-1.06-1.06L6.94 8 5.47 6.53a.75.75 0 010-1.06z"/></svg>
+              </button>
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input tf-clearable" type="text" value="Shinjuku Station">
+              <button class="tf-action tf-clear-btn" aria-label="Clear" tabindex="-1">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM5.47 5.47a.75.75 0 011.06 0L8 6.94l1.47-1.47a.75.75 0 111.06 1.06L9.06 8l1.47 1.47a.75.75 0 11-1.06 1.06L8 9.06l-1.47 1.47a.75.75 0 01-1.06-1.06L6.94 8 5.47 6.53a.75.75 0 010-1.06z"/></svg>
+              </button>
+            </div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="tf-matrix-row-head">Error</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm tf-error">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" value="Invalid input" readonly>
+              <span class="tf-action" style="cursor:default;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM8 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 5zm0 6.5a.875.875 0 110 1.75.875.875 0 010-1.75z"/></svg></span>
+            </div>
+            <span class="tf-helper">Please check your input</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-error">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" value="Invalid input" readonly>
+              <span class="tf-action" style="cursor:default;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM8 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 5zm0 6.5a.875.875 0 110 1.75.875.875 0 010-1.75z"/></svg></span>
+            </div>
+            <span class="tf-helper">Please check your input</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg tf-error">
+            <label class="tf-label">Label</label>
+            <div class="tf-field">
+              <input class="tf-input" type="text" value="Invalid input" readonly>
+              <span class="tf-action" style="cursor:default;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM8 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 5zm0 6.5a.875.875 0 110 1.75.875.875 0 010-1.75z"/></svg></span>
+            </div>
+            <span class="tf-helper">Please check your input</span>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div class="tf-matrix-row-head">Disabled</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm tf-disabled">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder" disabled></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-disabled">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder" disabled></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg tf-disabled">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" placeholder="Placeholder" disabled></div>
+            <span class="tf-helper">Helper text</span>
+          </div>
+        </div>
+
+        <!-- Read-only -->
+        <div class="tf-matrix-row-head">Read-only</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-sm tf-readonly">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" value="Read-only text" readonly></div>
+            <span class="tf-helper">Cannot be edited</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-readonly">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" value="Read-only text" readonly></div>
+            <span class="tf-helper">Cannot be edited</span>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap tf-lg tf-readonly">
+            <label class="tf-label">Label</label>
+            <div class="tf-field"><input class="tf-input" type="text" value="Read-only text" readonly></div>
+            <span class="tf-helper">Cannot be edited</span>
+          </div>
+        </div>
+
+        <!-- Display -->
+        <div class="tf-matrix-row-head">Display</div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap">
+            <div class="tf-display-row">
+              <div class="tf-display-content">
+                <span class="tf-label">Label</span>
+                <span class="tf-display-value" style="font-size:var(--type-body-sm-size);">Placeholder</span>
+                <span class="tf-helper">Helper text</span>
+              </div>
+              <button class="tf-display-edit" aria-label="Edit">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14l1.5-4.5L11 2l3 3-7.5 7.5L2 14z"/><path d="M9.5 3.5l3 3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap">
+            <div class="tf-display-row">
+              <div class="tf-display-content">
+                <span class="tf-label">Label</span>
+                <span class="tf-display-value">Placeholder</span>
+                <span class="tf-helper">Helper text</span>
+              </div>
+              <button class="tf-display-edit" aria-label="Edit">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14l1.5-4.5L11 2l3 3-7.5 7.5L2 14z"/><path d="M9.5 3.5l3 3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="tf-matrix-cell">
+          <div class="tf-wrap">
+            <div class="tf-display-row">
+              <div class="tf-display-content">
+                <span class="tf-label">Label</span>
+                <span class="tf-display-value" style="font-size:var(--type-body-lg-size);">Placeholder</span>
+                <span class="tf-helper">Helper text</span>
+              </div>
+              <button class="tf-display-edit" aria-label="Edit">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14l1.5-4.5L11 2l3 3-7.5 7.5L2 14z"/><path d="M9.5 3.5l3 3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+    <!-- Spec table -->
+    <div class="subsection">
+      <div class="subsection-title">State Tokens</div>
+      <div class="tf-table-scroll">
+      <table class="tf-spec-table">
+        <thead>
+          <tr>
+            <th style="width:120px">State</th>
+            <th style="width:190px">Border</th>
+            <th style="width:190px">Background</th>
+            <th>Label / Helper color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Default</td>
+            <td><code>--border-default</code></td>
+            <td><code>--surface-default</code></td>
+            <td><code>--text-secondary</code> / <code>--text-tertiary</code></td>
+          </tr>
+          <tr>
+            <td>Focused</td>
+            <td><code>--state-focus</code></td>
+            <td><code>--surface-default</code></td>
+            <td>unchanged</td>
+          </tr>
+          <tr>
+            <td>Error</td>
+            <td><code>--error-default</code></td>
+            <td><code>--surface-default</code></td>
+            <td><code>--error-text</code> / <code>--error-default</code></td>
+          </tr>
+          <tr>
+            <td>Disabled</td>
+            <td><code>--border-default</code></td>
+            <td><code>--state-disabled-fill</code></td>
+            <td><code>--text-disabled</code> / <code>--text-disabled</code></td>
+          </tr>
+          <tr>
+            <td>Read-only</td>
+            <td><code>--border-default</code></td>
+            <td><code>--surface-raised</code></td>
+            <td><code>--text-secondary</code> / <code>--text-tertiary</code></td>
+          </tr>
+          <tr>
+            <td>Display</td>
+            <td>none — bottom divider only (<code>--border-default</code>)</td>
+            <td>transparent</td>
+            <td><code>--text-primary</code> (label) / <code>--text-secondary</code> (value)</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+  </div>
+
 </main>
 
 <script>
@@ -3084,6 +3925,29 @@
   // Close drawer on resize to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 900) closeSidebar();
+  });
+
+  // Text Field — password toggle
+  document.querySelectorAll('.tf-pw-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = btn.closest('.tf-field').querySelector('input');
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+      btn.innerHTML = isHidden
+        ? `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l14 14"/><path d="M7.46 3.73A7.2 7.2 0 019 3.5c5 0 7.5 5 7.5 5a12.5 12.5 0 01-2.4 3.3"/><path d="M5.28 5.28C3.7 6.5 2.5 8.5 2.5 8.5s2.5 5 6.5 5a6.6 6.6 0 004.22-1.5"/></svg>`
+        : `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 9s2.5-5.25 7.5-5.25S16.5 9 16.5 9s-2.5 5.25-7.5 5.25S1.5 9 1.5 9z"/><circle cx="9" cy="9" r="2.25"/></svg>`;
+    });
+  });
+
+  // Text Field — clear button
+  document.querySelectorAll('.tf-clearable').forEach(input => {
+    const btn = input.closest('.tf-field').querySelector('.tf-clear-btn');
+    if (!btn) return;
+    const update = () => { btn.style.display = input.value ? 'flex' : 'none'; };
+    update();
+    input.addEventListener('input', update);
+    btn.addEventListener('click', () => { input.value = ''; input.focus(); update(); });
   });
 </script>
 </body>
