@@ -76,7 +76,7 @@
     }
 
     .sidebar-logo .logo-sub {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-tertiary);
       margin-top: var(--space-3);
       letter-spacing: 0.01em;
@@ -198,7 +198,7 @@
       color: var(--brand-on-default);
       border-radius: 99px;
       padding: var(--space-3) var(--space-10);
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 600;
       letter-spacing: 0.05em;
       margin-bottom: 20px;
@@ -249,7 +249,7 @@
     .subsection:last-child { margin-bottom: 0; }
 
     .subsection-title {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-tertiary);
       letter-spacing: 0.07em;
@@ -283,7 +283,7 @@
     .swatch-box.light { border-color: var(--border-default); }
 
     .swatch-token {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 600;
       color: var(--text-primary);
       line-height: 1.4;
@@ -292,7 +292,7 @@
     }
 
     .swatch-hex {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
       font-family: "DM Mono", monospace;
@@ -352,7 +352,7 @@
 
     .type-table th {
       text-align: left;
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-secondary);
       padding: 0 0 8px;
@@ -393,7 +393,7 @@
     .type-spec-tag {
       display: inline-block;
       background: var(--surface-raised);
-      border-radius: 3px;
+      border-radius: var(--space-3);
       padding: 1px 5px;
       font-size: 10px;
       font-weight: 500;
@@ -450,7 +450,7 @@
     }
 
     .spacing-token {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-secondary);
       font-family: "DM Mono", monospace;
     }
@@ -652,7 +652,7 @@
     .semantic-group { margin-bottom: 32px; }
 
     .semantic-group-label {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -691,7 +691,7 @@
     }
 
     .semantic-token-name {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 500;
       color: var(--text-primary);
       font-family: "DM Mono", monospace;
@@ -705,7 +705,7 @@
     }
 
     .semantic-usage {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -714,7 +714,7 @@
       font-size: 9px;
       font-weight: 600;
       padding: 2px 5px;
-      border-radius: 3px;
+      border-radius: var(--space-3);
       white-space: nowrap;
       text-align: center;
     }
@@ -738,11 +738,11 @@
     .icon-guidelines strong { color: var(--text-primary); }
 
     .icon-guidelines code {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-family: "DM Mono", monospace;
       background: var(--surface-page);
       padding: 1px 5px;
-      border-radius: 3px;
+      border-radius: var(--space-3);
       color: var(--brand-default);
     }
 
@@ -809,7 +809,7 @@
       text-transform: uppercase;
       background: var(--warning-subtle);
       color: var(--warning-text);
-      border-radius: 3px;
+      border-radius: var(--space-3);
       padding: 1px 5px;
       flex-shrink: 0;
     }
@@ -842,7 +842,7 @@
     }
 
     .type-font-card-mono {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-family: "DM Mono", monospace;
       color: var(--text-secondary);
       margin-bottom: 6px;
@@ -902,20 +902,20 @@
     }
 
     .type-token {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 500;
       font-family: "DM Mono", monospace;
       color: var(--brand-default);
     }
 
     .type-spec {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-tertiary);
       font-variant-numeric: tabular-nums;
     }
 
     .type-note {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-tertiary);
     }
 
@@ -939,7 +939,7 @@
       background: var(--surface-raised);
       color: var(--text-secondary);
       padding: 2px 6px;
-      border-radius: 3px;
+      border-radius: var(--space-3);
       border: 0.5px solid var(--border-default);
     }
 
@@ -972,22 +972,22 @@
       white-space: nowrap;
       position: relative;
       /* MD (default) */
-      height: 40px;
+      height: var(--space-40);
       padding: 0 var(--space-24);
-      font-size: 14px;
+      font-size: var(--type-label-lg-size);
     }
 
     .btn-sm {
-      height: 32px;
+      height: var(--space-32);
       padding: 0 var(--space-16);
-      font-size: 13px;
+      font-size: var(--type-label-md-size);
       gap: var(--space-4);
     }
 
     .btn-lg {
-      height: 48px;
+      height: var(--space-48);
       padding: 0 var(--space-24);
-      font-size: 15px;
+      font-size: var(--type-label-lg-size);
     }
 
     /* Button icon wrapper */
@@ -999,18 +999,18 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .btn-sm .btn-icon-wrap { width: 16px; height: 16px; }
-    .btn-lg .btn-icon-wrap { width: 20px; height: 20px; }
+    .btn-sm .btn-icon-wrap { width: var(--space-16); height: var(--space-16); }
+    .btn-lg .btn-icon-wrap { width: var(--space-20); height: var(--space-20); }
     .btn-icon-wrap svg { display: block; }
 
     /* Icon-only */
     .btn-icon-only {
       padding: 0;
-      width: 40px;
-      height: 40px;
+      width: var(--space-40);
+      height: var(--space-40);
     }
-    .btn-icon-only.btn-sm { width: 32px; height: 32px; }
-    .btn-icon-only.btn-lg { width: 48px; height: 48px; }
+    .btn-icon-only.btn-sm { width: var(--space-32); height: var(--space-32); }
+    .btn-icon-only.btn-lg { width: var(--space-48); height: var(--space-48); }
 
     /* ── Filled ── */
     .btn-filled {
@@ -1108,7 +1108,7 @@
     }
 
     .btn-size-label {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -1122,15 +1122,15 @@
     .btn-spec-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
+      font-size: 12px; /* no 12px token — between label-sm (11) and label-md (13) */
     }
 
     .btn-spec-table th {
       text-align: left;
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-secondary);
-      padding: 0 0 8px;
+      padding: 0 0 var(--space-8);
       border-bottom: 1px solid var(--border-default);
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1146,23 +1146,23 @@
     .btn-spec-table tr:last-child td { border-bottom: none; }
 
     .btn-spec-table code {
-      font-size: 10px;
+      font-size: 10px; /* no 10px token — below type scale floor of 11px */
       font-family: "DM Mono", monospace;
       background: var(--surface-raised);
       color: var(--brand-default);
-      padding: 1px 5px;
-      border-radius: 3px;
+      padding: 1px 5px; /* sub-token detail, no space-1 or space-5 */
+      border-radius: var(--space-3);
     }
 
     .btn-states-grid {
       display: grid;
-      grid-template-columns: 100px repeat(5, 1fr);
+      grid-template-columns: 100px repeat(5, 1fr); /* 100px layout col, no token */
       gap: var(--space-8);
       align-items: center;
     }
 
     .btn-states-header {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -1171,7 +1171,7 @@
     }
 
     .btn-states-label {
-      font-size: 12px;
+      font-size: 12px; /* no 12px token */
       font-weight: 600;
       color: var(--text-secondary);
       padding-right: var(--space-8);
@@ -1202,6 +1202,73 @@
     .btn-state-demo-pressed.btn-elevated { box-shadow: var(--shadow-xs); }
     .btn-state-demo-pressed.btn-outlined { background: var(--brand-green-100); }
     .btn-state-demo-pressed.btn-text    { background: var(--brand-green-100); }
+
+    /* ─── Icon Button ───────────────────────────────────*/
+    /* Standard variant — no fill, no border, gray icon */
+    .btn-standard {
+      background: transparent;
+      color: var(--text-tertiary);
+    }
+    .btn-standard:hover  { background: var(--surface-page); }
+    .btn-standard:active { background: var(--surface-default); }
+    .btn-standard:focus-visible { outline: 2px solid var(--state-focus); outline-offset: 2px; }
+    .btn-state-demo-pressed.btn-standard { background: var(--surface-default); }
+
+    .ibtn-demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-16);
+      padding: var(--space-24);
+      background: var(--surface-raised);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-16);
+      border: 1px solid var(--border-default);
+    }
+
+    .ibtn-spec-table { width: 100%; border-collapse: collapse; font-size: 12px; /* no 12px token */ }
+    .ibtn-spec-table th {
+      text-align: left; font-size: var(--type-label-sm-size); font-weight: 700; color: var(--text-secondary);
+      padding: 0 0 var(--space-8); border-bottom: 1px solid var(--border-default);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .ibtn-spec-table td {
+      padding: var(--space-12) var(--space-8) var(--space-12) 0;
+      border-bottom: 1px solid var(--border-default);
+      vertical-align: middle; color: var(--text-primary);
+    }
+    .ibtn-spec-table tr:last-child td { border-bottom: none; }
+    .ibtn-spec-table code {
+      font-size: 10px; /* no 10px token */ font-family: "DM Mono", monospace;
+      background: var(--surface-raised); color: var(--brand-default);
+      padding: 1px 5px; /* sub-token detail */ border-radius: var(--space-3);
+    }
+
+    .ibtn-size-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-12);
+    }
+    .ibtn-size-col {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: var(--space-12); padding: var(--space-20);
+      background: var(--surface-raised); border-radius: var(--radius-lg);
+      border: 1px solid var(--border-default);
+    }
+    .ibtn-size-label {
+      font-size: var(--type-label-sm-size); font-weight: 700; color: var(--text-secondary);
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-default);
+      width: 100%; margin-bottom: var(--space-4);
+    }
+    .ibtn-size-row { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+
+    .ibtn-states-grid {
+      display: grid;
+      grid-template-columns: 100px repeat(4, 1fr);
+      gap: var(--space-8);
+      align-items: center;
+    }
 
     /* ─── Text Field ─────────────────────────────────── */
     .tf-wrap {
@@ -1446,7 +1513,7 @@
       background: var(--surface-raised);
       color: var(--brand-default);
       padding: 1px 5px;
-      border-radius: 3px;
+      border-radius: var(--space-3);
     }
 
     .tf-demo-grid--2col { grid-template-columns: repeat(2, 1fr); }
@@ -1481,7 +1548,7 @@
     }
 
     .tf-matrix-row-head {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 600;
       color: var(--text-tertiary);
       text-transform: uppercase;
@@ -1499,6 +1566,183 @@
     .tf-matrix-cell .tf-wrap {
       width: 100%;
       min-width: 0;
+    }
+
+    /* ─── List ───────────────────────────────────────── */
+    .lst-group {
+      background: var(--surface-default);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      overflow: hidden;
+    }
+    .lst-variant-cell {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      overflow: hidden;
+    }
+
+    .lst-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      min-height: var(--space-48);
+      padding: var(--space-12) var(--space-16);
+      background: var(--surface-default);
+      cursor: pointer;
+      position: relative;
+      transition: background var(--duration-fast);
+      user-select: none;
+    }
+    .lst-row:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border-default);
+    }
+    .lst-row:hover { background: var(--surface-raised); }
+    .lst-row--pressed { background: var(--surface-raised); }
+    .lst-row--disabled { cursor: not-allowed; pointer-events: none; }
+    .lst-row--disabled .lst-label,
+    .lst-row--disabled .lst-subtitle,
+    .lst-row--disabled .lst-value { color: var(--state-disabled-text); }
+    .lst-row--disabled .lst-icon,
+    .lst-row--disabled .lst-img { opacity: 0.38; }
+    .lst-row--disabled .lst-chevron { opacity: 0.38; }
+    .lst-row--compact { min-height: var(--space-40); padding-top: var(--space-10); padding-bottom: var(--space-10); }
+
+    .lst-icon {
+      flex-shrink: 0;
+      width: var(--space-32);
+      height: var(--space-32);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lst-img {
+      flex-shrink: 0;
+      width: var(--space-40);
+      height: var(--space-40);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--surface-raised);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+    }
+    .lst-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .lst-label {
+      font-size: var(--type-body-md-size);
+      font-weight: var(--type-body-md-weight);
+      line-height: var(--type-body-md-lh);
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: var(--font-en);
+    }
+    .lst-subtitle {
+      font-size: var(--type-body-sm-size);
+      font-weight: var(--type-body-sm-weight);
+      line-height: var(--type-body-sm-lh);
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: var(--font-en);
+    }
+    .lst-trailing {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+    .lst-value {
+      font-size: var(--type-body-md-size);
+      font-weight: var(--type-body-md-weight);
+      color: var(--text-secondary);
+      font-family: var(--font-en);
+    }
+    .lst-badge {
+      min-width: var(--space-20);
+      height: var(--space-20);
+      padding: 0 var(--space-6);
+      border-radius: var(--radius-full);
+      background: var(--brand-default);
+      color: var(--brand-on-default);
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+    }
+    .lst-chevron { color: var(--text-tertiary); flex-shrink: 0; }
+
+    .lst-demo-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-24);
+      align-items: start;
+    }
+    .lst-demo-3cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-24);
+      align-items: start;
+    }
+    .lst-demo-col-label {
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-12);
+      font-family: var(--font-en);
+    }
+
+    .lst-states-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .lst-states-grid {
+      display: grid;
+      grid-template-columns: 100px repeat(3, 1fr);
+      gap: var(--space-8);
+      align-items: start;
+      min-width: 520px;
+    }
+    .lst-states-header {
+      font-size: var(--type-label-sm-size);
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-8) var(--space-4);
+      text-align: center;
+    }
+    .lst-states-label {
+      font-size: var(--type-label-sm-size);
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: var(--space-12);
+      display: flex;
+      align-items: center;
+    }
+    .lst-states-cell {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-default);
     }
 
     /* ─── Mobile Header ──────────────────────────────── */
@@ -1602,7 +1846,7 @@
 
     .cl-accordion-latest-date {
       font-family: "DM Mono", monospace;
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-tertiary);
       white-space: nowrap;
       flex-shrink: 0;
@@ -1650,7 +1894,7 @@
 
     .cl-date {
       font-family: "DM Mono", monospace;
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       color: var(--text-tertiary);
       padding-top: 3px;
       white-space: nowrap;
@@ -1669,7 +1913,7 @@
     }
 
     .cl-group-label {
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       font-weight: 700;
       color: var(--text-tertiary);
       text-transform: uppercase;
@@ -1694,7 +1938,7 @@
 
     .cl-list code {
       font-family: "DM Mono", monospace;
-      font-size: 11px;
+      font-size: var(--type-label-sm-size);
       background: var(--surface-raised);
       color: var(--text-primary);
       padding: 1px 5px;
@@ -1753,6 +1997,10 @@
 
       /* Text field: sizes grid → 2 cols on tablet */
       .tf-demo-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* List: collapse 2-col to 1-col, 3-col to 2-col */
+      .lst-demo-cols { grid-template-columns: 1fr; }
+      .lst-demo-3cols { grid-template-columns: 1fr 1fr; }
     }
 
     /* ─── Responsive: Phone (≤ 600px) ───────────────── */
@@ -1776,6 +2024,12 @@
 
       /* Button size grid: single col */
       .btn-size-grid { grid-template-columns: 1fr; }
+
+      /* Icon button size grid: single col */
+      .ibtn-size-grid { grid-template-columns: 1fr; }
+
+      /* Icon button states: horizontal scroll */
+      .ibtn-states-grid { min-width: 460px; }
 
       /* Font cards: single col */
       .type-font-cards { grid-template-columns: 1fr; }
@@ -1817,6 +2071,10 @@
 
       /* Text field: states grid → 2 cols on phone */
       .tf-states-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* List: single col on phone */
+      .lst-demo-cols,
+      .lst-demo-3cols { grid-template-columns: 1fr; }
 
       /* Icon grid: smaller */
       .icon-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
@@ -1919,6 +2177,12 @@
       </svg>
       Button
     </a>
+    <a href="#icon-button" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6"/><path d="M6 8l1.5 1.5L10 6.5"/>
+      </svg>
+      Icon Button
+    </a>
     <a class="nav-link nav-disabled">
       <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M2 2h5.5l6.5 6.5-5 5L2.5 7 2 2z"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/>
@@ -1967,12 +2231,11 @@
       Accordion
       <span class="nav-soon">Soon</span>
     </a>
-    <a class="nav-link nav-disabled">
+    <a href="#list" class="nav-link">
       <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
         <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="10" y2="12"/>
       </svg>
       List
-      <span class="nav-soon">Soon</span>
     </a>
     <a class="nav-link nav-disabled">
       <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -2065,8 +2328,8 @@
     <div class="cl-accordion">
       <button class="cl-accordion-trigger" id="cl-trigger" aria-expanded="false" aria-controls="cl-body">
         <div class="cl-accordion-summary">
-          <span class="cl-accordion-latest-date">2026-04-13</span>
-          <span class="cl-accordion-headline">Typography synced with Figma · Type scale added · Component heights tokenized · Text Field display state</span>
+          <span class="cl-accordion-latest-date">2026-04-14</span>
+          <span class="cl-accordion-headline">Icon Button section added · List section added · CSS tokens expanded across all sections</span>
         </div>
         <svg class="cl-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 6l4 4 4-4"/>
@@ -2074,6 +2337,48 @@
       </button>
 
       <div class="cl-accordion-body" id="cl-body" role="region" aria-labelledby="cl-trigger">
+
+        <!-- ── 2026-04-14 ── -->
+        <div class="cl-entry">
+          <div class="cl-date">2026-04-14</div>
+          <div class="cl-changes">
+
+            <div class="cl-group">
+              <div class="cl-group-label">Icon Button</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  New <strong>Icon Button</strong> section — Material Design 3 pattern with 4 variants (Filled · Tonal · Outlined · Standard), 3 sizes (SM 32px · MD 40px · LG 48px), and an interactive states matrix (Default · Pressed · Focused · Disabled). Includes variant spec table with token references.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cl-group">
+              <div class="cl-group-label">List</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--added">Added</span>
+                  New <strong>List</strong> section — covers variants, sizes, and interactive states for list components.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cl-group">
+              <div class="cl-group-label">Token System</div>
+              <ul class="cl-list">
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  CSS tokenization expanded across all existing sections — remaining hardcoded <code>font-size</code>, <code>border-radius</code>, <code>height</code>, and <code>width</code> values replaced with <code>var(--type-*)</code>, <code>var(--space-*)</code> tokens throughout Button, Icon Button, Text Field, Chip, and List styles.
+                </li>
+                <li>
+                  <span class="cl-tag cl-tag--changed">Changed</span>
+                  Icon button sizes now reference <code>var(--space-32)</code>, <code>var(--space-40)</code>, <code>var(--space-48)</code> — consistent with button and text field size tokens.
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
 
         <!-- ── 2026-04-13 ── -->
         <div class="cl-entry">
@@ -3190,9 +3495,9 @@
           <button class="btn btn-elevated btn-sm">Elevated SM</button>
           <button class="btn btn-outlined btn-sm">Outlined SM</button>
           <button class="btn btn-text btn-sm">Text SM</button>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-32)</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-16)</code>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-32)</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-16)</code>
           </div>
         </div>
         <div class="btn-size-col">
@@ -3202,9 +3507,9 @@
           <button class="btn btn-elevated">Elevated MD</button>
           <button class="btn btn-outlined">Outlined MD</button>
           <button class="btn btn-text">Text MD</button>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">40px</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-24)</code>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">40px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-24)</code>
           </div>
         </div>
         <div class="btn-size-col">
@@ -3214,9 +3519,9 @@
           <button class="btn btn-elevated btn-lg">Elevated LG</button>
           <button class="btn btn-outlined btn-lg">Outlined LG</button>
           <button class="btn btn-text btn-lg">Text LG</button>
-          <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-48)</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-24)</code>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-48)</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-24)</code>
           </div>
         </div>
       </div>
@@ -3247,7 +3552,7 @@
           Text
         </button>
       </div>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Icon-only — use when the action is self-evident from context. Always include an <code style="font-size:11px;font-family:monospace;background:var(--surface-raised);padding:1px 5px;border-radius:3px;color:var(--brand-default);">aria-label</code> for accessibility.</p>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Icon-only — use when the action is self-evident from context. Always include an <code style="font-size:var(--type-label-sm-size);font-family:monospace;background:var(--surface-raised);padding:1px 5px;border-radius:var(--space-3);color:var(--brand-default);">aria-label</code> for accessibility.</p>
       <div class="btn-demo-row">
         <button class="btn btn-filled btn-icon-only" aria-label="Add">
           <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z"/></svg></span>
@@ -3325,6 +3630,160 @@
         <div class="btn-states-cell"><button class="btn btn-text btn-state-demo-pressed">Button</button></div>
         <div class="btn-states-cell"><button class="btn btn-text btn-state-demo-focus">Button</button></div>
         <div class="btn-states-cell"><button class="btn btn-text" disabled>Button</button></div>
+      </div>
+      </div><!-- /btn-states-scroll -->
+    </div>
+
+  </div>
+
+  <!-- ── ICON BUTTON ──────────────────────────────── -->
+  <div class="section" id="icon-button">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>Icon Button</h2>
+      <span class="section-desc">Material Design 3 — 4 variants · 3 sizes · interactive states</span>
+    </div>
+
+    <!-- ── Variants ── -->
+    <div class="subsection">
+      <div class="subsection-title">Variants</div>
+      <div class="ibtn-demo-row">
+        <button class="btn btn-filled btn-icon-only" aria-label="Edit">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span>
+        </button>
+        <button class="btn btn-tonal btn-icon-only" aria-label="Edit">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span>
+        </button>
+        <button class="btn btn-outlined btn-icon-only" aria-label="Edit">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span>
+        </button>
+        <button class="btn btn-standard btn-icon-only" aria-label="Edit">
+          <span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span>
+        </button>
+      </div>
+      <table class="ibtn-spec-table">
+        <thead>
+          <tr>
+            <th style="width:130px">Variant</th>
+            <th>When to use</th>
+            <th style="width:160px">Background</th>
+            <th style="width:160px">Icon Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button class="btn btn-filled btn-icon-only btn-sm" aria-label="Filled"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></td>
+            <td>Highest emphasis — the single most important action in a context.</td>
+            <td><code>--brand-default</code></td>
+            <td><code>--brand-on-default</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-tonal btn-icon-only btn-sm" aria-label="Tonal"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></td>
+            <td>High emphasis but not the sole primary action — save, pin, react.</td>
+            <td><code>--brand-subtle</code></td>
+            <td><code>--brand-strong</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-outlined btn-icon-only btn-sm" aria-label="Outlined"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></td>
+            <td>Medium emphasis — secondary actions, toggleable filters.</td>
+            <td>transparent</td>
+            <td><code>--brand-default</code></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-standard btn-icon-only btn-sm" aria-label="Standard"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></td>
+            <td>Lowest emphasis — tertiary actions, toolbars, overflow menus.</td>
+            <td>transparent</td>
+            <td><code>--text-tertiary</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="subsection">
+      <div class="subsection-title">Sizes</div>
+      <div class="ibtn-size-grid">
+        <div class="ibtn-size-col">
+          <div class="ibtn-size-label">SM — 32px</div>
+          <div class="ibtn-size-row">
+            <button class="btn btn-filled btn-icon-only btn-sm" aria-label="Filled SM"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-tonal btn-icon-only btn-sm" aria-label="Tonal SM"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-outlined btn-icon-only btn-sm" aria-label="Outlined SM"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-standard btn-icon-only btn-sm" aria-label="Standard SM"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            size: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-32)</code>&nbsp;·&nbsp;
+            icon: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">16px</code>
+          </div>
+        </div>
+        <div class="ibtn-size-col">
+          <div class="ibtn-size-label">MD — 40px (default)</div>
+          <div class="ibtn-size-row">
+            <button class="btn btn-filled btn-icon-only" aria-label="Filled MD"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-tonal btn-icon-only" aria-label="Tonal MD"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-outlined btn-icon-only" aria-label="Outlined MD"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-standard btn-icon-only" aria-label="Standard MD"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            size: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">40px</code>&nbsp;·&nbsp;
+            icon: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">18px</code>
+          </div>
+        </div>
+        <div class="ibtn-size-col">
+          <div class="ibtn-size-label">LG — 48px</div>
+          <div class="ibtn-size-row">
+            <button class="btn btn-filled btn-icon-only btn-lg" aria-label="Filled LG"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-tonal btn-icon-only btn-lg" aria-label="Tonal LG"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-outlined btn-icon-only btn-lg" aria-label="Outlined LG"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+            <button class="btn btn-standard btn-icon-only btn-lg" aria-label="Standard LG"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-4);">
+            size: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-48)</code>&nbsp;·&nbsp;
+            icon: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">20px</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── States ── -->
+    <div class="subsection">
+      <div class="subsection-title">States</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Interactive states across all variants. Focus state is live — try it in the browser.</p>
+      <div class="btn-states-scroll">
+      <div class="ibtn-states-grid">
+        <div></div>
+        <div class="btn-states-header">Default</div>
+        <div class="btn-states-header">Pressed</div>
+        <div class="btn-states-header">Focused</div>
+        <div class="btn-states-header">Disabled</div>
+
+        <!-- Filled -->
+        <div class="btn-states-label">Filled</div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-icon-only" aria-label="Filled"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-icon-only btn-state-demo-pressed" aria-label="Filled pressed"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-icon-only btn-state-demo-focus" aria-label="Filled focus"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-filled btn-icon-only" aria-label="Filled disabled" disabled><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+
+        <!-- Tonal -->
+        <div class="btn-states-label">Tonal</div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-icon-only" aria-label="Tonal"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-icon-only btn-state-demo-pressed" aria-label="Tonal pressed"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-icon-only btn-state-demo-focus" aria-label="Tonal focus"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-tonal btn-icon-only" aria-label="Tonal disabled" disabled><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+
+        <!-- Outlined -->
+        <div class="btn-states-label">Outlined</div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-icon-only" aria-label="Outlined"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-icon-only btn-state-demo-pressed" aria-label="Outlined pressed"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-icon-only btn-state-demo-focus" aria-label="Outlined focus"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-outlined btn-icon-only" aria-label="Outlined disabled" disabled><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+
+        <!-- Standard -->
+        <div class="btn-states-label">Standard</div>
+        <div class="btn-states-cell"><button class="btn btn-standard btn-icon-only" aria-label="Standard"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-standard btn-icon-only btn-state-demo-pressed" aria-label="Standard pressed"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-standard btn-icon-only btn-state-demo-focus" aria-label="Standard focus"><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
+        <div class="btn-states-cell"><button class="btn btn-standard btn-icon-only" aria-label="Standard disabled" disabled><span class="btn-icon-wrap"><svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg></span></button></div>
       </div>
       </div><!-- /btn-states-scroll -->
     </div>
@@ -3416,8 +3875,8 @@
             <span class="tf-helper">Helper text</span>
           </div>
           <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">36px</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-12)</code>
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">36px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-12)</code>
           </div>
         </div>
         <!-- MD -->
@@ -3431,8 +3890,8 @@
             <span class="tf-helper">Helper text</span>
           </div>
           <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">44px</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-12)</code>
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">44px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-12)</code>
           </div>
         </div>
         <!-- LG -->
@@ -3446,8 +3905,8 @@
             <span class="tf-helper">Helper text</span>
           </div>
           <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);">
-            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">56px</code>&nbsp;·&nbsp;
-            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px 4px;border-radius:3px;">var(--space-16)</code>
+            height: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">56px</code>&nbsp;·&nbsp;
+            px: <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">var(--space-16)</code>
           </div>
         </div>
       </div>
@@ -3808,6 +4267,332 @@
       </div>
     </div>
 
+
+  </div>
+
+  <!-- ── LIST ──────────────────────────────────────── -->
+  <div class="section" id="list">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>List</h2>
+      <span class="section-desc">6 variants · content-driven heights · 3 states · 2 group styles — iOS/Material aligned</span>
+    </div>
+
+    <!-- ── Variants ── -->
+    <div class="subsection">
+      <div class="subsection-title">Variants</div>
+      <div class="lst-demo-cols">
+
+        <!-- Basic -->
+        <div>
+          <div class="lst-demo-col-label">Basic</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Suica Balance</span></div>
+              <div class="lst-trailing">
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtitle -->
+        <div>
+          <div class="lst-demo-col-label">Subtitle</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row">
+              <div class="lst-content">
+                <span class="lst-label">Transit History</span>
+                <span class="lst-subtitle">Last 20 trips</span>
+              </div>
+              <div class="lst-trailing">
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Value -->
+        <div>
+          <div class="lst-demo-col-label">Value</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Language</span></div>
+              <div class="lst-trailing">
+                <span class="lst-value">日本語</span>
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon -->
+        <div>
+          <div class="lst-demo-col-label">Icon</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row lst-row--has-icon">
+              <div class="lst-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="14" height="10" rx="2"/><line x1="1" y1="6.5" x2="15" y2="6.5"/></svg>
+              </div>
+              <div class="lst-content"><span class="lst-label">My Suica</span></div>
+              <div class="lst-trailing">
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon + Subtitle -->
+        <div>
+          <div class="lst-demo-col-label">Icon + Subtitle</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row lst-row--has-icon">
+              <div class="lst-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5v2.5l1.5 2H2L3.5 8.5V6A4.5 4.5 0 0 1 8 1.5z"/><path d="M6.5 13.5a1.5 1.5 0 0 0 3 0"/></svg>
+              </div>
+              <div class="lst-content">
+                <span class="lst-label">Notifications</span>
+                <span class="lst-subtitle">Push, Email</span>
+              </div>
+              <div class="lst-trailing">
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image + Subtitle -->
+        <div>
+          <div class="lst-demo-col-label">Image + Subtitle</div>
+          <div class="lst-variant-cell">
+            <div class="lst-row lst-row--has-img">
+              <div class="lst-img">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.4"><rect x="1" y="2" width="16" height="14" rx="2"/><circle cx="6" cy="7" r="1.5"/><polyline points="1 13 6 8.5 9.5 11.5 12.5 8 17 13"/></svg>
+              </div>
+              <div class="lst-content">
+                <span class="lst-label">Shinjuku Station</span>
+                <span class="lst-subtitle">JR Yamanote Line · 0.3 km</span>
+              </div>
+              <div class="lst-trailing">
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="subsection">
+      <div class="subsection-title">Sizes</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-20);">Heights are content-driven — rows expand naturally based on text content</p>
+      <div class="lst-demo-3cols">
+        <!-- Compact -->
+        <div>
+          <div class="lst-demo-col-label">Compact — 44px</div>
+          <div class="lst-group">
+            <div class="lst-row lst-row--compact">
+              <div class="lst-content"><span class="lst-label">Suica Balance</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row lst-row--compact">
+              <div class="lst-content"><span class="lst-label">Transit History</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row lst-row--compact">
+              <div class="lst-content"><span class="lst-label">Settings</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-8);">
+            <code style="font-size:10px;font-family:monospace;background:var(--surface-page);padding:1px var(--space-4);border-radius:var(--space-3);">.lst-row--compact</code> · Dense info lists
+          </div>
+        </div>
+        <!-- One-line -->
+        <div>
+          <div class="lst-demo-col-label">One-line — 56px</div>
+          <div class="lst-group">
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Suica Balance</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Transit History</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Settings</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-8);">
+            Default · Label only, most common use
+          </div>
+        </div>
+        <!-- Two-line -->
+        <div>
+          <div class="lst-demo-col-label">Two-line — 76px</div>
+          <div class="lst-group">
+            <div class="lst-row">
+              <div class="lst-content">
+                <span class="lst-label">List Row</span>
+                <span class="lst-subtitle">Subtext</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row">
+              <div class="lst-content">
+                <span class="lst-label">List Row</span>
+                <span class="lst-subtitle">Subtext</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+            <div class="lst-row">
+              <div class="lst-content">
+                <span class="lst-label">List Row</span>
+                <span class="lst-subtitle">Subtext</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div style="font-size:var(--type-label-sm-size);color:var(--text-tertiary);margin-top:var(--space-8);">
+            Auto-height · Label + subtitle expand the row naturally
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── States ── -->
+    <div class="subsection">
+      <div class="subsection-title">States</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:var(--space-16);">Hover is live — try it in the browser. Pressed and disabled are shown as static demos.</p>
+      <div class="lst-states-scroll">
+        <div class="lst-states-grid">
+          <div></div>
+          <div class="lst-states-header">Default</div>
+          <div class="lst-states-header">Pressed</div>
+          <div class="lst-states-header">Disabled</div>
+
+          <!-- Basic -->
+          <div class="lst-states-label">Basic</div>
+          <div class="lst-states-cell">
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">List Row</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--pressed">
+              <div class="lst-content"><span class="lst-label">List Row</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--disabled">
+              <div class="lst-content"><span class="lst-label">List Row</span></div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+
+          <!-- Value -->
+          <div class="lst-states-label">Value</div>
+          <div class="lst-states-cell">
+            <div class="lst-row">
+              <div class="lst-content"><span class="lst-label">Language</span></div>
+              <div class="lst-trailing">
+                <span class="lst-value">日本語</span>
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--pressed">
+              <div class="lst-content"><span class="lst-label">Language</span></div>
+              <div class="lst-trailing">
+                <span class="lst-value">日本語</span>
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--disabled">
+              <div class="lst-content"><span class="lst-label">Language</span></div>
+              <div class="lst-trailing">
+                <span class="lst-value">日本語</span>
+                <svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Icon + Subtitle -->
+          <div class="lst-states-label">Icon + Sub</div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-icon">
+              <div class="lst-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5v2.5l1.5 2H2L3.5 8.5V6A4.5 4.5 0 0 1 8 1.5z"/><path d="M6.5 13.5a1.5 1.5 0 0 0 3 0"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Notifications</span>
+                <span class="lst-subtitle">Push, Email</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-icon lst-row--pressed">
+              <div class="lst-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5v2.5l1.5 2H2L3.5 8.5V6A4.5 4.5 0 0 1 8 1.5z"/><path d="M6.5 13.5a1.5 1.5 0 0 0 3 0"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Notifications</span>
+                <span class="lst-subtitle">Push, Email</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-icon lst-row--disabled">
+              <div class="lst-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5v2.5l1.5 2H2L3.5 8.5V6A4.5 4.5 0 0 1 8 1.5z"/><path d="M6.5 13.5a1.5 1.5 0 0 0 3 0"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Notifications</span>
+                <span class="lst-subtitle">Push, Email</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+
+          <!-- Image + Subtitle -->
+          <div class="lst-states-label">Image + Sub</div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-img">
+              <div class="lst-img"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.4"><rect x="1" y="2" width="16" height="14" rx="2"/><circle cx="6" cy="7" r="1.5"/><polyline points="1 13 6 8.5 9.5 11.5 12.5 8 17 13"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Shinjuku Station</span>
+                <span class="lst-subtitle">JR Yamanote Line · 0.3 km</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-img lst-row--pressed">
+              <div class="lst-img"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.4"><rect x="1" y="2" width="16" height="14" rx="2"/><circle cx="6" cy="7" r="1.5"/><polyline points="1 13 6 8.5 9.5 11.5 12.5 8 17 13"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Shinjuku Station</span>
+                <span class="lst-subtitle">JR Yamanote Line · 0.3 km</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+          <div class="lst-states-cell">
+            <div class="lst-row lst-row--has-img lst-row--disabled">
+              <div class="lst-img"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.4"><rect x="1" y="2" width="16" height="14" rx="2"/><circle cx="6" cy="7" r="1.5"/><polyline points="1 13 6 8.5 9.5 11.5 12.5 8 17 13"/></svg></div>
+              <div class="lst-content">
+                <span class="lst-label">Shinjuku Station</span>
+                <span class="lst-subtitle">JR Yamanote Line · 0.3 km</span>
+              </div>
+              <div class="lst-trailing"><svg class="lst-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 9 7 5 11"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
